@@ -12,7 +12,7 @@ public class AppointmentBox extends JFrame {
 	private JLabel location;
 	private JLabel person;
 	public AppointmentBox(String date, String time, String location, String person) {
-		super();
+		super("Appuntamento");
 		setLayout(new GridLayout(4, 2));
 		
 		this.date = new JLabel(date);

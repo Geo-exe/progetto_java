@@ -2,10 +2,10 @@ package graphic_user_interface;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JLabel;
 
-public class AgendaBox extends JFrame {
+public class AgendaBox extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JLabel name;
 	private JLabel lenght;
@@ -13,7 +13,6 @@ public class AgendaBox extends JFrame {
 	public AgendaBox(String name, String lenght) {
 		super();
 		setLayout(new GridLayout(1, 2));
-		
 		this.name = new JLabel(name);
 		this.lenght = new JLabel(lenght);
 		
@@ -21,8 +20,6 @@ public class AgendaBox extends JFrame {
 		add(this.lenght);
 		
 		setPreferredSize(new Dimension(300, 150));
-		pack();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 	
