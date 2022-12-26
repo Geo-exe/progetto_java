@@ -11,12 +11,10 @@ public class Appointment {
 	private Time time;
 	private int duration;
 	private String person;
-	private static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
-	private static SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm");
+	private static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
 	public Appointment(String date, String time, String location, String person, int duration) throws ParseException {
-		
-		this.date = dateFormatter.parse(date);
-		this.time = new Time(timeFormatter.parse(time).getTime());
+		String datetimeTemp = date + " - " + time;
+		this.date = dateFormatter.parse(datetimeTemp);
 		this.duration= duration;
 		this.location = location;
 		this.person = person;
