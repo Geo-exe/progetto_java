@@ -53,11 +53,10 @@ public class Dashboard extends JFrame {
 	}
 
 	public void initializeAgendaList(ArrayList<Agenda> agendas, ListSelectionListener selectionHandler) {	
-		
 		agendasListPanel.setLayout(new BorderLayout());
-		agendasListPanel.add(agendasList);
 		agendasList = new JList<>(AgendaUtils.agendaListToArray(agendas));
 		agendasList.addListSelectionListener(selectionHandler);
+		agendasListPanel.add(agendasList);
 		agendasListPanel.setPreferredSize(new Dimension(150, 600));
 		agendasListPanel.setVisible(true);
 	}

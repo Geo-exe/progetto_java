@@ -21,7 +21,7 @@ public class Agenda {
 	public int size() {
 		return appointments.size();
 	}
-	public void addAppointment(String date, String time, String location, String person, String duration) throws ParseException {
+	public void addAppointment(String date, String time, String location, String person, int duration) throws ParseException {
 //		if(AgendaUtils.checkAvailability(date, time, location, person, duration)) {
 //			this.appointments.add(new Appointment(date, time, location, person, duration));
 //		}
