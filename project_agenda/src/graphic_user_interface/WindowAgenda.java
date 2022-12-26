@@ -3,6 +3,8 @@ package graphic_user_interface;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -12,6 +14,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import com.sun.tools.javac.Main;
 
 import sourcecode.Agenda;
 import sourcecode.Appointment;
@@ -24,10 +28,12 @@ public class WindowAgenda extends JFrame {
 	private ArrayList<Agenda> agendas;
 	private GridLayout layout;
 	private JLabel label;
+	private int selectedAgenda;
 	public WindowAgenda(ArrayList<Agenda> agendas) {
 		super("Dashboard");
 		setLayout(new GridLayout(1, 1));
 		this.agendas = agendas;
+		this.selectedAgenda = -1;
 		layout = new GridLayout(4, 1, 0, 5);
 		label = new JLabel("Selezionare un'Agenda!");
 		agendasList = initializeAgendaList();
@@ -49,7 +55,8 @@ public class WindowAgenda extends JFrame {
 		tempList.addListSelectionListener(new ListSelectionListener() {
 		      public void valueChanged(ListSelectionEvent e) {
 			        if (!e.getValueIsAdjusting()) {
-			          setAppointmentsPanel(tempList.getSelectedIndex());
+			        	selectedAgenda = tempList.getSelectedIndex();
+			        	setAppointmentsPanel();
 			        }
 			      }
 			    });
@@ -70,7 +77,7 @@ public class WindowAgenda extends JFrame {
 		return tempPanel;
 	}
 	
-	private void setAppointmentsPanel(int selectedAgenda) {
+	private void setAppointmentsPanel() {
 		appointmentsPanel.setVisible(false);
 		int size = 4;
 		if(agendas.get(selectedAgenda).size()>size) size = agendas.get(selectedAgenda).size();
@@ -82,41 +89,4 @@ public class WindowAgenda extends JFrame {
 		appointmentsPanel.setVisible(true);
 		revalidate();
 	}
-	
-	private JPanel agendaButtons() {
-		JPanel tempPanel = new JPanel();
-		// Add Button
-		JButton addButton = new JButton();
-		
-		
-		
-		// Remove Button
-		JButton delButton = new JButton();
-		
-		
-		
-		
-		
-		return tempPanel;
-	}
-	
-	private JPanel appointmentsButtons() {
-		JPanel tempPanel = new JPanel();
-		// Add Button
-		JButton addButton = new JButton();
-		
-		
-		// Remove Button
-		JButton delButton = new JButton();
-		
-		
-		
-		// Edit Button
-		JButton editButton = new JButton();
-		
-		
-		
-		return tempPanel;
-	}
-	
 }
