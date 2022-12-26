@@ -12,4 +12,10 @@ public class AgendaUtils {
 		}
 		return arrayString;
 	}
+	
+	public static boolean checkAvailability(String date, String time, String location, String person, String duration) {
+		
+		//controllo disponibilità per inserire appuntamento
+		return false;
+	}
 }

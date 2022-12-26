@@ -9,15 +9,18 @@ public class Appointment {
 	private String location;
 	private Date date;
 	private Time time;
+	private Time duration;
 	private String person;
 	private static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 	private static SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm");
-	public Appointment(String date, String time, String location, String person) throws ParseException {
+	public Appointment(String date, String time, String location, String person, String duration) throws ParseException {
 		
 		this.date = dateFormatter.parse(date);
 		this.time = new Time(timeFormatter.parse(time).getTime());
+		this.duration=new Time(timeFormatter.parse(duration).getTime());
 		this.location = location;
 		this.person = person;
+		
 	}
 
 	public String getLocation() {
@@ -40,4 +43,9 @@ public class Appointment {
 		return person;
 	}
 
+	public Time getDuration() {
+		return duration;
+	}
+	
+	
 }
