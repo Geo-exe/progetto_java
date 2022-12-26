@@ -15,6 +15,7 @@ public class AppointmentBox extends JPanel {
 	private JLabel time;
 	private JLabel location;
 	private JLabel person;
+	private JLabel duration;
 	public AppointmentBox(Appointment appointment) {
 		super();
 		setLayout(new GridLayout(4, 2));
@@ -23,11 +24,13 @@ public class AppointmentBox extends JPanel {
 		this.time = new JLabel(appointment.getTime().toString());
 		this.location = new JLabel(appointment.getLocation());
 		this.person = new JLabel(appointment.getPerson());
-		
+		this.duration = new JLabel(appointment.getDuration().toString());
 		add(new JLabel("Data:"));
 		add(this.date);
 		add(new JLabel("Ora:"));
 		add(this.time);
+		add(new JLabel("Durata(min.):"));
+		add(this.duration);
 		add(new JLabel("Luogo:"));
 		add(this.location);
 		add(new JLabel("Persona:"));
@@ -35,12 +38,5 @@ public class AppointmentBox extends JPanel {
 
 		setPreferredSize(new Dimension(300, 150));
 		setVisible(true);
-	}
-	
-	public void modifyAppointment(String date, String time, String location, String person) {
-		this.date.setText(date);
-		this.time.setText(time);
-		this.location.setText(location);
-		this.person.setText(person);
 	}
 }
