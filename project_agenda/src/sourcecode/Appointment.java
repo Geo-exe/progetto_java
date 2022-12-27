@@ -46,5 +46,9 @@ public class Appointment {
 		return duration;
 	}
 	
+	public int compare(Appointment a) {
+		return date_time.compareTo(a.date_time);
+	}
+	
 	
 }
