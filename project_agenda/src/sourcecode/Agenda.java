@@ -3,7 +3,10 @@ package sourcecode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import utils.AgendaUtils;
+import java.util.Calendar;
+
+
+
 
 public class Agenda {
 	private String name;
@@ -21,23 +24,25 @@ public class Agenda {
 	public int size() {
 		return appointments.size();
 	}
-	public void addAppointment(String date, String time, String location, String person, int duration) throws ParseException {
+	public void addAppointment(Calendar date_time, String location, String person, int duration) throws ParseException {
 //		if(AgendaUtils.checkAvailability(date, time, location, person, duration)) {
 //			this.appointments.add(new Appointment(date, time, location, person, duration));
 //		}
-		this.appointments.add(new Appointment(date, time, location, person, duration));
+		this.appointments.add(new Appointment(date_time, location, person, duration));
 	}
 	public void modifyAppointment(String date, String time, String location, String person, String duration) {
 		
 		
 	}
 	
-	public ArrayList<Appointment> findByDate(String date) throws ParseException {
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+	public ArrayList<Appointment> findByDate(Calendar date_time) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY HH:mm"); 
 		ArrayList<Appointment> result= new ArrayList<Appointment>();
+		Calendar temp;
 		
 		for(Appointment appointment: appointments) {
-			if(appointment.getDate()==dateFormatter.parse(date)) {
+			temp=appointment.getDate_time();
+			if(sdf.format(temp.getTime())==sdf.format(date_time.getTime())) {
 				result.add(appointment);
 			}
 		}
@@ -59,7 +64,7 @@ public class Agenda {
 	
 	public ArrayList<Appointment> getAllAppointments() {
 		ArrayList<Appointment> result= new ArrayList<Appointment>();
-		//ciao
+		
 		
 		return result;
 	}

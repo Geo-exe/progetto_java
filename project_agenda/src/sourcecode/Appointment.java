@@ -1,20 +1,20 @@
 package sourcecode;
 
-import java.sql.Time;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
 
 public class Appointment {
+	SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+	SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
 	private String location;
-	private Date date;
-	private Time time;
+	private Calendar date_time;
 	private int duration;
 	private String person;
-	private static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
-	public Appointment(String date, String time, String location, String person, int duration) throws ParseException {
-		String datetimeTemp = date + " - " + time;
-		this.date = dateFormatter.parse(datetimeTemp);
+	public Appointment(Calendar date_time, String location, String person, int duration) throws ParseException {
+		
+		this.date_time=date_time;
 		this.duration= duration;
 		this.location = location;
 		this.person = person;
@@ -25,16 +25,17 @@ public class Appointment {
 		return location;
 	}
 
-	public Date getDate() {
-		return date;
+	public Calendar getDate_time() {
+		return date_time;
+	}
+	
+	public String getTime() {
+		return format2.format(date_time.getTime());
 	}
 	
 	public String getStrDate() {
-		return dateFormatter.format(date);
-	}
-
-	public Time getTime() {
-		return time;
+		
+		return  format1.format(date_time.getTime());
 	}
 
 	public String getPerson() {
