@@ -11,9 +11,9 @@ public class AppointmentUtils {
 		Appointment min=temp.get(0);
 		
 		for(Appointment a: temp) {
-			//<0 ascendent 
-			//>0 descedent
-			if(a.compare(min)<0) {
+			//before ascendent 
+			//after descedent
+			if(a.getDate_time().before(min.getDate_time())) {
 				min=a;
 			}
 			

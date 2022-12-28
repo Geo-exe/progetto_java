@@ -1,8 +1,13 @@
 package utils;
 
+
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 
 import sourcecode.Agenda;
+import sourcecode.Appointment;
 
 public class AgendaUtils {
 	public static String[] agendaListToArray(ArrayList<Agenda> list) {
@@ -13,9 +18,22 @@ public class AgendaUtils {
 		return arrayString;
 	}
 	
-	public static boolean checkAvailability(String date, String time, String location, String person, String duration) {
+	public static boolean checkAvailability(Calendar date_time, String location, String person, int duration, ArrayList<Appointment> list) throws ParseException {
+		Calendar end=(Calendar) date_time.clone();
+		end.add(Calendar.MINUTE,duration);
+		int count=0;
 		
-		//controllo disponibilità per inserire appuntamento
-		return false;
+		for(Appointment a: list) {
+			if(end.before(a.getDate_time()) || date_time.after(a.getEndDate_time())) {
+				count++;
+			}
+		}
+		
+		if(count==list.size()) {
+			return true;
+		}else {
+			return false;
+		}
+		
 	}
 }

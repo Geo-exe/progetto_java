@@ -29,6 +29,14 @@ public class Appointment {
 		return date_time;
 	}
 	
+	public String getPerson() {
+		return person;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+	
 	public String getTime() {
 		return format2.format(date_time.getTime());
 	}
@@ -38,17 +46,10 @@ public class Appointment {
 		return  format1.format(date_time.getTime());
 	}
 
-	public String getPerson() {
-		return person;
+	public Calendar getEndDate_time() {
+		Calendar result=(Calendar) date_time.clone();
+		result.add(Calendar.MINUTE, duration);
+		return result;
 	}
-
-	public int getDuration() {
-		return duration;
-	}
-	
-	public int compare(Appointment a) {
-		return date_time.compareTo(a.date_time);
-	}
-	
 	
 }

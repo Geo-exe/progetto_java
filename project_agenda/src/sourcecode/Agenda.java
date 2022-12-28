@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import utils.AgendaUtils;
 import utils.AppointmentUtils;
 
 
@@ -13,26 +15,32 @@ import utils.AppointmentUtils;
 public class Agenda {
 	private String name;
 	private ArrayList<Appointment> appointments;
+	
 	public Agenda(String name) {
 		this.name = name;
 		this.appointments = new ArrayList<Appointment>();
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public ArrayList<Appointment> getAppointments() {
 		return appointments;
 	}
+	
 	public int size() {
 		return appointments.size();
 	}
+	
 	public void addAppointment(Calendar date_time, String location, String person, int duration) throws ParseException {
-//		if(AgendaUtils.checkAvailability(date_time, location, person, duration)) {
-//			this.appointments.add(new Appointment(date_time, location, person, duration));
-//		}
-		this.appointments.add(new Appointment(date_time, location, person, duration));
+		if(AgendaUtils.checkAvailability(date_time, location, person, duration,appointments)) {
+			this.appointments.add(new Appointment(date_time, location, person, duration));
+		}
+		
 	}
-	public void modifyAppointment(String date, String time, String location, String person, String duration) {
+	
+	public void modifyAppointment(Calendar date_time, String location, String person, String duration) {
 		
 		
 	}
