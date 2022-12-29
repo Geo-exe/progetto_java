@@ -7,7 +7,7 @@ import javax.swing.event.ListSelectionListener;
 
 import graphic_user_interface.Dashboard;
 import sourcecode.Agenda;
-import sourcecode.Appointment;
+//import sourcecode.Appointment;
 
 public class Main {
 	

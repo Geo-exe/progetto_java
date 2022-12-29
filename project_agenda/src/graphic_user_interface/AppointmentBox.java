@@ -18,7 +18,7 @@ public class AppointmentBox extends JPanel {
 	private JLabel duration;
 	public AppointmentBox(Appointment appointment) {
 		super();
-		setLayout(new GridLayout(4, 2));
+		setLayout(new GridLayout(5, 2));
 		setBorder(BorderFactory.createTitledBorder("Appuntamento"));
 		this.date = new JLabel(appointment.getStrDate());
 		this.time = new JLabel(appointment.getTime());
