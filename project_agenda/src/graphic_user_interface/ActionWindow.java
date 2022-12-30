@@ -17,7 +17,6 @@ import sourcecode.Agenda;
 
 public abstract class ActionWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
-
 	private JButton confirm;
 	private JButton cancel;
 	private JSplitPane panel7030;

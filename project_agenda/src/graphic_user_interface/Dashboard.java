@@ -48,16 +48,9 @@ public class Dashboard extends JFrame{
 		agendasListPanel = new JPanel();
 		appointmentsPanel = new JPanel();	
 		
-		
-		//Aggiungo il pannello delle azioni
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.weighty = 0.5;
-		gbc.weightx = 1.0;
-		add(new ActionsPanel(agendas, agendasList), gbc);
-		
 		// aggiungere componenti alla finestra
 		// lista agenda
+		gbc.gridwidth = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.weighty = 1.0;
@@ -101,6 +94,15 @@ public class Dashboard extends JFrame{
 		appointmentsPanel.add(startLabel, CENTER_ALIGNMENT);
 		appointmentsPanel.setPreferredSize(new Dimension(650, 600));
 		appointmentsPanel.setVisible(true);
+		
+		
+		//Aggiungo il pannello delle azioni
+				gbc.gridwidth = 2;
+				gbc.gridx = 0;
+				gbc.gridy = 0;
+				gbc.weighty = 0.5;
+				gbc.weightx = 1.0;
+				add(new ActionsPanel(agendas, agendasList), gbc);
 		
 	}
 	

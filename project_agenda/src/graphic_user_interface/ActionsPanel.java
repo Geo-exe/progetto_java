@@ -1,9 +1,14 @@
 package graphic_user_interface;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,56 +18,49 @@ import javax.swing.JPanel;
 import sourcecode.Agenda;
 
 public class ActionsPanel extends JPanel {
-	private JButton find;
-	private JButton addAgenda;
-	private JButton delAgenda;
-	private JButton addAppointment;
-	private JButton delAppointment;
-	private JButton editAppointment;
-	private JButton orderByDate;
-	private JButton importFile;
-	private JButton exportFile;
+	private static final long serialVersionUID = 1L;
 	private boolean actionWindowIsOpen;
-	private JFrame actionWindowOpen;
+	private ActionWindow actionWindowOpen;
 	private ArrayList<Agenda> agendas;
 	private JList<String> agendasList;
-
+	JButton[] buttons;
 	public ActionsPanel(ArrayList<Agenda> agendas, JList<String> agendasList) {
 		super();
-		setLayout(new GridLayout(1, 9, 2, 2));
-		find = new JButton("Trova Appuntamento");
-		addAgenda = new JButton("Aggiungi Agenda");
-		delAgenda = new JButton("Elimina Agenda");
-		addAppointment = new JButton("Aggiungi Appuntamento");
-		delAppointment = new JButton("Elimina Appunamento");
-		editAppointment = new JButton("Modifica Appuntamento");
-		orderByDate = new JButton("Ordina Appunamenti");
-		importFile = new JButton("Importa Agenda");
-		exportFile = new JButton("Esporta Agenda");
+		this.agendas = agendas;
+		this.agendasList = agendasList;		
 		actionWindowIsOpen = false;
-		addAgenda.addActionListener(e -> {
-			try {
-				actionWindowOpen = new AddAgendaWindow("Aggiungi Agenda", agendas, agendasList, actionWindowIsOpen);
-				actionWindowOpen.addWindowListener(closingEvents());
-				actionWindowIsOpen = true;
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		});
+		setLayout(new GridLayout(1, 9, 2, 2));
 		
+		Map<String, Class<?>> titlesClasses = new HashMap<String, Class<?>>();
+		titlesClasses.put("Aggiungi Agenda", AddAgendaWindow.class);
+		titlesClasses.put("Elimina Agenda", DelAgendaWindow.class);
+		titlesClasses.put("Aggiungi Appuntamento", AddAppointmentWindow.class);
+		titlesClasses.put("Modifica Appuntamento", EditAppointmentWindow.class);
+		titlesClasses.put("Elimina Appuntamento", DelAppointmentWindow.class);
+		titlesClasses.put("Trova Appuntamento", FindAppointmentWindow.class);
+		titlesClasses.put("Ordina Appuntamenti", OrderByDateWindow.class);
+		String[] titles = titlesClasses.keySet().toArray(new String[0]);
+		buttons = new JButton[titlesClasses.size()];
+		//titlesClasses.put("Importa Agenda", ImportAgendaWindow.class);
+		//titlesClasses.put("Esporta Agenda", ExportAgendaWindow.class);
 		
-		addAppointment.addActionListener(e -> {
-			try {
-				actionWindowOpen = new AddAppointmentWindow("Aggiungi Appuntamento", agendas, agendasList, actionWindowIsOpen);
-				actionWindowOpen.addWindowListener(closingEvents());
-				actionWindowIsOpen = true;
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		});
+		for(int counter = 0; counter < buttons.length; counter++) {
+			buttons[counter] = new JButton(titles[counter]);
+			buttons[counter].addActionListener(e -> {
+                	try {
+                	actionWindowOpen = (ActionWindow)titlesClasses.get(e.getActionCommand()).getDeclaredConstructor(String.class, ArrayList.class, JList.class, boolean.class).newInstance(e.getActionCommand(), this.agendas, this.agendasList, actionWindowIsOpen);
+                	actionWindowOpen.addWindowListener(closingEvents());
+                	actionWindowIsOpen = true;
+                	
+    			} catch (Exception e1) {
+    				e1.printStackTrace();
+    			}
+                });
+		}
 		
-		add(addAgenda);
-		add(addAppointment);
+		for(JButton button: buttons) {
+			add(button);
+		}
 		setVisible(true);
 	}
 	
