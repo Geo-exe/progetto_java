@@ -54,12 +54,12 @@ public class Dashboard extends JFrame {
 		agendasListPanel = new JPanel();
 		appointmentsPanel = new JPanel();
 		buttonsPanel = new JPanel();
-		buttonAdd= new JButton("Add");
-		buttonDelete= new JButton("Delete");
-		buttonFindName= new JButton("Find By Name");
-		buttonFindDate= new JButton("Find By Date");
-		buttonOrder= new JButton("Order By");
-		buttonModify= new JButton("Modify");
+		buttonAdd= new JButton("Aggiungi");
+		buttonDelete= new JButton("Cancella");
+		buttonFindName= new JButton("Trova per nome");
+		buttonFindDate= new JButton("Trova per data");
+		buttonOrder= new JButton("Ordina");
+		buttonModify= new JButton("Modifica");
 		
 		
 		
@@ -70,7 +70,7 @@ public class Dashboard extends JFrame {
 		
 		
 		
-		setPreferredSize(new Dimension(800, 600));
+		setPreferredSize(new Dimension(900, 650));
 		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -90,12 +90,12 @@ public class Dashboard extends JFrame {
 		agendasListPanel.add(agendasList,gbc);
 		agendasListPanel.setVisible(true);
 		
-		initializeButtonsPanel();
+		initializeButtonsPanel(agendas);
 		 
 		
 	}
 	
-	public void initializeButtonsPanel() {
+	public void initializeButtonsPanel(ArrayList<Agenda> agendas) {
 		
 		gbc.anchor=GridBagConstraints.PAGE_END;
 		gbc.weighty=1;
@@ -111,6 +111,9 @@ public class Dashboard extends JFrame {
 		buttonsPanel.add(buttonFindName);
 		buttonsPanel.add(buttonOrder);
 		
+		WindowAdd windowAdd = new WindowAdd(agendas,agendasList);
+		buttonAdd.addActionListener(e->openWindowAdd(windowAdd));
+		
         
 	}
 	
@@ -119,14 +122,15 @@ public class Dashboard extends JFrame {
 		appointmentsPanel.setLayout(appointmentsLayout);
 
 		appointmentsPanel.add(startLabel, CENTER_ALIGNMENT);
-
-		appointmentsPanel.setPreferredSize(new Dimension(650, 600));
+		
+		
+		appointmentsPanel.setPreferredSize(new Dimension(650, 660));
 		appointmentsPanel.setVisible(true);
 	}
 
 	public void setAppointmentsPanel(Agenda agenda) {
 		appointmentsPanel.setVisible(false);
-		int size = 4;
+		int size = 5;
 		if (agenda.size() > size)
 			size = agenda.size();
 		appointmentsPanel.removeAll();
@@ -138,8 +142,25 @@ public class Dashboard extends JFrame {
 		revalidate();
 	}
 	
+	
+	
 	public int getSelectedItem() {
 		return agendasList.getSelectedIndex();
 	}
+	
+	public void openWindowAdd(WindowAdd f) {
+		
+		if(!f.isVisible()) {
+			f.ResetWindowAdd();
+		}
+		
+        f.setVisible(true);
+        
+     
+        
+	}
+	
+	
+	
 	
 }
