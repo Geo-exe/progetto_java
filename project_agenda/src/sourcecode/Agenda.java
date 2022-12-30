@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import utils.AgendaUtils;
 import utils.AppointmentUtils;
 
 
@@ -16,7 +15,10 @@ public class Agenda {
 	private String name;
 	private ArrayList<Appointment> appointments;
 	
-	public Agenda(String name) {
+	public Agenda(String name){
+		if(name.equals("")) {
+			throw new IllegalArgumentException("Il Nome non può essere vuoto");
+		}
 		this.name = name;
 		this.appointments = new ArrayList<Appointment>();
 	}
@@ -34,7 +36,7 @@ public class Agenda {
 	}
 	
 	public void addAppointment(Calendar date_time, String location, String person, int duration) throws ParseException {
-		if(AgendaUtils.checkAvailability(date_time, location, person, duration,appointments)) {
+		if(AppointmentUtils.checkAvailability(date_time, location, person, duration,appointments)) {
 			this.appointments.add(new Appointment(date_time, location, person, duration));
 		}
 		

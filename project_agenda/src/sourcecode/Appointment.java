@@ -1,7 +1,5 @@
 package sourcecode;
 
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -12,8 +10,16 @@ public class Appointment {
 	private Calendar date_time;
 	private int duration;
 	private String person;
-	public Appointment(Calendar date_time, String location, String person, int duration) throws ParseException {
-		
+	public Appointment(Calendar date_time, String location, String person, int duration) {
+		if(duration < 1 || duration > 1440) {
+			throw new IllegalArgumentException("La durata dell'appuntamento non può essere minore di 1 minuto o maggiore di 24 ore (1440 minuti).");
+		}
+		if(location.equals("")) {
+			throw new IllegalArgumentException("Il luogo non può essere vuoto");
+		}
+		if(person.equals("")) {
+			throw new IllegalArgumentException("Il campo persona non può essere vuoto");
+		}
 		this.date_time=date_time;
 		this.duration= duration;
 		this.location = location;

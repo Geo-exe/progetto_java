@@ -7,43 +7,37 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import sourcecode.Agenda;
 import sourcecode.Appointment;
 import utils.AgendaUtils;
 
-public class Dashboard extends JFrame {
+public class Dashboard extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel agendasListPanel;
 	private JPanel appointmentsPanel;
-	private JPanel buttonsPanel;
-	private JButton buttonAdd;
-	private JButton buttonOrder;
-	private JButton buttonFindName;
-	private JButton buttonFindDate;
-	private JButton buttonDelete;
-	private JButton buttonModify;
-	
-	private GridBagConstraints gbc= new GridBagConstraints();
 	private GridLayout appointmentsLayout;
+	private GridBagConstraints gbc;
+	private GridBagLayout windowLayout;
 	private JLabel startLabel;
 	private JList<String> agendasList;
+	
 	public Dashboard(ArrayList<Agenda> agendas) {
 		// richiamo il costruttore del JFrame passando il titolo della finestra
 		super("Dashboard");
-		
-		// setto il layout su Layout a griglia con 1 riga e 2 colonne
-		setLayout(new GridLayout(1, 2));
-		
+		windowLayout = new GridBagLayout();
+		// setto il layout su griglia pesata
+		setLayout(windowLayout);
+		gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH; 
 		// inizializzo il layout
 		appointmentsLayout = new GridLayout(4, 1, 0, 5);
 		
@@ -52,22 +46,30 @@ public class Dashboard extends JFrame {
 		
 		// inizializzo i pannelli
 		agendasListPanel = new JPanel();
-		appointmentsPanel = new JPanel();
-		buttonsPanel = new JPanel();
-		buttonAdd= new JButton("Aggiungi");
-		buttonDelete= new JButton("Cancella");
-		buttonFindName= new JButton("Trova per nome");
-		buttonFindDate= new JButton("Trova per data");
-		buttonOrder= new JButton("Ordina");
-		buttonModify= new JButton("Modifica");
+		appointmentsPanel = new JPanel();	
 		
 		
+		//Aggiungo il pannello delle azioni
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.weighty = 0.5;
+		gbc.weightx = 1.0;
+		add(new ActionsPanel(agendas, agendasList), gbc);
 		
 		// aggiungere componenti alla finestra
-		add(agendasListPanel);
-		add(appointmentsPanel);
+		// lista agenda
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.weighty = 1.0;
+		gbc.weightx = 0.01;
+		add(agendasListPanel, gbc);
 		
-		
+		// lista appuntamenti
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		gbc.weighty = 1.0;
+		gbc.weightx = 1.0;
+		add(appointmentsPanel, gbc);		
 		
 		
 		setPreferredSize(new Dimension(900, 650));
@@ -76,11 +78,21 @@ public class Dashboard extends JFrame {
 		setVisible(true);
 	}
 
-	public void initializeDashboard(ArrayList<Agenda> agendas, ListSelectionListener selectionHandler) {	
+	public void initializeDashboard(ArrayList<Agenda> agendas) {	
 		
         agendasListPanel.setLayout(new BorderLayout());
-		agendasList = new JList<>(AgendaUtils.agendaListToArray(agendas));
-		agendasList.addListSelectionListener(selectionHandler);
+        DefaultListModel<String> model = new DefaultListModel<String>();
+        for(String name: AgendaUtils.agendaListToArray(agendas)) {
+        	model.addElement(name);
+        }
+		agendasList = new JList<>(model);
+		agendasList.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					setAppointmentsPanel(agendas.get(getSelectedAgenda()));
+				}
+			}
+		});
 		agendasListPanel.add(agendasList);
 		agendasListPanel.setPreferredSize(new Dimension(150, 600));
 		agendasListPanel.setVisible(true);
@@ -90,33 +102,9 @@ public class Dashboard extends JFrame {
 		appointmentsPanel.setPreferredSize(new Dimension(650, 600));
 		appointmentsPanel.setVisible(true);
 		
-		// Pannello Bottoni
-		initializeButtonsPanel(agendas);
 	}
 	
-	public void initializeButtonsPanel(ArrayList<Agenda> agendas) {
-		
-		gbc.anchor=GridBagConstraints.PAGE_END;
-		gbc.weighty=1;
-		agendasListPanel.add(buttonsPanel,gbc);
-		buttonsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-		buttonsPanel.setBorder(BorderFactory.createTitledBorder("Funzioni"));
-		buttonsPanel.setLayout(new BorderLayout());
-		buttonsPanel.setLayout(new GridLayout(2,3,10,10));
-		buttonsPanel.add(buttonAdd);
-		buttonsPanel.add(buttonDelete);
-		buttonsPanel.add(buttonModify);
-		buttonsPanel.add(buttonFindDate);
-		buttonsPanel.add(buttonFindName);
-		buttonsPanel.add(buttonOrder);
-		
-		WindowAdd windowAdd = new WindowAdd(agendas,agendasList);
-		buttonAdd.addActionListener(e->openWindowAdd(windowAdd));
-		
-        
-	}
-
-	public void setAppointmentsPanel(Agenda agenda) {
+	private void setAppointmentsPanel(Agenda agenda) {
 		appointmentsPanel.setVisible(false);
 		int size = 5;
 		if (agenda.size() > size)
@@ -132,21 +120,5 @@ public class Dashboard extends JFrame {
 	
 	public int getSelectedAgenda() {
 		return agendasList.getSelectedIndex();
-	}
-	
-	public void openWindowAdd(WindowAdd f) {
-		
-		if(!f.isVisible()) {
-			f.ResetWindowAdd();
-		}
-		
-        f.setVisible(true);
-        
-     
-        
-	}
-	
-	
-	
-	
+	}	
 }
