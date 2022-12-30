@@ -1,4 +1,5 @@
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,34 +42,7 @@ public class Main {
 		agendas.get(1).addAppointment(c5, "Casa", "Capo", 25);
 		
 		window = new Dashboard(agendas);
-		window.initializeAgendaList(agendas, selectionHandler());
-		window.initializeAppointmentsPanel();
-		
-		//Test console order by date
-		/*ArrayList<Appointment> result= new ArrayList<Appointment>();
-		
-		result=agendas.get(1).getAppointments();
-		for(Appointment a: result) {
-				
-			System.out.println("--"+a.getStrDate()+" "+a.getTime());	
-		}
-		
-		result=agendas.get(1).getAllAppointments();
-		for(Appointment a: result) {
-		
-			System.out.println("//"+a.getStrDate()+" "+a.getTime());	
-		}
-		
-		result=agendas.get(1).getAppointments();
-		for(Appointment a: result) {
-				
-			System.out.println("++"+a.getStrDate()+" "+a.getTime());	
-		}*/
-			
-		
-		
-		
-		
+		window.initializeDashboard(agendas, selectionHandler());
 	}
 	
 //	private void addAgenda(String Nome) {
@@ -79,11 +53,58 @@ public class Main {
 		return (new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
-					window.setAppointmentsPanel(agendas.get(window.getSelectedItem()));
+					window.setAppointmentsPanel(agendas.get(window.getSelectedAgenda()));
 				}
 			}
 		});
 	}
+
+	// Evento Bottone add Agenda
+	private static ActionListener addAgendaActionHandler() {
+		return (new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Codice da eseguire quando il pulsante viene premuto
+
+			}
+		});
+	}
+
+	// Evento Bottone delete agenda
+	private static ActionListener deleteAgendaActionHandler() {
+		return (new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Codice da eseguire quando il pulsante viene premuto
+
+			}
+		});
+	}
+
+	// Evento Bottone add appointment
+	private static ActionListener addAppointmentActionHandler() {
+		return (new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Codice da eseguire quando il pulsante viene premuto
+
+			}
+		});
+	}
 	
-	
-}
+	// Evento Bottone delete appointment
+		private static ActionListener deleteAppointmentActionHandler() {
+			return (new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					// Codice da eseguire quando il pulsante viene premuto
+
+				}
+			});
+		}
+//Evento Bottone edit appointment
+		private static ActionListener editAppointmentActionHandler() {
+			return (new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					// Codice da eseguire quando il pulsante viene premuto
+
+				}
+			});
+		}
+	}

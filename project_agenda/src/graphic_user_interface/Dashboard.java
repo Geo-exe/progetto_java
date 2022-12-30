@@ -76,23 +76,22 @@ public class Dashboard extends JFrame {
 		setVisible(true);
 	}
 
-	public void initializeAgendaList(ArrayList<Agenda> agendas, ListSelectionListener selectionHandler) {	
+	public void initializeDashboard(ArrayList<Agenda> agendas, ListSelectionListener selectionHandler) {	
 		
         agendasListPanel.setLayout(new BorderLayout());
-        agendasListPanel.setLayout(new GridBagLayout());
-        agendasListPanel.setBorder(BorderFactory.createTitledBorder("Agende"));
 		agendasList = new JList<>(AgendaUtils.agendaListToArray(agendas));
 		agendasList.addListSelectionListener(selectionHandler);
-		gbc.gridx=0;
-		gbc.gridy=0;
-		gbc.anchor=GridBagConstraints.FIRST_LINE_START;
-		gbc.weighty=0.01;
-		agendasListPanel.add(agendasList,gbc);
+		agendasListPanel.add(agendasList);
+		agendasListPanel.setPreferredSize(new Dimension(150, 600));
 		agendasListPanel.setVisible(true);
+		// Pannello appuntamenti
+		appointmentsPanel.setLayout(appointmentsLayout);
+		appointmentsPanel.add(startLabel, CENTER_ALIGNMENT);
+		appointmentsPanel.setPreferredSize(new Dimension(650, 600));
+		appointmentsPanel.setVisible(true);
 		
+		// Pannello Bottoni
 		initializeButtonsPanel(agendas);
-		 
-		
 	}
 	
 	public void initializeButtonsPanel(ArrayList<Agenda> agendas) {
@@ -116,17 +115,6 @@ public class Dashboard extends JFrame {
 		
         
 	}
-	
-
-	public void initializeAppointmentsPanel() {
-		appointmentsPanel.setLayout(appointmentsLayout);
-
-		appointmentsPanel.add(startLabel, CENTER_ALIGNMENT);
-		
-		
-		appointmentsPanel.setPreferredSize(new Dimension(650, 660));
-		appointmentsPanel.setVisible(true);
-	}
 
 	public void setAppointmentsPanel(Agenda agenda) {
 		appointmentsPanel.setVisible(false);
@@ -142,9 +130,7 @@ public class Dashboard extends JFrame {
 		revalidate();
 	}
 	
-	
-	
-	public int getSelectedItem() {
+	public int getSelectedAgenda() {
 		return agendasList.getSelectedIndex();
 	}
 	
