@@ -48,13 +48,13 @@ public class Agenda {
 	}
 	
 	public ArrayList<Appointment> findByDate(Calendar date_time) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY HH:mm"); 
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY"); 
 		ArrayList<Appointment> result= new ArrayList<Appointment>();
 		Calendar temp;
 		
 		for(Appointment appointment: appointments) {
 			temp=appointment.getDate_time();
-			if(sdf.format(temp.getTime())==sdf.format(date_time.getTime())) {
+			if(sdf.format(temp.getTime()).equals(sdf.format(date_time.getTime()))) {
 				result.add(appointment);
 			}
 		}
@@ -66,7 +66,7 @@ public class Agenda {
 		ArrayList<Appointment> result= new ArrayList<Appointment>();
 		
 		for(Appointment appointment: appointments) {
-			if(appointment.getPerson()==name) {
+			if(appointment.getPerson().equals(name)) {
 				result.add(appointment);
 			}
 		}
