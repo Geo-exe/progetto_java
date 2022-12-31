@@ -1,17 +1,12 @@
 package graphic_user_interface;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
@@ -23,7 +18,7 @@ public class ActionsPanel extends JPanel {
 	private ActionWindow actionWindowOpen;
 	private ArrayList<Agenda> agendas;
 	private JList<String> agendasList;
-	JButton[] buttons;
+	private JButton[] buttons;
 	public ActionsPanel(ArrayList<Agenda> agendas, JList<String> agendasList) {
 		super();
 		this.agendas = agendas;
@@ -39,6 +34,8 @@ public class ActionsPanel extends JPanel {
 		titlesClasses.put("Elimina Appuntamento", DelAppointmentWindow.class);
 		titlesClasses.put("Trova Appuntamento", FindAppointmentWindow.class);
 		titlesClasses.put("Ordina Appuntamenti", OrderByDateWindow.class);
+		
+		
 		String[] titles = titlesClasses.keySet().toArray(new String[0]);
 		buttons = new JButton[titlesClasses.size()];
 		//titlesClasses.put("Importa Agenda", ImportAgendaWindow.class);
@@ -48,7 +45,7 @@ public class ActionsPanel extends JPanel {
 			buttons[counter] = new JButton(titles[counter]);
 			buttons[counter].addActionListener(e -> {
                 	try {
-                	actionWindowOpen = (ActionWindow)titlesClasses.get(e.getActionCommand()).getDeclaredConstructor(String.class, ArrayList.class, JList.class, boolean.class).newInstance(e.getActionCommand(), this.agendas, this.agendasList, actionWindowIsOpen);
+                	actionWindowOpen = (ActionWindow) titlesClasses.get(e.getActionCommand()).getDeclaredConstructor(String.class, ArrayList.class, JList.class, boolean.class).newInstance(e.getActionCommand(), this.agendas, this.agendasList, actionWindowIsOpen);
                 	actionWindowOpen.addWindowListener(closingEvents());
                 	actionWindowIsOpen = true;
                 	
