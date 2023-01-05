@@ -74,7 +74,7 @@ public class Agenda {
 		return result;
 	}
 	
-	public ArrayList<Appointment> getAllAppointments() {
+	public ArrayList<Appointment> getAllAppointments(String order) {
 		ArrayList<Appointment> result= new ArrayList<Appointment>();
 		ArrayList<Appointment> temp= new ArrayList<Appointment>();
 		Appointment min;
@@ -85,7 +85,7 @@ public class Agenda {
 		
 		for(int i=0;i<appointments.size();i++) {
 		
-				min=AppointmentUtils.findMin(temp);
+				min=AppointmentUtils.findMin(temp,order);
 				result.add(min);
 				temp.remove(min);
 		  }

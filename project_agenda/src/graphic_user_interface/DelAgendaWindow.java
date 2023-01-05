@@ -24,7 +24,7 @@ public class DelAgendaWindow extends ActionWindow {
 	public DelAgendaWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList,
 			boolean actionWindowIsOpen) throws Exception {
 		super(title, agendas, agendasList, actionWindowIsOpen);
-		
+		confirm.setText("Elimina");
 	}
 
 	
@@ -55,7 +55,7 @@ public class DelAgendaWindow extends ActionWindow {
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setLayout(new GridLayout(2,2,5,5));
-		tempPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		tempPanel.setBorder(new EmptyBorder(40, 30, 30,40));
 		tempPanel.add(new JLabel("Seleziona un' agenda da :"));
 		
 		comboBox= new JComboBox<String>();

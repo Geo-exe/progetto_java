@@ -1,7 +1,6 @@
 package graphic_user_interface;
 
 
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JComboBox;
-
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -29,23 +27,20 @@ public class FindAppointmentWindow extends ActionWindow {
 	private JTextField textBox;
 	private JLabel label;
 	private JComboBox<Object> comboBox;
-	private JPanel temp;
 
 	
 	public FindAppointmentWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList, boolean actionWindowIsOpen) throws Exception {
 		super(title, agendas, agendasList, actionWindowIsOpen);
-		temp = new JPanel();
-		add(temp);
+		confirm.setText("Trova");
 	}
 
 	@Override
 	public void confirmAction() {
-		ArrayList<Appointment> result;
-		result =new ArrayList<Appointment>();
+		ArrayList<Appointment> result=new ArrayList<Appointment>();
 		Calendar date = Calendar.getInstance();
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		temp.removeAll();
-		temp.setLayout(new GridBagLayout());
+		JPanel temp= new JPanel();
+		
 		
 		try {
 			
@@ -67,12 +62,14 @@ public class FindAppointmentWindow extends ActionWindow {
 			
 			if(!result.isEmpty()) {
 				
+				temp.setLayout(new GridLayout(result.size(),1));
 				for(Appointment a: result) {
 					temp.add(new AppointmentBox(a));
 				}
 
-				setBounds(0, 0, 800, 801);
-			setBounds(0, 0, 800, 800);
+				setVisible(false);
+				dispose();
+				JOptionPane.showMessageDialog(null, temp);
 			
 			}else {
 				JOptionPane.showMessageDialog(null, "Nessun appuntamento trovato!");
@@ -87,13 +84,15 @@ public class FindAppointmentWindow extends ActionWindow {
 		}
 		
 		
+		
+		
 	}
 
 	@Override
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setLayout(new GridLayout(2,2,5,5));
-		tempPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		tempPanel.setBorder(new EmptyBorder(35, 25, 25, 35));
 		tempPanel.add(new JLabel("Trova per:"));
 		
 		String [] options= {"Data","Nome"};

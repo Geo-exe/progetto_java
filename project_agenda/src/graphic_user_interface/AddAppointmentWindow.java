@@ -31,6 +31,7 @@ public class AddAppointmentWindow extends ActionWindow {
 
 	public AddAppointmentWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList, boolean actionWindowIsOpen) throws Exception {
 		super(title, agendas, agendasList, actionWindowIsOpen);
+		confirm.setText("Aggiungi");
 	}
 
 	@Override
@@ -59,6 +60,7 @@ public class AddAppointmentWindow extends ActionWindow {
 				agendasList.setSelectedIndex(select);
 				setVisible(false);
 				dispose();
+				JOptionPane.showMessageDialog(null, "Appuntamento aggiunto!");
 			} else {
 				JOptionPane.showMessageDialog(null, "Selezionare un'agenda!");
 			}

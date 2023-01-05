@@ -1,12 +1,11 @@
 package graphic_user_interface;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -17,7 +16,7 @@ import sourcecode.Agenda;
 
 public abstract class ActionWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private JButton confirm;
+	protected JButton confirm;
 	private JButton cancel;
 	private JSplitPane panel7030;
 	protected ArrayList<Agenda> agendas;
@@ -42,6 +41,7 @@ public abstract class ActionWindow extends JFrame {
 			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			setPreferredSize(new Dimension(300, 200));
 			pack();
+			setLocationRelativeTo(null);
 			setVisible(true);
 		} else {
 			JOptionPane.showMessageDialog(null, "Aprire una sola finestra Azione per volta!");
@@ -59,7 +59,7 @@ public abstract class ActionWindow extends JFrame {
 	protected abstract JPanel loadFields();
 
 	private JPanel endButtons() {
-		this.confirm = new JButton("Aggiungi");
+		this.confirm = new JButton("");
 		this.cancel = new JButton("Annulla");
 
 		confirm.addActionListener(e -> {

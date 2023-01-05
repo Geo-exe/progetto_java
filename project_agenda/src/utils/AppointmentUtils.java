@@ -8,16 +8,25 @@ import sourcecode.Appointment;
 
 public class AppointmentUtils {
 
-	public static Appointment findMin(ArrayList<Appointment> temp) {
+	public static Appointment findMin(ArrayList<Appointment> temp, String order) {
 		
 		Appointment min=temp.get(0);
 		
 		for(Appointment a: temp) {
 			//before ascendent 
 			//after descedent
-			if(a.getDate_time().before(min.getDate_time())) {
+			if(order.equals("Ascendente")) {
+				
+				if(a.getDate_time().before(min.getDate_time())) {
 				min=a;
+				}
+			}else if(order.equals("Discendente")) {
+				if(a.getDate_time().after(min.getDate_time())) {
+					min=a;
+					}
+				
 			}
+			
 			
 			
 		}

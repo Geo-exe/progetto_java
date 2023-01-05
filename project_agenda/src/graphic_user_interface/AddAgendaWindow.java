@@ -20,6 +20,7 @@ public class AddAgendaWindow extends ActionWindow {
 
 	public AddAgendaWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList, boolean actionWindowIsOpen) throws Exception {
 		super(title, agendas, agendasList, actionWindowIsOpen);
+		confirm.setText("Aggiungi");
 	}
 
 	@Override
@@ -31,6 +32,7 @@ public class AddAgendaWindow extends ActionWindow {
 				model.addElement(nameBox.getText());
 				setVisible(false);
 		        dispose();
+		        JOptionPane.showMessageDialog(null, "Agenda aggiunta!");
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 				JOptionPane.showMessageDialog(null, "Carattere non valido!");
@@ -43,7 +45,7 @@ public class AddAgendaWindow extends ActionWindow {
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setLayout(new GridLayout(1,2,5,5));
-		tempPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		tempPanel.setBorder(new EmptyBorder(50, 20, 50, 20));
 		tempPanel.add(new JLabel("Nome Agenda:"));
 		nameBox = new JTextField();
 		tempPanel.add(nameBox);
