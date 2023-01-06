@@ -26,7 +26,6 @@ public abstract class ActionWindow extends JFrame {
 		if (!actionWindowIsOpen) {
 			this.agendas = agendas;
 			this.agendasList = agendasList;
-			
 			setLayout(new BorderLayout());
 			panel7030 = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 			panel7030.setResizeWeight(0.7);

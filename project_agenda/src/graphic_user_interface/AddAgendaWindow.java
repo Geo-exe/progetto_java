@@ -24,7 +24,6 @@ public class AddAgendaWindow extends ActionWindow {
 	}
 
 	public void confirmAction() {
-		
 			DefaultListModel<String> model = (DefaultListModel<String>) agendasList.getModel();
 			try {
 				agendas.add(new Agenda(nameBox.getText()));

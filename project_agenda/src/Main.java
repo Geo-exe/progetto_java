@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 import graphic_user_interface.Dashboard;
 import sourcecode.Agenda;
-//import sourcecode.Appointment;
 
 public class Main {
 	

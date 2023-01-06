@@ -2,17 +2,13 @@ package graphic_user_interface;
 
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
 import sourcecode.Agenda;
-import sourcecode.OrderMethodEnum;
 
 public class ActionsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -27,7 +23,6 @@ public class ActionsPanel extends JPanel {
 		this.agendasList = agendasList;		
 		actionWindowIsOpen = false;
 		setLayout(new GridLayout(1, 9));
-		
 		buttons = new JButton[ActionButtonEnum.values().length];
 		int count = 0;
 		for(ActionButtonEnum enButton: ActionButtonEnum.values()) {
