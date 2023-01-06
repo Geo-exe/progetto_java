@@ -3,7 +3,6 @@ package graphic_user_interface;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -13,16 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import sourcecode.Agenda;
-
+import utils.AgendaUtils;
 
 public class DelAgendaWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private JComboBox<String> comboBox;
 
-	public DelAgendaWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList,
-			boolean actionWindowIsOpen) throws Exception {
+	public DelAgendaWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList, boolean actionWindowIsOpen) throws Exception {
 		super(title, agendas, agendasList, actionWindowIsOpen);
 		confirm.setText("Elimina");
 	}
@@ -33,37 +31,31 @@ public class DelAgendaWindow extends ActionWindow {
 
 		model.removeElement(comboBox.getSelectedItem());
 		
+		ArrayList<Agenda> copyAgendas = new ArrayList<Agenda>(agendas);
 		
-		for(int i=0;i<agendas.size();i++) {
-			if(agendas.get(i).getName().equals(comboBox.getSelectedItem())) {
-				agendas.remove(i);
+		for(Agenda agenda: copyAgendas) {
+			if(agenda.getName().equals(comboBox.getSelectedItem())) {
+				agenda.removeAll();
+				copyAgendas.remove(agenda);
 			}
 		}
-		
+
 		setVisible(false);
 		dispose();
-		JOptionPane.showMessageDialog(null, "Agenda "+ comboBox.getSelectedItem() +" eliminata!");
-		
-		
-		
+		JOptionPane.showMessageDialog(null, "Agenda " + comboBox.getSelectedItem() + " eliminata!");
 
 	}
 
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
-		tempPanel.setLayout(new GridLayout(2,2,5,5));
-		tempPanel.setBorder(new EmptyBorder(40, 30, 30,40));
+		tempPanel.setLayout(new GridLayout(2, 2, 5, 5));
+		tempPanel.setBorder(new EmptyBorder(40, 30, 30, 40));
 		tempPanel.add(new JLabel("Seleziona un' agenda da :"));
-		
-		comboBox= new JComboBox<String>();
-		
-		for(int i=0;i<agendas.size();i++) {
-			comboBox.addItem(agendas.get(i).getName());
 
-		}
-
+		comboBox = new JComboBox<String>(AgendaUtils.agendaListToArray(agendas));
+		
 		tempPanel.add(comboBox);
-		
+
 		return tempPanel;
 	}
 

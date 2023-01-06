@@ -7,10 +7,6 @@ import java.util.Calendar;
 
 import utils.AppointmentUtils;
 
-
-
-
-
 public class Agenda {
 	private String name;
 	private ArrayList<Appointment> appointments;
@@ -43,7 +39,6 @@ public class Agenda {
 	}
 	
 	public void removeAt(int i) {
-		
 		appointments.remove(i);
 	}
 	

@@ -2,6 +2,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
+
 import graphic_user_interface.Dashboard;
 import sourcecode.Agenda;
 
@@ -38,4 +41,22 @@ public class Main {
 		dashboard = new Dashboard(agendas);
 		dashboard.initializeDashboard(agendas);
 	}
+	
+	private ListDataListener listener = new ListDataListener() {
+	    @Override
+	    public void intervalAdded(ListDataEvent e) {
+	        // ignorato
+	    }
+
+	    @Override
+	    public void intervalRemoved(ListDataEvent e) {
+	        
+	    }
+
+	    @Override
+	    public void contentsChanged(ListDataEvent e) {
+	        // ignorato
+	    }
+	};
+
 }
