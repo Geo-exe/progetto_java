@@ -27,12 +27,11 @@ private static final long serialVersionUID = 1L;
 		confirm.setText("Conferma");
 	}
 
-	@Override
 	public void confirmAction() {
 		ArrayList<Appointment> result =new ArrayList<Appointment>();
 		JPanel temp= new JPanel();
 		
-		result=agendas.get(agendasList.getSelectedIndex()).getAllAppointments(comboBox.getSelectedItem().toString());
+		result=agendas.get(agendasList.getSelectedIndex()).orderByDate(comboBox.getSelectedItem().toString());
 		
 		temp.setLayout(new GridLayout(result.size(),1));
 		

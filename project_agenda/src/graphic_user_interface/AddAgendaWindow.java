@@ -23,7 +23,6 @@ public class AddAgendaWindow extends ActionWindow {
 		confirm.setText("Aggiungi");
 	}
 
-	@Override
 	public void confirmAction() {
 		
 			DefaultListModel<String> model = (DefaultListModel<String>) agendasList.getModel();
@@ -40,8 +39,6 @@ public class AddAgendaWindow extends ActionWindow {
 			
 		}
 
-
-	@Override
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setLayout(new GridLayout(1,2,5,5));

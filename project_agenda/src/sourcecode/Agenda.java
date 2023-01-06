@@ -57,34 +57,7 @@ public class Agenda {
 		
 	}
 	
-	public ArrayList<Appointment> findByDate(Calendar date_time) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY"); 
-		ArrayList<Appointment> result= new ArrayList<Appointment>();
-		Calendar temp;
-		
-		for(Appointment appointment: appointments) {
-			temp=appointment.getDate_time();
-			if(sdf.format(temp.getTime()).equals(sdf.format(date_time.getTime()))) {
-				result.add(appointment);
-			}
-		}
-		
-		return result;
-	}
-	
-	public ArrayList<Appointment> findByName(String name) {
-		ArrayList<Appointment> result= new ArrayList<Appointment>();
-		
-		for(Appointment appointment: appointments) {
-			if(appointment.getPerson().equals(name)) {
-				result.add(appointment);
-			}
-		}
-		
-		return result;
-	}
-	
-	public ArrayList<Appointment> getAllAppointments(String order) {
+	public ArrayList<Appointment> orderByDate(String order) {
 		ArrayList<Appointment> result= new ArrayList<Appointment>();
 		ArrayList<Appointment> temp= new ArrayList<Appointment>();
 		Appointment min;

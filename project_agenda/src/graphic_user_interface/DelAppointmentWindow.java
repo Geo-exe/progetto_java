@@ -29,7 +29,6 @@ public class DelAppointmentWindow extends ActionWindow {
 		setLocationRelativeTo(null);
 	}
 
-	@Override
 	public void confirmAction() {
 		if(checkBox!=null) {
 		if(all.isSelected()) {
@@ -62,7 +61,6 @@ public class DelAppointmentWindow extends ActionWindow {
 		
 	}
 
-	@Override
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
 		ArrayList<Appointment> result;

@@ -34,7 +34,6 @@ public class AddAppointmentWindow extends ActionWindow {
 		confirm.setText("Aggiungi");
 	}
 
-	@Override
 	public void confirmAction() {
 		Calendar c1 = Calendar.getInstance();
 		DateFormat format3 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -73,7 +72,6 @@ public class AddAppointmentWindow extends ActionWindow {
 		}
 	}
 
-	@Override
 	public JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
 		

@@ -15,7 +15,7 @@ import sourcecode.Agenda;
 
 public abstract class ActionWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
-	protected JButton confirm;
+	protected JButton confirm;		// TODO mettiamo un testo default?
 	private JButton cancel;
 	private JSplitPane panel7030;
 	protected ArrayList<Agenda> agendas;

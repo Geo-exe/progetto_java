@@ -4,7 +4,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -27,13 +26,11 @@ public class EditAppointmentWindow extends ActionWindow {
 		setLocationRelativeTo(null);
 	}
 
-	@Override
 	public void confirmAction() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
 		ArrayList<Appointment> result;

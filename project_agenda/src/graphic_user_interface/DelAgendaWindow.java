@@ -27,8 +27,6 @@ public class DelAgendaWindow extends ActionWindow {
 		confirm.setText("Elimina");
 	}
 
-	
-	@Override
 	public void confirmAction() {
 
 		DefaultListModel<String> model = (DefaultListModel<String>) agendasList.getModel();
@@ -51,7 +49,6 @@ public class DelAgendaWindow extends ActionWindow {
 
 	}
 
-	@Override
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setLayout(new GridLayout(2,2,5,5));
