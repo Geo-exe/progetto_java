@@ -36,10 +36,15 @@ private static final long serialVersionUID = 1L;
 		
 		temp.setLayout(new GridLayout(result.size(),1));
 		
-		for(Appointment a: result) {
+		if(!result.isEmpty()) {
+			for(Appointment a: result) {
 			temp.add(new AppointmentBox(a));
 			
+			}
+		}else {
+			temp.add(new JLabel("Nessun appuntamento!"));
 		}
+		
 		
 		setVisible(false);
 		dispose();

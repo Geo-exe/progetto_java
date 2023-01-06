@@ -42,6 +42,16 @@ public class Agenda {
 		
 	}
 	
+	public void removeAt(int i) {
+		
+		appointments.remove(i);
+	}
+	
+	public void removeAll() {
+		
+		appointments.clear();
+	}
+	
 	public void modifyAppointment(Calendar date_time, String location, String person, String duration) {
 		
 		

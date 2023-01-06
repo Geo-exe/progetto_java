@@ -2,7 +2,6 @@ package graphic_user_interface;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
