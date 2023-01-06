@@ -29,6 +29,7 @@ public class Dashboard extends JFrame{
 	private GridBagLayout windowLayout;
 	private JLabel startLabel;
 	private JList<String> agendasList;
+	private ActionsPanel actionsPanel;
 	
 	public Dashboard(ArrayList<Agenda> agendas) {
 		// richiamo il costruttore del JFrame passando il titolo della finestra
@@ -40,7 +41,7 @@ public class Dashboard extends JFrame{
 		gbc.fill = GridBagConstraints.BOTH; 
 		// inizializzo il layout
 		appointmentsLayout = new GridLayout(4, 1, 0, 5);
-		
+		actionsPanel = new ActionsPanel(agendas, agendasList);
 		// inizializzo la label
 		startLabel = new JLabel("Selezionare un'Agenda!");
 		
@@ -84,6 +85,9 @@ public class Dashboard extends JFrame{
 			public void valueChanged(ListSelectionEvent e) {
 				if (!e.getValueIsAdjusting()) {
 					setAppointmentsPanel(agendas.get(getSelectedAgenda()));
+					if(!agendasList.isSelectionEmpty()) {
+						actionsPanel.setButtonsStatus(true);
+					} else actionsPanel.setButtonsStatus(false);
 				}
 			}
 		});
@@ -103,7 +107,7 @@ public class Dashboard extends JFrame{
 				gbc.gridy = 0;
 				gbc.weighty = 0.5;
 				gbc.weightx = 1.0;
-				add(new ActionsPanel(agendas, agendasList), gbc);
+				add(actionsPanel, gbc);
 		
 	}
 	
