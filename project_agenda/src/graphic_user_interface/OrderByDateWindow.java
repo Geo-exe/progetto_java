@@ -13,13 +13,14 @@ import javax.swing.border.EmptyBorder;
 
 import sourcecode.Agenda;
 import sourcecode.Appointment;
+import sourcecode.OrderMethodEnum;
 
 
 public class OrderByDateWindow extends ActionWindow {
 
 private static final long serialVersionUID = 1L;
 	
-	private JComboBox<String> comboBox;
+	private JComboBox<OrderMethodEnum> comboBox;
 	
 	public OrderByDateWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList,
 			boolean actionWindowIsOpen) throws Exception {
@@ -31,7 +32,7 @@ private static final long serialVersionUID = 1L;
 		ArrayList<Appointment> result =new ArrayList<Appointment>();
 		JPanel temp= new JPanel();
 		
-		result=agendas.get(agendasList.getSelectedIndex()).orderByDate(comboBox.getSelectedItem().toString());
+		result=agendas.get(agendasList.getSelectedIndex()).sortAppointmets(OrderMethodEnum.valueOf(comboBox.getSelectedItem().toString()));
 		
 		temp.setLayout(new GridLayout(result.size(),1));
 		
@@ -51,15 +52,16 @@ private static final long serialVersionUID = 1L;
 		
 	}
 
-	@Override
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setLayout(new GridLayout(2,2,5,5));
 		tempPanel.setBorder(new EmptyBorder(40, 30, 30, 40));
 		tempPanel.add(new JLabel("Seleziona ordine da visualizzare:"));
-		
-		String [] options= {"Ascendente","Discendente"};
-		comboBox= new JComboBox<String>(options);
+
+		comboBox= new JComboBox<>();
+		for (OrderMethodEnum value : OrderMethodEnum.values()) {
+		    comboBox.addItem(value);
+		}
 
 		tempPanel.add(comboBox);
 		

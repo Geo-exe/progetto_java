@@ -16,7 +16,7 @@ public enum FindByEnum implements FindByInterface {
 			input.setTime(format.parse(searchingParameter));
 			Calendar temp;
 			for(Appointment appointment: agenda.getAppointments()) {
-				temp=appointment.getDate_time();
+				temp=appointment.getDateTime();
 				if(sdf.format(temp.getTime()).equals(sdf.format(input.getTime()))) {
 					result.add(appointment);
 				}
@@ -37,14 +37,5 @@ public enum FindByEnum implements FindByInterface {
 			
 			return result;
 		}
-	};
-	
-	public static String[] getNames() {
-		String[] names = new String[FindByEnum.values().length];
-		for (int i = 0; i < names.length; i++) {
-		    names[i] = FindByEnum.values()[i].name();
-		}
-		return names;
-	}
-	
+	};	
 }

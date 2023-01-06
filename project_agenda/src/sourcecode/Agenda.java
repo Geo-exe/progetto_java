@@ -57,22 +57,9 @@ public class Agenda {
 		
 	}
 	
-	public ArrayList<Appointment> orderByDate(String order) {
-		ArrayList<Appointment> result= new ArrayList<Appointment>();
-		ArrayList<Appointment> temp= new ArrayList<Appointment>();
-		Appointment min;
-		
-		for(Appointment a: appointments) {
-			temp.add(a);
-		}
-		
-		for(int i=0;i<appointments.size();i++) {
-		
-				min=AppointmentUtils.findMin(temp,order);
-				result.add(min);
-				temp.remove(min);
-		  }
-		
+	public ArrayList<Appointment> sortAppointmets(OrderMethodEnum selectedMethod) {
+		ArrayList<Appointment> result = new ArrayList<Appointment>(appointments);
+		selectedMethod.orderByDate(result);
 		return result;
 	}
 	

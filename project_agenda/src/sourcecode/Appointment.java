@@ -31,7 +31,7 @@ public class Appointment {
 		return location;
 	}
 
-	public Calendar getDate_time() {
+	public Calendar getDateTime() {
 		return date_time;
 	}
 	
