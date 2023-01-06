@@ -2,6 +2,7 @@ package graphic_user_interface;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
@@ -26,19 +27,16 @@ public class DelAgendaWindow extends ActionWindow {
 	}
 
 	public void confirmAction() {
-
-		DefaultListModel<String> model = (DefaultListModel<String>) agendasList.getModel();
-
-		model.removeElement(comboBox.getSelectedItem());
-		
-		ArrayList<Agenda> copyAgendas = new ArrayList<Agenda>(agendas);
-		
-		for(Agenda agenda: copyAgendas) {
+	
+		for(Iterator<Agenda> iterator = agendas.iterator(); iterator.hasNext();) {
+			Agenda agenda = iterator.next();
 			if(agenda.getName().equals(comboBox.getSelectedItem())) {
-				agenda.removeAll();
-				copyAgendas.remove(agenda);
+				iterator.remove();
 			}
 		}
+		
+		DefaultListModel<String> model = (DefaultListModel<String>) agendasList.getModel();
+		model.removeElement(comboBox.getSelectedItem());
 
 		setVisible(false);
 		dispose();

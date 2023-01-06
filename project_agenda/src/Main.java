@@ -15,8 +15,8 @@ public class Main {
 	
 	public static void main(String[] args) throws ParseException {
 		agendas = new ArrayList<Agenda>();
-		agendas.add(new Agenda("Casa"));
 		agendas.add(new Agenda("Ufficio"));
+		agendas.add(new Agenda("Casa"));
 		
 		Calendar c1 = Calendar.getInstance();
 		Calendar c2 = Calendar.getInstance();
@@ -38,25 +38,27 @@ public class Main {
 		agendas.get(1).addAppointment(c4, "Casa", "Capo", 120);
 		agendas.get(1).addAppointment(c5, "Casa", "Capo", 25);
 		
-		dashboard = new Dashboard(agendas);
+		
+		dashboard = new Dashboard();
 		dashboard.initializeDashboard(agendas);
 	}
 	
-	private ListDataListener listener = new ListDataListener() {
+	/*private static ListDataListener EventsHandlerAgenda = new ListDataListener() {
 	    @Override
 	    public void intervalAdded(ListDataEvent e) {
-	        // ignorato
+	        // TODO Modificare l'ADDAgenda
 	    }
 
 	    @Override
 	    public void intervalRemoved(ListDataEvent e) {
-	        
+	    	System.out.println("CIAONE");
+	    	dashboard.setAgendasList(agendas);
 	    }
 
 	    @Override
 	    public void contentsChanged(ListDataEvent e) {
-	        // ignorato
+	        // TODO Implementare il cambia nome agenda?
 	    }
-	};
+	};*/
 
 }

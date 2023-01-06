@@ -29,9 +29,11 @@ public class Dashboard extends JFrame {
 	private GridBagLayout windowLayout;
 	private JLabel startLabel;
 	private JList<String> agendasList;
+	private DefaultListModel<String> agendasListModel;
+
 	private ActionsPanel actionsPanel;
 
-	public Dashboard(ArrayList<Agenda> agendas) {
+	public Dashboard() {
 		// richiamo il costruttore del JFrame passando il titolo della finestra
 		super("Dashboard");
 		windowLayout = new GridBagLayout();
@@ -73,27 +75,11 @@ public class Dashboard extends JFrame {
 	}
 
 	public void initializeDashboard(ArrayList<Agenda> agendas) {
-
+		// Pannello Agende
 		agendasListPanel.setLayout(new BorderLayout());
-		DefaultListModel<String> model = new DefaultListModel<String>();
-		for (String name : AgendaUtils.agendaListToArray(agendas)) {
-			model.addElement(name);
-		}
-		agendasList = new JList<>(model);
-		agendasList.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
-				if (!e.getValueIsAdjusting()) {
-					setAppointmentsPanel(agendas.get(getSelectedAgenda()));
-					if (!agendasList.isSelectionEmpty()) {
-						actionsPanel.setButtonsStatus(true);
-					} else
-						actionsPanel.setButtonsStatus(false);
-				}
-			}
-		});
-		agendasListPanel.add(agendasList);
 		agendasListPanel.setPreferredSize(new Dimension(150, 600));
-		agendasListPanel.setVisible(true);
+		setAgendasList(agendas);
+		
 		// Pannello appuntamenti
 		appointmentsPanel.setLayout(appointmentsLayout);
 		appointmentsPanel.add(startLabel, CENTER_ALIGNMENT);
@@ -113,13 +99,19 @@ public class Dashboard extends JFrame {
 
 	private void setAppointmentsPanel(Agenda agenda) {
 		appointmentsPanel.setVisible(false);
-		int size = 5;
-		if (agenda.size() > size)
-			size = agenda.size();
 		appointmentsPanel.removeAll();
-		appointmentsLayout.setRows(size);
-		for (Appointment appointment : agenda.getAppointments()) {
-			appointmentsPanel.add(new AppointmentBox(appointment));
+		if(agenda != null) {
+			int size = 5;
+			if (agenda.size() > size)
+				size = agenda.size();
+			appointmentsLayout.setRows(size);
+			appointmentsPanel.setLayout(appointmentsLayout);
+			for (Appointment appointment : agenda.getAppointments()) {
+				appointmentsPanel.add(new AppointmentBox(appointment));
+			}
+		} else {
+			appointmentsPanel.setLayout(new GridLayout(4, 1, 0, 5));
+			appointmentsPanel.add(startLabel, CENTER_ALIGNMENT);
 		}
 		appointmentsPanel.setVisible(true);
 		revalidate();
@@ -127,5 +119,32 @@ public class Dashboard extends JFrame {
 
 	public int getSelectedAgenda() {
 		return agendasList.getSelectedIndex();
+	}
+	
+	public void setAgendasList(ArrayList<Agenda> agendas) {
+		agendasListPanel.setVisible(false);
+		agendasListPanel.removeAll();
+		agendasListModel = new DefaultListModel<String>();
+		for (String name : AgendaUtils.agendaListToArray(agendas)) {
+			agendasListModel.addElement(name);
+		}
+		agendasList = new JList<>(agendasListModel);
+		agendasList.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					if (!agendasList.isSelectionEmpty()) {
+						setAppointmentsPanel(agendas.get(getSelectedAgenda()));
+						actionsPanel.setButtonsStatus(true);
+					} else {
+						actionsPanel.setButtonsStatus(false);
+						setAppointmentsPanel(null);
+					}
+						
+				}
+			}
+		});
+		agendasList.clearSelection();
+		agendasListPanel.add(agendasList);
+		agendasListPanel.setVisible(true);
 	}
 }
