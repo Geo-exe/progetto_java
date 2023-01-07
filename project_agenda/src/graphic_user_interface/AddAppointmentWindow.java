@@ -49,28 +49,25 @@ public class AddAppointmentWindow extends ActionWindow {
 				} catch (NumberFormatException | ParseException e) {
 					e.printStackTrace();
 				} catch (UnavailabilityException e) {
-					JOptionPane.showMessageDialog(null, "Già impegnato! Impossibile creare l'appuntamento.");
+					JOptionPane.showMessageDialog(null, "Già impegnato! Impossibile creare l'appuntamento.", "Impossibile", JOptionPane.ERROR_MESSAGE);
 					e.printStackTrace();
 				}
 				
 				int select = agendasList.getSelectedIndex();
-				int a = agendasList.getLastVisibleIndex();
-				int b = agendasList.getFirstVisibleIndex();
-
-				agendasList.setSelectedIndex(a);
-				agendasList.setSelectedIndex(b);
+				agendasList.clearSelection();
 				agendasList.setSelectedIndex(select);
+				
 				setVisible(false);
 				dispose();
 				JOptionPane.showMessageDialog(null, "Appuntamento aggiunto!");
 			} else {
-				JOptionPane.showMessageDialog(null, "Selezionare un'agenda!");
+				JOptionPane.showMessageDialog(null, "Selezionare un'agenda!", "Impossibile", JOptionPane.ERROR_MESSAGE);
 			}
 		} catch (IllegalArgumentException e) {
-			JOptionPane.showMessageDialog(null, "Non è possibile lasciare un valore vuoto");
+			JOptionPane.showMessageDialog(null, "Non è possibile lasciare un valore vuoto", "Errore di inserimento", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}  catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, "Data e ore inserite non sono valide");
+			JOptionPane.showMessageDialog(null, "Data e ore inserite non sono valide", "Errore di inserimento", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 	}
@@ -95,7 +92,7 @@ public class AddAppointmentWindow extends ActionWindow {
 				char c = e.getKeyChar();
 				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)
 						|| (c == KeyEvent.VK_SLASH))) {
-					JOptionPane.showMessageDialog(null, "Carattere non valido!");
+					errorDialog();
 					e.consume();
 				}
 			}
@@ -106,7 +103,7 @@ public class AddAppointmentWindow extends ActionWindow {
 				char c = e.getKeyChar();
 				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)
 						|| (c == ':'))) {
-					JOptionPane.showMessageDialog(null, "Carattere non valido!");
+					errorDialog();
 					e.consume();
 				}
 			}
@@ -116,7 +113,7 @@ public class AddAppointmentWindow extends ActionWindow {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-					JOptionPane.showMessageDialog(null, "Carattere non valido!");
+					errorDialog();
 					e.consume();
 				}
 			}
@@ -127,7 +124,7 @@ public class AddAppointmentWindow extends ActionWindow {
 				char c = e.getKeyChar();
 				if (!((c >= '0') && (c <= '9') || (c >= 'a') && (c <= 'z') || (c >= 'A') && (c <= 'Z') || (c == ' ')
 						|| (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-					JOptionPane.showMessageDialog(null, "Carattere non valido!");
+					errorDialog();
 					e.consume();
 				}
 			}
@@ -138,7 +135,7 @@ public class AddAppointmentWindow extends ActionWindow {
 				char c = e.getKeyChar();
 				if (!((c >= '0') && (c <= '9') || (c >= 'a') && (c <= 'z') || (c >= 'A') && (c <= 'Z') || (c == ' ')
 						|| (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-					JOptionPane.showMessageDialog(null, "Carattere non valido!");
+					errorDialog();
 					e.consume();
 				}
 			}
@@ -161,6 +158,10 @@ public class AddAppointmentWindow extends ActionWindow {
 		tempPanel.add(personBox);
 
 		return tempPanel;
+	}
+	
+	private static void errorDialog() {
+		JOptionPane.showMessageDialog(null, "Carattere non valido!", "Errore di inserimento", JOptionPane.ERROR_MESSAGE);
 	}
 
 }

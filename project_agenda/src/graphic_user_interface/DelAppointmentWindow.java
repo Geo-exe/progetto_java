@@ -44,12 +44,9 @@ public class DelAppointmentWindow extends ActionWindow {
 		}
 		
 		int select = agendasList.getSelectedIndex();
-		int a = agendasList.getLastVisibleIndex();
-		int b = agendasList.getFirstVisibleIndex();
-
-		agendasList.setSelectedIndex(a);
-		agendasList.setSelectedIndex(b);
+		agendasList.clearSelection();
 		agendasList.setSelectedIndex(select);
+		
 		setVisible(false);
 		dispose();
 		JOptionPane.showMessageDialog(null,"Cancellazione effettuata!");
@@ -90,20 +87,7 @@ public class DelAppointmentWindow extends ActionWindow {
 					
 				}
 			}
-		});
-		
-		
-		/*result=agendas.get(agendasList.getSelectedIndex()).getAppointments();
-		
-		checkBox = new JCheckBox[result.size()]; 
-
-		for(int i = 0; i < result.size(); i++) {
-			checkBox[i] = new JCheckBox("Data: "+result.get(i).getStrDate()+"  Ora: "+result.get(i).getTime()+"  Durata: "+result.get(i).getDuration()+"  Luogo: "+result.get(i).getLocation()+"  Persona: "+result.get(i).getPerson());
-			tempPanel.add(checkBox[i]);
-		}*/
-		
-		
-		
+		});		
 		
 		checkBox = new JCheckBox[result.size()]; 
 

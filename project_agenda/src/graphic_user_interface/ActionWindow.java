@@ -43,7 +43,7 @@ public abstract class ActionWindow extends JFrame {
 			setLocationRelativeTo(null);
 			setVisible(true);
 		} else {
-			JOptionPane.showMessageDialog(null, "Aprire una sola finestra Azione per volta!");
+			JOptionPane.showMessageDialog(null, "Aprire una sola finestra Azione per volta!", "Impossibile", JOptionPane.ERROR_MESSAGE);
 			throw new Exception("Un'altra finestra azione è già in esecuzione");
 		}
 	}
@@ -59,6 +59,7 @@ public abstract class ActionWindow extends JFrame {
 
 	private JPanel endButtons() {
 		this.confirm = new JButton("");
+		getRootPane().setDefaultButton(confirm);
 		this.cancel = new JButton("Annulla");
 
 		confirm.addActionListener(e -> {

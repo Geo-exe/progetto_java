@@ -56,11 +56,11 @@ public class FindAppointmentWindow extends ActionWindow {
 				
 			} catch (ParseException e) {
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Data inserita non valida!");
+				JOptionPane.showMessageDialog(null, "Data inserita non valida!", "Errore di inserimento", JOptionPane.ERROR_MESSAGE);
 			}
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Errore con il dato selezionato nella ComboBox!");
+			JOptionPane.showMessageDialog(null, "Errore con il dato selezionato nella ComboBox!", "Errore di inserimento", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

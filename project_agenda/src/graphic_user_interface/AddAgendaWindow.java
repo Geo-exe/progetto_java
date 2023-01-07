@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import sourcecode.Agenda;
+import utils.AgendaUtils;
 
 public class AddAgendaWindow extends ActionWindow {
 
@@ -26,14 +27,18 @@ public class AddAgendaWindow extends ActionWindow {
 	public void confirmAction() {
 			DefaultListModel<String> model = (DefaultListModel<String>) agendasList.getModel();
 			try {
-				agendas.add(new Agenda(nameBox.getText()));
-				model.addElement(nameBox.getText());
-				setVisible(false);
-		        dispose();
-		        JOptionPane.showMessageDialog(null, "Agenda aggiunta!");
+				if(!AgendaUtils.agendaExist(agendas, nameBox.getText())) {
+					agendas.add(new Agenda(nameBox.getText()));
+					model.addElement(nameBox.getText());
+					setVisible(false);
+			        dispose();
+			        JOptionPane.showMessageDialog(null, "Agenda aggiunta!");
+				} else {
+					JOptionPane.showMessageDialog(null, "Esiste già un'agenda con questo nome!", "Impossibile",JOptionPane.ERROR_MESSAGE);
+				}
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Carattere non valido!");
+				JOptionPane.showMessageDialog(null, "Carattere non valido!", "Eccezione Generata",JOptionPane.ERROR_MESSAGE);
 			}
 			
 		}

@@ -48,20 +48,14 @@ public class EditAppointmentWindow extends AddAppointmentWindow {
 				}
 				
 				int select = agendasList.getSelectedIndex();
-				int a = agendasList.getLastVisibleIndex();
-				int b = agendasList.getFirstVisibleIndex();
-
-				agendasList.setSelectedIndex(a);
-				agendasList.setSelectedIndex(b);
+				agendasList.clearSelection();
 				agendasList.setSelectedIndex(select);
+				
 				setVisible(false);
 				dispose();
 				JOptionPane.showMessageDialog(null, "Appuntamento Modificato!");
-		} catch (IllegalArgumentException e) {
-			JOptionPane.showMessageDialog(null, "Non è possibile lasciare un valore vuoto");
-			e.printStackTrace();
-		}  catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, "Data e ore inserite non sono valide");
+		} catch (IllegalArgumentException | ParseException e) {
+			JOptionPane.showMessageDialog(null, "Non è possibile lasciare un valore vuoto", "Errore di inserimento", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 	}
