@@ -61,6 +61,7 @@ public class ActionsPanel extends JPanel {
 			@Override
 			public void windowClosed(java.awt.event.WindowEvent windowEvent) {
 				actionWindowIsOpen = false;
+				
 			}
 
 			@Override

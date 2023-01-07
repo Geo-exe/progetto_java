@@ -1,71 +1,52 @@
-import java.text.ParseException;
+import java.awt.event.WindowAdapter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
-
-import javax.swing.event.ListDataEvent;
-import javax.swing.event.ListDataListener;
 
 import graphic_user_interface.Dashboard;
 import sourcecode.Agenda;
-import sourcecode.UnavailabilityException;
 
-public class Main {
+public class Main implements Serializable {
 	
-	private static ArrayList<Agenda> agendas;
-	public static Dashboard dashboard;
+	private static final long serialVersionUID = 1L;
+	public static ArrayList<Agenda> agendas;
+	private static Dashboard dashboard;
 	
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) {
 		agendas = new ArrayList<Agenda>();
-		agendas.add(new Agenda("Ufficio"));
-		agendas.add(new Agenda("Casa"));
-		
-		Calendar c1 = Calendar.getInstance();
-		Calendar c2 = Calendar.getInstance();
-		Calendar c3 = Calendar.getInstance();
-		Calendar c4 = Calendar.getInstance();
-		Calendar c5 = Calendar.getInstance();
-		
-		//i mesi partono da zero
-		c1.set(2000, 0, 1, 11, 11);
-		c2.set(2022, 8, 12, 12, 9);
-		c3.set(2022, 8, 14, 12, 25);
-		c4.set(2022, 8, 10, 12, 00);
-		c5.set(2022, 8, 10, 14, 01);
-		
-		try {
-			agendas.get(0).addAppointment(c1, "Ufficio", "Capo", 25);
-		} catch (ParseException | UnavailabilityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			agendas.get(1).addAppointment(c2, "Casa", "Capo", 25);
-		} catch (ParseException | UnavailabilityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			agendas.get(1).addAppointment(c3, "Casa", "Capo", 25);
-		} catch (ParseException | UnavailabilityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			agendas.get(1).addAppointment(c4, "Casa", "Capo", 120);
-		} catch (ParseException | UnavailabilityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			agendas.get(1).addAppointment(c5, "Casa", "Capo", 25);
-		} catch (ParseException | UnavailabilityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		
+		
+		// Launch GUI
 		dashboard = new Dashboard();
+		dashboard.addWindowListener(closingEvents());
 		dashboard.initializeDashboard(agendas);
 	}
+	
+	private static WindowAdapter closingEvents() {
+		return new java.awt.event.WindowAdapter() {
+			@Override
+			public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+				onExit();
+			}
+
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				onExit();
+			}
+		};
+	}
+	
+	private static void onExit() {
+		
+	}
+	
+	private void saveToFile(String fileName) throws IOException {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            out.writeObject(Main.agendas);
+        }
+    }
 
 }
