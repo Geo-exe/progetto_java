@@ -18,8 +18,8 @@ public class EditAppointmentWindow extends AddAppointmentWindow {
 
 	private Appointment selectedAppointment;
 	
-	public EditAppointmentWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList, boolean actionWindowIsOpen) throws Exception {
-		super(title, agendas, agendasList, actionWindowIsOpen);
+	public EditAppointmentWindow(String title) throws Exception {
+		super(title);
 		confirm.setText("Modifica");
 	}
 	

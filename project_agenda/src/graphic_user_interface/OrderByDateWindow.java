@@ -22,9 +22,8 @@ private static final long serialVersionUID = 1L;
 	
 	private JComboBox<OrderMethodEnum> comboBox;
 	
-	public OrderByDateWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList,
-			boolean actionWindowIsOpen) throws Exception {
-		super(title, agendas, agendasList, actionWindowIsOpen);
+	public OrderByDateWindow(String title) throws Exception {
+		super(title);
 		confirm.setText("Conferma");
 	}
 

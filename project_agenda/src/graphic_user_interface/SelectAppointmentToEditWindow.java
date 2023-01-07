@@ -19,9 +19,8 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 	private static final long serialVersionUID = 1L;
 	private JRadioButton[] radioButton;
 
-	public SelectAppointmentToEditWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList,
-			boolean actionWindowIsOpen) throws Exception {
-		super(title, agendas, agendasList, actionWindowIsOpen);
+	public SelectAppointmentToEditWindow(String title) throws Exception {
+		super(title);
 		confirm.setText("Modifica");
 		setBounds(0, 0, 350, 650);
 		setLocationRelativeTo(null);
@@ -29,8 +28,7 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 
 	public void confirmAction() {
 		try {
-			EditAppointmentWindow editWindow = new EditAppointmentWindow(this.getTitle(), this.agendas,
-					this.agendasList, false);
+			EditAppointmentWindow editWindow = new EditAppointmentWindow(this.getTitle());
 			int indexSelected = -1;
 			for (int j = 0; j < radioButton.length; j++) {
 				if (radioButton[j].isSelected()) {

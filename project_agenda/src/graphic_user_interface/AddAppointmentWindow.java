@@ -30,8 +30,8 @@ public class AddAppointmentWindow extends ActionWindow {
 	protected JTextField personBox;
 	protected JTextField durationBox;
 
-	public AddAppointmentWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList, boolean actionWindowIsOpen) throws Exception {
-		super(title, agendas, agendasList, actionWindowIsOpen);
+	public AddAppointmentWindow(String title) throws Exception {
+		super(title);
 		confirm.setText("Aggiungi");
 	}
 

@@ -21,9 +21,8 @@ public class DelAppointmentWindow extends ActionWindow {
 	private JCheckBox[] checkBox;
 	private JCheckBox all;
 	
-	public DelAppointmentWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList,
-			boolean actionWindowIsOpen) throws Exception {
-		super(title, agendas, agendasList, actionWindowIsOpen);
+	public DelAppointmentWindow(String title) throws Exception {
+		super(title);
 		confirm.setText("Elimina");
 		setBounds(0, 0, 350, 650);
 		setLocationRelativeTo(null);

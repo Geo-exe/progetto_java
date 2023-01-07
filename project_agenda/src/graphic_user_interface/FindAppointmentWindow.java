@@ -27,8 +27,8 @@ public class FindAppointmentWindow extends ActionWindow {
 	private JComboBox<FindByEnum> comboBox;
 
 	
-	public FindAppointmentWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList, boolean actionWindowIsOpen) throws Exception {
-		super(title, agendas, agendasList, actionWindowIsOpen);
+	public FindAppointmentWindow(String title) throws Exception {
+		super(title);
 		confirm.setText("Trova");
 	}
 

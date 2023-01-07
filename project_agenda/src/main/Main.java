@@ -1,3 +1,4 @@
+package main;
 import java.awt.event.WindowAdapter;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,29 +22,36 @@ public class Main implements Serializable {
 		
 		// Launch GUI
 		dashboard = new Dashboard();
-		dashboard.addWindowListener(closingEvents());
-		dashboard.initializeDashboard(agendas);
+		//dashboard.addWindowListener(closingEvents());
+		dashboard.initializeDashboard();
 	}
 	
 	private static WindowAdapter closingEvents() {
 		return new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosed(java.awt.event.WindowEvent windowEvent) {
-				onExit();
+				try {
+					saveToFile();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-				onExit();
+				try {
+					saveToFile();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		};
 	}
 	
-	private static void onExit() {
-		
-	}
-	
-	private void saveToFile(String fileName) throws IOException {
+	private static void saveToFile() throws IOException {
+		String fileName = "Bella"; // TODO
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
             out.writeObject(Main.agendas);
         }

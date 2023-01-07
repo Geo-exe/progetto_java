@@ -21,8 +21,8 @@ public class DelAgendaWindow extends ActionWindow {
 
 	private JComboBox<String> comboBox;
 
-	public DelAgendaWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList, boolean actionWindowIsOpen) throws Exception {
-		super(title, agendas, agendasList, actionWindowIsOpen);
+	public DelAgendaWindow(String title) throws Exception {
+		super(title);
 		confirm.setText("Elimina");
 	}
 

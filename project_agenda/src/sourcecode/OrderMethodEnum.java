@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public enum OrderMethodEnum implements OrderMethodInterface {
-	ASCENDING {
+	CRESCENTE {
 		public void orderByDate(ArrayList<Appointment> appointments) {
 			Collections.sort(appointments, new Comparator<Appointment>() {
 				@Override
@@ -15,7 +15,7 @@ public enum OrderMethodEnum implements OrderMethodInterface {
 			});
 		}
 	},
-	DESCENDING {
+	DECRESCENTE {
 		public void orderByDate(ArrayList<Appointment> appointments) {
 			Collections.sort(appointments, new Comparator<Appointment>() {
 				@Override

@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
+import main.Main;
 import sourcecode.Agenda;
 
 public abstract class ActionWindow extends JFrame {
@@ -21,11 +22,11 @@ public abstract class ActionWindow extends JFrame {
 	protected ArrayList<Agenda> agendas;
 	protected JList<String> agendasList;
 
-	public ActionWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList, boolean actionWindowIsOpen) throws Exception {
+	public ActionWindow(String title) throws Exception {
 		super(title);
-		if (!actionWindowIsOpen) {
-			this.agendas = agendas;
-			this.agendasList = agendasList;
+		if (!ActionsPanel.actionWindowIsOpen) {
+			this.agendas = Main.agendas;
+			this.agendasList = Dashboard.agendasList;
 			setLayout(new BorderLayout());
 			panel7030 = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 			panel7030.setResizeWeight(0.7);

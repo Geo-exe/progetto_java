@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public enum FindByEnum implements FindByInterface {
-	DATE{
+	DATA{
 		public ArrayList<Appointment> findBy(String searchingParameter, Agenda agenda) throws ParseException{
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY"); 
 			ArrayList<Appointment> result= new ArrayList<Appointment>();
@@ -25,7 +25,7 @@ public enum FindByEnum implements FindByInterface {
 			return result;
 		}
 	}, 
-	NAME{
+	NOME{
 		public ArrayList<Appointment> findBy(String searchingParamether, Agenda agenda){
 			ArrayList<Appointment> result= new ArrayList<Appointment>();
 			

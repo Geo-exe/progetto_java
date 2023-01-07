@@ -12,15 +12,11 @@ import sourcecode.Agenda;
 
 public class ActionsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private boolean actionWindowIsOpen;
+	public static boolean actionWindowIsOpen;
 	private ActionWindow actionWindowOpen;
-	private ArrayList<Agenda> agendas;
-	private JList<String> agendasList;
 	private JButton[] buttons;
-	public ActionsPanel(ArrayList<Agenda> agendas, JList<String> agendasList) {
-		super();
-		this.agendas = agendas;
-		this.agendasList = agendasList;		
+	public ActionsPanel() {
+		super();	
 		actionWindowIsOpen = false;
 		setLayout(new GridLayout(1, 9));
 		buttons = new JButton[ActionButtonEnum.values().length];
@@ -29,7 +25,7 @@ public class ActionsPanel extends JPanel {
 			buttons[count] = new JButton(enButton.getTitle());
 			buttons[count].addActionListener(e -> {
 				try {
-					actionWindowOpen = (ActionWindow) enButton.getAssociatedClass().getDeclaredConstructor(String.class, ArrayList.class, JList.class, boolean.class).newInstance(enButton.getTitle(), this.agendas, this.agendasList, actionWindowIsOpen);
+					actionWindowOpen = (ActionWindow) enButton.getAssociatedClass().getDeclaredConstructor(String.class).newInstance(enButton.getTitle());
 					actionWindowOpen.addWindowListener(closingEvents());
                 	actionWindowIsOpen = true;
 				} catch (Exception e1) {

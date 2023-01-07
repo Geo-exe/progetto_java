@@ -18,8 +18,8 @@ public class AddAgendaWindow extends ActionWindow {
 	private static final long serialVersionUID = 1L;
 	private JTextField nameBox;
 
-	public AddAgendaWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList, boolean actionWindowIsOpen) throws Exception {
-		super(title, agendas, agendasList, actionWindowIsOpen);
+	public AddAgendaWindow(String title) throws Exception {
+		super(title);
 		confirm.setText("Aggiungi");
 	}
 
