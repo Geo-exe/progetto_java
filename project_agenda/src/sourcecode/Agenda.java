@@ -1,5 +1,6 @@
 package sourcecode;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,7 +9,8 @@ import java.util.Iterator;
 
 import utils.AppointmentUtils;
 
-public class Agenda implements Iterable<Appointment> {
+public class Agenda implements Iterable<Appointment>, Serializable{
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private ArrayList<Appointment> appointments;
 

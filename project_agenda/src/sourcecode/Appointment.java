@@ -1,9 +1,11 @@
 package sourcecode;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Appointment {
+public class Appointment implements Serializable {
+	private static final long serialVersionUID = 1L;
 	SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
 	SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
 	private String location;
