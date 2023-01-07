@@ -46,6 +46,7 @@ public class AddAppointmentWindow extends ActionWindow {
 				try {
 					agendas.get(agendasList.getSelectedIndex()).addAppointment(c1, this.locationBox.getText(),
 							this.personBox.getText(), Integer.parseInt(this.durationBox.getText()));
+					JOptionPane.showMessageDialog(null, "Appuntamento aggiunto!");
 				} catch (NumberFormatException | ParseException e) {
 					e.printStackTrace();
 				} catch (UnavailabilityException e) {
@@ -59,7 +60,7 @@ public class AddAppointmentWindow extends ActionWindow {
 				
 				setVisible(false);
 				dispose();
-				JOptionPane.showMessageDialog(null, "Appuntamento aggiunto!");
+				
 			} else {
 				JOptionPane.showMessageDialog(null, "Selezionare un'agenda!", "Impossibile", JOptionPane.ERROR_MESSAGE);
 			}
@@ -90,7 +91,7 @@ public class AddAppointmentWindow extends ActionWindow {
 		dateBox.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_ENTER)
 						|| (c == KeyEvent.VK_SLASH))) {
 					errorDialog();
 					e.consume();
@@ -101,7 +102,7 @@ public class AddAppointmentWindow extends ActionWindow {
 		timeBox.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE)
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_ENTER)
 						|| (c == ':'))) {
 					errorDialog();
 					e.consume();
@@ -112,7 +113,7 @@ public class AddAppointmentWindow extends ActionWindow {
 		durationBox.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+				if (!((c >= '0') && (c <= '9') || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_ENTER))) {
 					errorDialog();
 					e.consume();
 				}
@@ -123,7 +124,7 @@ public class AddAppointmentWindow extends ActionWindow {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				if (!((c >= '0') && (c <= '9') || (c >= 'a') && (c <= 'z') || (c >= 'A') && (c <= 'Z') || (c == ' ')
-						|| (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+						|| (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_ENTER))) {
 					errorDialog();
 					e.consume();
 				}
@@ -134,7 +135,7 @@ public class AddAppointmentWindow extends ActionWindow {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
 				if (!((c >= '0') && (c <= '9') || (c >= 'a') && (c <= 'z') || (c >= 'A') && (c <= 'Z') || (c == ' ')
-						|| (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
+						|| (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE) || (c == KeyEvent.VK_ENTER))) {
 					errorDialog();
 					e.consume();
 				}

@@ -84,14 +84,20 @@ public class Agenda implements Iterable<Appointment> {
 	public void removeObj(Appointment selectedAppointment) {
 		appointments.remove(selectedAppointment);		
 	}
+	
+	public void addObj(Appointment selectedAppointment) {
+		appointments.add(selectedAppointment);		
+	}
 
 	public int getAppointmentIndex(Appointment selectedAppointment) {
 		return appointments.indexOf(selectedAppointment);
 	}
 
-	public void addAppointmentAtIndex(Calendar date_time, String location, String person, int duration, int index) throws ParseException {
+	public void addAppointmentAtIndex(Calendar date_time, String location, String person, int duration, int index) throws ParseException , UnavailabilityException {
 		if (AppointmentUtils.checkAvailability(date_time, location, person, duration, appointments)) {
 			this.appointments.add(index, new Appointment(date_time, location, person, duration));
+		}else {
+			throw new UnavailabilityException("Impossibile creare il nuovo appuntamento, è già presente un altro appuntamento nello stesso periodo.");
 		}
 	}
 

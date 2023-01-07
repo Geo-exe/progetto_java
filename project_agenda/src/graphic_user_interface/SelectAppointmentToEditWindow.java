@@ -28,20 +28,29 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 
 	public void confirmAction() {
 		try {
-			EditAppointmentWindow editWindow = new EditAppointmentWindow(this.getTitle());
+			
 			int indexSelected = -1;
-			for (int j = 0; j < radioButton.length; j++) {
+			if(radioButton!=null) {
+				
+				for (int j = 0; j < radioButton.length; j++) {
 				if (radioButton[j].isSelected()) {
 					indexSelected = j;
 					break;
 				}
 			}
+				
 			if(indexSelected >= 0) {
+				EditAppointmentWindow editWindow = new EditAppointmentWindow(this.getTitle());
 				editWindow.passFields(indexSelected);
 				setVisible(false);
 				dispose();
-			} else {
+			}else {
 				JOptionPane.showMessageDialog(null, "Nessun appuntamento selezionato!");
+			}
+					
+			} else {
+				setVisible(false);
+				dispose();
 			}
 			
 		} catch (Exception e) {

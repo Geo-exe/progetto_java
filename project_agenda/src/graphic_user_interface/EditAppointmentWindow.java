@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import sourcecode.Agenda;
 import sourcecode.Appointment;
+import sourcecode.UnavailabilityException;
 
 public class EditAppointmentWindow extends AddAppointmentWindow {
 
@@ -19,7 +20,7 @@ public class EditAppointmentWindow extends AddAppointmentWindow {
 	private Appointment selectedAppointment;
 	
 	public EditAppointmentWindow(String title) throws Exception {
-		super(title);
+		super(title+" ");
 		confirm.setText("Modifica");
 	}
 	
@@ -43,7 +44,13 @@ public class EditAppointmentWindow extends AddAppointmentWindow {
 				c1.setTime(format3.parse(this.dateBox.getText() + ' ' + this.timeBox.getText()));
 				try {
 					agendas.get(agendasList.getSelectedIndex()).addAppointmentAtIndex(c1, this.locationBox.getText(), this.personBox.getText(), Integer.parseInt(this.durationBox.getText()), index);
+					
+					JOptionPane.showMessageDialog(null, "Appuntamento Modificato!");
 				} catch (NumberFormatException | ParseException e) {
+					e.printStackTrace();
+				} catch (UnavailabilityException e) {
+					JOptionPane.showMessageDialog(null, "Già impegnato! Impossibile modificare l'appuntamento.", "Impossibile", JOptionPane.ERROR_MESSAGE);
+					agendas.get(agendasList.getSelectedIndex()).addObj(selectedAppointment);
 					e.printStackTrace();
 				}
 				
@@ -53,7 +60,7 @@ public class EditAppointmentWindow extends AddAppointmentWindow {
 				
 				setVisible(false);
 				dispose();
-				JOptionPane.showMessageDialog(null, "Appuntamento Modificato!");
+				
 		} catch (IllegalArgumentException | ParseException e) {
 			JOptionPane.showMessageDialog(null, "Non è possibile lasciare un valore vuoto", "Errore di inserimento", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();

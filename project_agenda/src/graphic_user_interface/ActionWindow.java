@@ -24,7 +24,7 @@ public abstract class ActionWindow extends JFrame {
 
 	public ActionWindow(String title) throws Exception {
 		super(title);
-		if (!ActionsPanel.actionWindowIsOpen) {
+		if (!ActionsPanel.actionWindowIsOpen || title.equals("Modifica Appuntamento ")) {
 			this.agendas = Main.agendas;
 			this.agendasList = Dashboard.agendasList;
 			setLayout(new BorderLayout());
