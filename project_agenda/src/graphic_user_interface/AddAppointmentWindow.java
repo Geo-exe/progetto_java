@@ -18,16 +18,17 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import sourcecode.Agenda;
+import sourcecode.UnavailabilityException;
 
 public class AddAppointmentWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
 
-	private JFormattedTextField dateBox;
-	private JFormattedTextField timeBox;
-	private JTextField locationBox;
-	private JTextField personBox;
-	private JTextField durationBox;
+	protected JFormattedTextField dateBox;
+	protected JFormattedTextField timeBox;
+	protected JTextField locationBox;
+	protected JTextField personBox;
+	protected JTextField durationBox;
 
 	public AddAppointmentWindow(String title, ArrayList<Agenda> agendas, JList<String> agendasList, boolean actionWindowIsOpen) throws Exception {
 		super(title, agendas, agendasList, actionWindowIsOpen);
@@ -46,7 +47,9 @@ public class AddAppointmentWindow extends ActionWindow {
 					agendas.get(agendasList.getSelectedIndex()).addAppointment(c1, this.locationBox.getText(),
 							this.personBox.getText(), Integer.parseInt(this.durationBox.getText()));
 				} catch (NumberFormatException | ParseException e) {
-					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UnavailabilityException e) {
+					JOptionPane.showMessageDialog(null, "Già impegnato! Impossibile creare l'appuntamento.");
 					e.printStackTrace();
 				}
 				

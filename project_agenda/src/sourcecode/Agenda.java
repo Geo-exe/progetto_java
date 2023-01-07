@@ -32,9 +32,11 @@ public class Agenda implements Iterable<Appointment> {
 		return appointments.size();
 	}
 
-	public void addAppointment(Calendar date_time, String location, String person, int duration) throws ParseException {
+	public void addAppointment(Calendar date_time, String location, String person, int duration) throws ParseException, UnavailabilityException {
 		if (AppointmentUtils.checkAvailability(date_time, location, person, duration, appointments)) {
 			this.appointments.add(new Appointment(date_time, location, person, duration));
+		} else {
+			throw new UnavailabilityException("Impossibile creare il nuovo appuntamento, è già presente un altro appuntamento nello stesso periodo.");
 		}
 
 	}
@@ -44,7 +46,6 @@ public class Agenda implements Iterable<Appointment> {
 	}
 
 	public void removeAll() {
-
 		appointments.clear();
 	}
 
@@ -78,5 +79,23 @@ public class Agenda implements Iterable<Appointment> {
 				throw new UnsupportedOperationException("Impossibile rimuovere elementi durante l'iterazione");
 			}
 		};
+	}
+
+	public void removeObj(Appointment selectedAppointment) {
+		appointments.remove(selectedAppointment);		
+	}
+
+	public int getAppointmentIndex(Appointment selectedAppointment) {
+		return appointments.indexOf(selectedAppointment);
+	}
+
+	public void addAppointmentAtIndex(Calendar date_time, String location, String person, int duration, int index) throws ParseException {
+		if (AppointmentUtils.checkAvailability(date_time, location, person, duration, appointments)) {
+			this.appointments.add(index, new Appointment(date_time, location, person, duration));
+		}
+	}
+
+	public Appointment getAppointmentAt(int index) {
+		return appointments.get(index);
 	}
 }

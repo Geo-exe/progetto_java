@@ -7,7 +7,7 @@ import java.util.Calendar;
 import sourcecode.Appointment;
 
 public class AppointmentUtils {
-
+		// TODO da sistemare che se un appuntamento finisce alla stessa ora di inizio di un altro deve restituire true.
 	public static boolean checkAvailability(Calendar date_time, String location, String person, int duration,
 			ArrayList<Appointment> list) throws ParseException {
 		Calendar end = (Calendar) date_time.clone();

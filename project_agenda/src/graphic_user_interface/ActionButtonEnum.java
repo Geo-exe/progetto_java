@@ -67,7 +67,7 @@ public enum ActionButtonEnum implements ActionButtonInterface {
 	EDITAPPOINTMENT{
 
 		public Class<?> getAssociatedClass() {
-			return EditAppointmentWindow.class;
+			return SelectAppointmentToEditWindow.class;
 		}
 		
 		public String getTitle() {
