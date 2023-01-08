@@ -47,7 +47,7 @@ private static final long serialVersionUID = 1L;
 		
 		setVisible(false);
 		dispose();
-		JOptionPane.showMessageDialog(null, temp);
+		DialogMessage.object("Appuntamenti", temp);
 		
 	}
 

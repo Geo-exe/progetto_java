@@ -49,7 +49,7 @@ public class DelAppointmentWindow extends ActionWindow {
 		
 		setVisible(false);
 		dispose();
-		JOptionPane.showMessageDialog(null,"Cancellazione effettuata!");
+		DialogMessage.information("Successo","Cancellazione effettuata!");
 		}else {
 			setVisible(false);
 			dispose();

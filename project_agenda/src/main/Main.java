@@ -40,11 +40,17 @@ public class Main {
 	
 	@SuppressWarnings("unchecked")
 	private static void onStartup() {
-		ArrayList<Agenda> temp = (ArrayList<Agenda>) FileHandler.importFromFile("dataBackup.agenda", true);
-		if(temp != null) {
-			agendas = temp;
-		} else {
+		try {
+			ArrayList<Agenda> temp = (ArrayList<Agenda>) FileHandler.importFromFile("dataBackup.agenda");
+			if(temp != null) {
+				agendas = temp;
+			} else {
+				agendas = new ArrayList<Agenda>();
+			}
+		} catch(ClassCastException e) {
+			e.printStackTrace();
 			agendas = new ArrayList<Agenda>();
 		}
+		
 	}
 }

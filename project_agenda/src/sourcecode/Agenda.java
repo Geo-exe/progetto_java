@@ -21,6 +21,14 @@ public class Agenda implements Iterable<Appointment>, Serializable{
 		this.name = name;
 		this.appointments = new ArrayList<Appointment>();
 	}
+	
+	public Agenda(String name, ArrayList<Appointment> appointments) {
+		if (name.equals("")) {
+			throw new IllegalArgumentException("Il Nome non può essere vuoto");
+		}
+		this.name = name;
+		this.appointments = appointments;
+	}
 
 	public String getName() {
 		return name;

@@ -46,11 +46,11 @@ public class AddAppointmentWindow extends ActionWindow {
 				try {
 					agendas.get(agendasList.getSelectedIndex()).addAppointment(c1, this.locationBox.getText(),
 							this.personBox.getText(), Integer.parseInt(this.durationBox.getText()));
-					JOptionPane.showMessageDialog(null, "Appuntamento aggiunto!");
+					DialogMessage.information("Successo", "Appuntamento aggiunto!");
 				} catch (NumberFormatException | ParseException e) {
 					e.printStackTrace();
 				} catch (UnavailabilityException e) {
-					JOptionPane.showMessageDialog(null, "Già impegnato! Impossibile creare l'appuntamento.", "Impossibile", JOptionPane.ERROR_MESSAGE);
+					DialogMessage.error("Impossibile", "Già impegnato! Impossibile creare l'appuntamento.");
 					e.printStackTrace();
 				}
 				
@@ -62,13 +62,13 @@ public class AddAppointmentWindow extends ActionWindow {
 				dispose();
 				
 			} else {
-				JOptionPane.showMessageDialog(null, "Selezionare un'agenda!", "Impossibile", JOptionPane.ERROR_MESSAGE);
+				DialogMessage.error("Impossibile", "Selezionare un'agenda!");
 			}
 		} catch (IllegalArgumentException e) {
-			JOptionPane.showMessageDialog(null, "Non è possibile lasciare un valore vuoto", "Errore di inserimento", JOptionPane.ERROR_MESSAGE);
+			DialogMessage.error("Errore di inserimento", "Non è possibile lasciare un valore vuoto");
 			e.printStackTrace();
 		}  catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, "Data e ore inserite non sono valide", "Errore di inserimento", JOptionPane.ERROR_MESSAGE);
+			DialogMessage.error("Errore di inserimento", "Data e ore inserite non sono valide");
 			e.printStackTrace();
 		}
 	}
@@ -162,7 +162,7 @@ public class AddAppointmentWindow extends ActionWindow {
 	}
 	
 	private static void errorDialog() {
-		JOptionPane.showMessageDialog(null, "Carattere non valido!", "Errore di inserimento", JOptionPane.ERROR_MESSAGE);
+		DialogMessage.error("Errore di inserimento", "Carattere non valido!");
 	}
 
 }

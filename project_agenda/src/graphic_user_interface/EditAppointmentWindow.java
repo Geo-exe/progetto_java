@@ -45,11 +45,11 @@ public class EditAppointmentWindow extends AddAppointmentWindow {
 				try {
 					agendas.get(agendasList.getSelectedIndex()).addAppointmentAtIndex(c1, this.locationBox.getText(), this.personBox.getText(), Integer.parseInt(this.durationBox.getText()), index);
 					
-					JOptionPane.showMessageDialog(null, "Appuntamento Modificato!");
+					DialogMessage.information("Successo", "Appuntamento Modificato!");
 				} catch (NumberFormatException | ParseException e) {
 					e.printStackTrace();
 				} catch (UnavailabilityException e) {
-					JOptionPane.showMessageDialog(null, "Già impegnato! Impossibile modificare l'appuntamento.", "Impossibile", JOptionPane.ERROR_MESSAGE);
+					DialogMessage.error("Impossibile", "Già impegnato! Impossibile modificare l'appuntamento.");
 					agendas.get(agendasList.getSelectedIndex()).addObj(selectedAppointment);
 					e.printStackTrace();
 				}
@@ -62,7 +62,7 @@ public class EditAppointmentWindow extends AddAppointmentWindow {
 				dispose();
 				
 		} catch (IllegalArgumentException | ParseException e) {
-			JOptionPane.showMessageDialog(null, "Non è possibile lasciare un valore vuoto", "Errore di inserimento", JOptionPane.ERROR_MESSAGE);
+			DialogMessage.error("Errore di inserimento", "Non è possibile lasciare un valore vuoto");
 			e.printStackTrace();
 		}
 	}

@@ -28,6 +28,7 @@ public class ActionsPanel extends JPanel {
 					actionWindowOpen = (ActionWindow) enButton.getAssociatedClass().getDeclaredConstructor(String.class).newInstance(enButton.getTitle());
 					actionWindowOpen.addWindowListener(closingEvents());
                 	actionWindowIsOpen = true;
+                	Dashboard.agendasList.setEnabled(false);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -57,12 +58,14 @@ public class ActionsPanel extends JPanel {
 			@Override
 			public void windowClosed(java.awt.event.WindowEvent windowEvent) {
 				actionWindowIsOpen = false;
+				Dashboard.agendasList.setEnabled(true);
 				
 			}
 
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 				actionWindowIsOpen = false;
+				Dashboard.agendasList.setEnabled(true);
 			}
 		};
 	}

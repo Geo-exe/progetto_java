@@ -112,8 +112,7 @@ public enum ActionButtonEnum implements ActionButtonInterface {
 	IMPORT{
 
 		public Class<?> getAssociatedClass() {
-			// TODO Auto-generated method stub
-			return null;
+			return ImportWindow.class;
 		}
 		
 		public String getTitle() {
@@ -128,8 +127,7 @@ public enum ActionButtonEnum implements ActionButtonInterface {
 	EXPORT{
 
 		public Class<?> getAssociatedClass() {
-			// TODO Auto-generated method stub
-			return null;
+			return ExportWindow.class;
 		}
 
 		public String getTitle() {

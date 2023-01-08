@@ -48,19 +48,19 @@ public class FindAppointmentWindow extends ActionWindow {
 
 					setVisible(false);
 					dispose();
-					JOptionPane.showMessageDialog(null, temp);
+					DialogMessage.object("Appuntamento", temp);
 				
 				}else {
-					JOptionPane.showMessageDialog(null, "Nessun appuntamento trovato!");
+					DialogMessage.error("Non trovato", "Nessun appuntamento trovato!");
 				}
 				
 			} catch (ParseException e) {
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Data inserita non valida!", "Errore di inserimento", JOptionPane.ERROR_MESSAGE);
+				DialogMessage.error("Errore di inserimento", "Data inserita non valida!");
 			}
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Errore con il dato selezionato nella ComboBox!", "Errore di inserimento", JOptionPane.ERROR_MESSAGE);
+			DialogMessage.error("Errore di inserimento", "Errore con il dato selezionato nella ComboBox!");
 		}
 	}
 

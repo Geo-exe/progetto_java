@@ -32,13 +32,13 @@ public class AddAgendaWindow extends ActionWindow {
 					model.addElement(nameBox.getText());
 					setVisible(false);
 			        dispose();
-			        JOptionPane.showMessageDialog(null, "Agenda aggiunta!");
+			        DialogMessage.information("Successo", "Agenda aggiunta!");
 				} else {
-					JOptionPane.showMessageDialog(null, "Esiste già un'agenda con questo nome!", "Impossibile",JOptionPane.ERROR_MESSAGE);
+					DialogMessage.error("Impossibile", "Esiste già un'agenda con questo nome!");
 				}
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Carattere non valido!", "Eccezione Generata",JOptionPane.ERROR_MESSAGE);
+				DialogMessage.error("Eccezione Generata", "Carattere non valido!");
 			}
 			
 		}

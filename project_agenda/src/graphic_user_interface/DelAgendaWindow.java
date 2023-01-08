@@ -40,7 +40,7 @@ public class DelAgendaWindow extends ActionWindow {
 
 		setVisible(false);
 		dispose();
-		JOptionPane.showMessageDialog(null, "Agenda " + comboBox.getSelectedItem() + " eliminata!");
+		DialogMessage.information("Successo", "Agenda " + comboBox.getSelectedItem() + " eliminata!");
 
 	}
 

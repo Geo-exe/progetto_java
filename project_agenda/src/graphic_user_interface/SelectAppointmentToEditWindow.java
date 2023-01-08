@@ -45,7 +45,7 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 				setVisible(false);
 				dispose();
 			}else {
-				JOptionPane.showMessageDialog(null, "Nessun appuntamento selezionato!");
+				DialogMessage.error("Selezione Errata", "Nessun appuntamento selezionato!");
 			}
 					
 			} else {
