@@ -9,16 +9,28 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import sourcecode.Agenda;
-
+/**
+ * JPanel è un contenitore per oggetti dichiarato nella libreria javax.swing
+ * ActionsPanel a sua volta estende JPanel per implementare alcune proprietà e alcuni metodi.
+ * ActionsPanel contiene un numero variabile di JButton cliccabili.
+ * I valori assegnati ai JButton sono presi dall'Enum ActionButtonEnum 
+ * @author Griffa Francesco
+ * @author Peracini Fabio
+ */
 public class ActionsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	public static boolean actionWindowIsOpen;
 	private ActionWindow actionWindowOpen;
 	private JButton[] buttons;
+	/** 
+	 * Costruttore della classe.
+	 * 
+	 * @return Ritorna un'istanza della classe ActionsPanel.
+	 */
 	public ActionsPanel() {
 		super();	
 		actionWindowIsOpen = false;
-		setLayout(new GridLayout(1, 9));
+		setLayout(new GridLayout(1, ActionButtonEnum.values().length + 1));
 		buttons = new JButton[ActionButtonEnum.values().length];
 		int count = 0;
 		for(ActionButtonEnum enButton: ActionButtonEnum.values()) {
