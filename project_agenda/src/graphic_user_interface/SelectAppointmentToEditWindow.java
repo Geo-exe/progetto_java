@@ -1,5 +1,6 @@
 package graphic_user_interface;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import sourcecode.Agenda;
@@ -22,7 +24,7 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 	public SelectAppointmentToEditWindow(String title) throws Exception {
 		super(title);
 		confirm.setText("Modifica");
-		setBounds(0, 0, 350, 650);
+		setBounds(0, 0, 500, 400);
 		setLocationRelativeTo(null);
 	}
 
@@ -59,18 +61,21 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 	}
 
 	protected JPanel loadFields() {
+		JPanel temp = new JPanel();
 		JPanel tempPanel = new JPanel();
+		JScrollPane scrollBar = new JScrollPane(tempPanel);
+		scrollBar.setBorder(null);
 		ArrayList<Appointment> result;
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		result = agendas.get(agendasList.getSelectedIndex()).getAppointments();
 
 		if (!result.isEmpty()) {
-
+			scrollBar.setPreferredSize(new Dimension(400, 200));
 			tempPanel.setLayout(new GridBagLayout());
 			tempPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 			gbc.gridy = 0;
-			tempPanel.add(new JLabel("Seleziona un appuntamento:"), gbc);
+			temp.add(new JLabel("Seleziona un appuntamento:"), gbc);
 
 			radioButton = new JRadioButton[result.size()];
 
@@ -96,8 +101,9 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 		} else {
 			tempPanel.add(new JLabel("Nessun appuntamento!"));
 		}
-
-		return tempPanel;
+		
+		temp.add(scrollBar);
+		return temp;
 	}
 
 }

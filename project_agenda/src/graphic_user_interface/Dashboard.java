@@ -1,6 +1,7 @@
 package graphic_user_interface;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,6 +13,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -37,6 +41,24 @@ public class Dashboard extends JFrame {
 	public Dashboard() {
 		// richiamo il costruttore del JFrame passando il titolo della finestra
 		super("Dashboard");
+		
+		// imposto un tema della gui
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		windowLayout = new GridBagLayout();
 		// setto il layout su griglia pesata
 		setLayout(windowLayout);
@@ -51,7 +73,8 @@ public class Dashboard extends JFrame {
 		// inizializzo i pannelli
 		agendasListPanel = new JPanel();
 		appointmentsPanel = new JPanel();
-
+		JScrollPane scrollBar = new JScrollPane(appointmentsPanel);
+		scrollBar.setBorder(null);
 		// aggiungere componenti alla finestra
 		// lista agenda
 		gbc.gridwidth = 1;
@@ -66,18 +89,18 @@ public class Dashboard extends JFrame {
 		gbc.gridy = 1;
 		gbc.weighty = 1.0;
 		gbc.weightx = 1.0;
-		add(appointmentsPanel, gbc);
+		add(scrollBar, gbc);
 
 		// action Panel
 		gbc.gridwidth = 2;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.weighty = 0.5;
+		gbc.weighty = 0.03;
 		gbc.weightx = 1.0;
 		actionsPanel = new ActionsPanel();
 		add(actionsPanel, gbc);
 		
-		setPreferredSize(new Dimension(900, 650));
+		setPreferredSize(new Dimension(1050, 650));
 		pack();
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,7 +116,6 @@ public class Dashboard extends JFrame {
 		// Pannello appuntamenti
 		appointmentsPanel.setLayout(appointmentsLayout);
 		appointmentsPanel.add(startLabel, CENTER_ALIGNMENT);
-		appointmentsPanel.setPreferredSize(new Dimension(650, 600));
 		appointmentsPanel.setVisible(true);
 		
 		setAppointmentsPanel(null);

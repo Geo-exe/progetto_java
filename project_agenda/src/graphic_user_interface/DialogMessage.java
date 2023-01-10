@@ -3,6 +3,7 @@ package graphic_user_interface;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class DialogMessage {
 

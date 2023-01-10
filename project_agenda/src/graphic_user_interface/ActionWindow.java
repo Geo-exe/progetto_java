@@ -22,7 +22,7 @@ public abstract class ActionWindow extends JFrame {
 	protected JList<String> agendasList;
 
 	public ActionWindow(String title) throws Exception {
-		super(title);
+		super(title.replaceAll("\\<[^>]*>",""));
 		if (!ActionsPanel.actionWindowIsOpen || title.equals("Modifica Appuntamento ")) {
 			this.agendas = Main.agendas;
 			this.agendasList = Dashboard.agendasList;

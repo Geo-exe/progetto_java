@@ -11,7 +11,7 @@ public enum ActionButtonEnum implements ActionButtonInterface {
 		}
 		
 		public String getTitle() {
-			return "Aggiungi Agenda"; 
+			return "<html><p style='text-align:center;'>Aggiungi <br>Agenda</p></html>"; 
 		}
 
 		public boolean AlwaysEnabled() {
@@ -26,7 +26,7 @@ public enum ActionButtonEnum implements ActionButtonInterface {
 		}
 		
 		public String getTitle() {
-			return "Rimuovi Agenda";
+			return "<html><p style='text-align:center;'>Rimuovi <br>Agenda</p></html>";
 		}
 
 		public boolean AlwaysEnabled() {
@@ -41,7 +41,7 @@ public enum ActionButtonEnum implements ActionButtonInterface {
 		}
 		
 		public String getTitle() {
-			return "Aggiungi Appuntamento";
+			return "<html><p style='text-align:center;'>Aggiungi <br>Appuntamento</p></html>";
 		}
 
 		public boolean AlwaysEnabled() {
@@ -56,7 +56,7 @@ public enum ActionButtonEnum implements ActionButtonInterface {
 		}
 		
 		public String getTitle() {
-			return "Cancella Appuntamento";
+			return "<html><p style='text-align:center;'>Cancella <br>Appuntamento</p></html>";
 		}
 
 		public boolean AlwaysEnabled() {
@@ -71,7 +71,7 @@ public enum ActionButtonEnum implements ActionButtonInterface {
 		}
 		
 		public String getTitle() {
-			return "Modifica Appuntamento";
+			return "<html><p style='text-align:center;'>Modifica <br>Appuntamento</p></html>";
 		}
 
 		public boolean AlwaysEnabled() {
@@ -86,7 +86,7 @@ public enum ActionButtonEnum implements ActionButtonInterface {
 		}
 		
 		public String getTitle() {
-			return "Trova Appuntamento";
+			return "<html> <p style='text-align:center;'>Trova <br>Appuntamento</p></html>";
 		}
 
 		public boolean AlwaysEnabled() {
@@ -101,7 +101,7 @@ public enum ActionButtonEnum implements ActionButtonInterface {
 		}
 		
 		public String getTitle() {
-			return "Ordina Appuntamenti";
+			return "<html><p style='text-align:center;'>Ordina <br>Appuntamenti</p></html>";
 		}
 
 		public boolean AlwaysEnabled() {
@@ -116,7 +116,7 @@ public enum ActionButtonEnum implements ActionButtonInterface {
 		}
 		
 		public String getTitle() {
-			return "Importa Agenda";
+			return "<html><p style='text-align:center;'>Importa <br>Agenda</p></html>";
 		}
 
 		public boolean AlwaysEnabled() {
@@ -131,7 +131,7 @@ public enum ActionButtonEnum implements ActionButtonInterface {
 		}
 
 		public String getTitle() {
-			return "Esporta Agenda";
+			return "<html><p style='text-align:center;'>Esporta Agenda</p></html>";
 		}
 
 		public boolean AlwaysEnabled() {

@@ -1,6 +1,7 @@
 package graphic_user_interface;
 
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -35,12 +37,15 @@ public class FindAppointmentWindow extends ActionWindow {
 	public void confirmAction() {
 		ArrayList<Appointment> result=new ArrayList<Appointment>();
 		JPanel temp= new JPanel();
+		JPanel tempPanel= new JPanel();
+		JScrollPane scrollBar = new JScrollPane(temp);
+		scrollBar.setBorder(null);
 		try {
 			FindByEnum selectedMethod = FindByEnum.valueOf(comboBox.getSelectedItem().toString());
 			try {
 				result = selectedMethod.findBy(textBox.getText(), agendas.get(agendasList.getSelectedIndex()));
 				if(!result.isEmpty()) {
-					
+					scrollBar.setPreferredSize(new Dimension(350, 250));
 					temp.setLayout(new GridLayout(result.size(),1));
 					for(Appointment a: result) {
 						temp.add(new AppointmentBox(a));
@@ -48,7 +53,8 @@ public class FindAppointmentWindow extends ActionWindow {
 
 					setVisible(false);
 					dispose();
-					DialogMessage.object("Appuntamento", temp);
+					tempPanel.add(scrollBar);
+					DialogMessage.object("Appuntamento", tempPanel);
 				
 				}else {
 					DialogMessage.error("Non trovato", "Nessun appuntamento trovato!");

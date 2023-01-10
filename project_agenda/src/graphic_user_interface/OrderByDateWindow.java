@@ -1,6 +1,7 @@
 package graphic_user_interface;
 
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import sourcecode.Agenda;
@@ -30,24 +32,29 @@ private static final long serialVersionUID = 1L;
 	public void confirmAction() {
 		ArrayList<Appointment> result =new ArrayList<Appointment>();
 		JPanel temp= new JPanel();
+		JPanel tempPanel= new JPanel();
+		JScrollPane scrollBar = new JScrollPane(temp);
+		scrollBar.setBorder(null);
 		
 		result=agendas.get(agendasList.getSelectedIndex()).sortAppointmets(OrderMethodEnum.valueOf(comboBox.getSelectedItem().toString()));
 		
 		temp.setLayout(new GridLayout(result.size(),1));
 		
 		if(!result.isEmpty()) {
+			scrollBar.setPreferredSize(new Dimension(350, 250));
 			for(Appointment a: result) {
 			temp.add(new AppointmentBox(a));
 			
 			}
 		}else {
-			temp.add(new JLabel("Nessun appuntamento!"));
+			tempPanel.add(new JLabel("Nessun appuntamento!"));
 		}
 		
 		
 		setVisible(false);
 		dispose();
-		DialogMessage.object("Appuntamenti", temp);
+		tempPanel.add(scrollBar);
+		DialogMessage.object("Appuntamenti", tempPanel);
 		
 	}
 
