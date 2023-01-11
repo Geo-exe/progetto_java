@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 import utils.AgendaUtils;
 
 public class ExportWindow extends ActionWindow {
-	
+
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> comboBox;
 
@@ -21,7 +21,7 @@ public class ExportWindow extends ActionWindow {
 
 	@Override
 	public void confirmAction() {
-		if(FileDialog.FileSaveDialog(agendas.get(comboBox.getSelectedIndex()))) {
+		if (FileDialog.FileSaveDialog(agendas.get(comboBox.getSelectedIndex()))) {
 			setVisible(false);
 			dispose();
 		}
@@ -35,7 +35,7 @@ public class ExportWindow extends ActionWindow {
 		tempPanel.add(new JLabel("Seleziona un'agenda da :"));
 
 		comboBox = new JComboBox<String>(AgendaUtils.agendaListToArray(agendas));
-		
+
 		tempPanel.add(comboBox);
 
 		return tempPanel;

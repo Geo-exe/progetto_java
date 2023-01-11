@@ -6,14 +6,11 @@ import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import sourcecode.Agenda;
 import sourcecode.Appointment;
 
 public class SelectAppointmentToEditWindow extends ActionWindow {
@@ -30,31 +27,31 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 
 	public void confirmAction() {
 		try {
-			
+
 			int indexSelected = -1;
-			if(radioButton!=null) {
-				
+			if (radioButton != null) {
+
 				for (int j = 0; j < radioButton.length; j++) {
-				if (radioButton[j].isSelected()) {
-					indexSelected = j;
-					break;
+					if (radioButton[j].isSelected()) {
+						indexSelected = j;
+						break;
+					}
 				}
-			}
-				
-			if(indexSelected >= 0) {
-				EditAppointmentWindow editWindow = new EditAppointmentWindow(this.getTitle());
-				editWindow.passFields(indexSelected);
-				setVisible(false);
-				dispose();
-			}else {
-				DialogMessage.error("Selezione Errata", "Nessun appuntamento selezionato!");
-			}
-					
+
+				if (indexSelected >= 0) {
+					EditAppointmentWindow editWindow = new EditAppointmentWindow(this.getTitle());
+					editWindow.passFields(indexSelected);
+					setVisible(false);
+					dispose();
+				} else {
+					DialogMessage.error("Selezione Errata", "Nessun appuntamento selezionato!");
+				}
+
 			} else {
 				setVisible(false);
 				dispose();
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -65,6 +62,7 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 		JPanel tempPanel = new JPanel();
 		JScrollPane scrollBar = new JScrollPane(tempPanel);
 		scrollBar.setBorder(null);
+		scrollBar.getVerticalScrollBar().setUnitIncrement(16);
 		ArrayList<Appointment> result;
 		GridBagConstraints gbc = new GridBagConstraints();
 
@@ -101,7 +99,7 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 		} else {
 			tempPanel.add(new JLabel("Nessun appuntamento!"));
 		}
-		
+
 		temp.add(scrollBar);
 		return temp;
 	}

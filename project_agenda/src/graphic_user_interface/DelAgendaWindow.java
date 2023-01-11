@@ -1,14 +1,11 @@
 package graphic_user_interface;
 
 import java.awt.GridLayout;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -27,14 +24,14 @@ public class DelAgendaWindow extends ActionWindow {
 	}
 
 	public void confirmAction() {
-	
-		for(Iterator<Agenda> iterator = agendas.iterator(); iterator.hasNext();) {
+
+		for (Iterator<Agenda> iterator = agendas.iterator(); iterator.hasNext();) {
 			Agenda agenda = iterator.next();
-			if(agenda.getName().equals(comboBox.getSelectedItem())) {
+			if (agenda.getName().equals(comboBox.getSelectedItem())) {
 				iterator.remove();
 			}
 		}
-		
+
 		DefaultListModel<String> model = (DefaultListModel<String>) agendasList.getModel();
 		model.removeElement(comboBox.getSelectedItem());
 
@@ -51,7 +48,7 @@ public class DelAgendaWindow extends ActionWindow {
 		tempPanel.add(new JLabel("Seleziona un' agenda da :"));
 
 		comboBox = new JComboBox<String>(AgendaUtils.agendaListToArray(agendas));
-		
+
 		tempPanel.add(comboBox);
 
 		return tempPanel;

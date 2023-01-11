@@ -39,7 +39,7 @@ public class FileHandler implements Serializable {
 			ArrayList<?> temps = (ArrayList<?>) rawImported;
 			boolean isInstance = true;
 			int count = 0;
-			for (Object temp : temps) {
+			for (@SuppressWarnings("unused") Object temp : temps) {
 				if (!(temps.get(count) instanceof Agenda)) {
 					isInstance = false;
 					break;

@@ -1,12 +1,10 @@
 package graphic_user_interface;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -41,7 +39,7 @@ public class Dashboard extends JFrame {
 	public Dashboard() {
 		// richiamo il costruttore del JFrame passando il titolo della finestra
 		super("Dashboard");
-		
+
 		// imposto un tema della gui
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -58,7 +56,7 @@ public class Dashboard extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		windowLayout = new GridBagLayout();
 		// setto il layout su griglia pesata
 		setLayout(windowLayout);
@@ -75,6 +73,7 @@ public class Dashboard extends JFrame {
 		appointmentsPanel = new JPanel();
 		JScrollPane scrollBar = new JScrollPane(appointmentsPanel);
 		scrollBar.setBorder(null);
+		scrollBar.getVerticalScrollBar().setUnitIncrement(16);
 		// aggiungere componenti alla finestra
 		// lista agenda
 		gbc.gridwidth = 1;
@@ -99,8 +98,8 @@ public class Dashboard extends JFrame {
 		gbc.weightx = 1.0;
 		actionsPanel = new ActionsPanel();
 		add(actionsPanel, gbc);
-		
-		setPreferredSize(new Dimension(1050, 650));
+
+		setPreferredSize(new Dimension(450, 650));
 		pack();
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,19 +111,19 @@ public class Dashboard extends JFrame {
 		agendasListPanel.setLayout(new BorderLayout());
 		agendasListPanel.setPreferredSize(new Dimension(150, 600));
 		setAgendasList();
-		
+
 		// Pannello appuntamenti
 		appointmentsPanel.setLayout(appointmentsLayout);
 		appointmentsPanel.add(startLabel, CENTER_ALIGNMENT);
 		appointmentsPanel.setVisible(true);
-		
+
 		setAppointmentsPanel(null);
 	}
 
 	private void setAppointmentsPanel(Agenda agenda) {
 		appointmentsPanel.setVisible(false);
 		appointmentsPanel.removeAll();
-		if(agenda != null) {
+		if (agenda != null) {
 			int size = 5;
 			if (agenda.size() > size)
 				size = agenda.size();
@@ -144,7 +143,7 @@ public class Dashboard extends JFrame {
 	public int getSelectedAgenda() {
 		return agendasList.getSelectedIndex();
 	}
-	
+
 	private void setAgendasList() {
 		agendasListPanel.setVisible(false);
 		agendasListPanel.removeAll();

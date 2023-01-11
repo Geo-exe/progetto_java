@@ -16,6 +16,7 @@ public class AppointmentBox extends JPanel {
 	private JLabel location;
 	private JLabel person;
 	private JLabel duration;
+
 	public AppointmentBox(Appointment appointment) {
 		super();
 		setLayout(new GridLayout(5, 2));
