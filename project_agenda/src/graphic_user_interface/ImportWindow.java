@@ -13,25 +13,50 @@ import javax.swing.border.EmptyBorder;
 import sourcecode.Agenda;
 import utils.AgendaUtils;
 
+/**
+ * ActionWindow è la classe astratta che predispone una finestra per un form. La
+ * classe ImportWindow estende ActionWindow implementando i componenti e le
+ * funzioni necessarie per importare una o più agende.
+ * 
+ * @author Griffa Francesco
+ * @author Peracini Fabio
+ *
+ */
 public class ImportWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> comboBox;
 
+	/**
+	 * Costruttore della classe. Passa al super costruttore title e cambia il
+	 * contenuto del tasto confirm.
+	 * 
+	 * @param title
+	 * @throws Exception
+	 */
 	public ImportWindow(String title) throws Exception {
 		super(title);
 		confirm.setText("Importa");
 	}
 
+	/**
+	 * Esegue le operazioni necessarie ad importare da un file una o più agende,
+	 * eseguondo apportuni controlli.
+	 */
 	public void confirmAction() {
+		// viene utilizzato il DefaultListModel per cambiare il contenuto della JList
 		DefaultListModel<String> newModel = new DefaultListModel<String>();
 		String txt = "Agenda Aggiunta!";
 		boolean toEdit = true;
+
+		// Viene importata una sola agenda
 		if (comboBox.getSelectedItem() == "1") {
 			Agenda temp = (Agenda) FileDialog.FileOpenDialog();
+			// Controllo se esiste già un'agenda con quel nome
 			if (!AgendaUtils.agendaExist(agendas, temp.getName()))
 				agendas.add(temp);
 			else {
+				// Se il nome è già in uso si apre un form per cambiarlo
 				String newName = "";
 				do {
 					newName = JOptionPane
@@ -44,12 +69,15 @@ public class ImportWindow extends ActionWindow {
 
 			}
 		} else {
+			// Vengono imporatate più agende
 			@SuppressWarnings("unchecked")
 			ArrayList<Agenda> temps = (ArrayList<Agenda>) FileDialog.FileOpenDialog();
 			for (Agenda temp : temps) {
+				// Controllo se esiste già un'agenda con quel nome
 				if (!AgendaUtils.agendaExist(agendas, temp.getName())) {
 					agendas.add(temp);
 				} else {
+					// Se il nome è già in uso si apre un form per cambiarlo
 					String newName = "";
 					do {
 						newName = JOptionPane
@@ -80,6 +108,12 @@ public class ImportWindow extends ActionWindow {
 		dispose();
 	}
 
+	/**
+	 * Inizializza i campi del form necessari a selezionare se si vuole importare
+	 * una o più agende.
+	 * 
+	 * @return JPanel contente la GUI del form.
+	 */
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setLayout(new GridLayout(2, 2, 5, 5));

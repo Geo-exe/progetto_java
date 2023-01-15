@@ -22,6 +22,17 @@ import sourcecode.Agenda;
 import sourcecode.Appointment;
 import utils.AgendaUtils;
 
+/**
+ * JFrame è una finestra di dialogo dichiarata nella libreria javax.swing. Essa
+ * contiene al suo interno i vari componenti dell'interfaccia grafica. Dashboard
+ * estende JFrame implementando una classe che crea una finestra in cui si trova
+ * in alto una JMenuBar, a sinistra un elenco delle agende presenti nel
+ * programma e a destra l'elenco degli appuntamenti dell'agenda selezionata.
+ * 
+ * @author Griffa Francesco
+ * @author Peracini Fabio
+ *
+ */
 public class Dashboard extends JFrame {
 	private static final long serialVersionUID = 1L;
 
@@ -36,11 +47,15 @@ public class Dashboard extends JFrame {
 
 	private ActionsPanel actionsPanel;
 
+	/**
+	 * Costruttore della classe. Viene creato il JFrame e posizionati i vari
+	 * componenti grafici.
+	 */
 	public Dashboard() {
 		// richiamo il costruttore del JFrame passando il titolo della finestra
 		super("Dashboard");
 
-		// imposto un tema della gui
+		// imposto un tema della gui, prendendo quello sistema
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e) {
@@ -106,6 +121,9 @@ public class Dashboard extends JFrame {
 		setVisible(true);
 	}
 
+	/**
+	 * Vengono inizializzati i due pannelli contenenti le agende e gli appuntamenti.
+	 */
 	public void initializeDashboard() {
 		// Pannello Agende
 		agendasListPanel.setLayout(new BorderLayout());
@@ -120,6 +138,12 @@ public class Dashboard extends JFrame {
 		setAppointmentsPanel(null);
 	}
 
+	/**
+	 * Vengono stampati i vari appuntamenti dell'agenda selezionata, tramite la
+	 * classe AppointmentBox.
+	 * 
+	 * @param agenda selezionata
+	 */
 	private void setAppointmentsPanel(Agenda agenda) {
 		appointmentsPanel.setVisible(false);
 		appointmentsPanel.removeAll();
@@ -140,10 +164,18 @@ public class Dashboard extends JFrame {
 		revalidate();
 	}
 
+	/**
+	 * Ritorna l'indice dell'agenda in JList selezionata.
+	 * 
+	 * @return int index
+	 */
 	public int getSelectedAgenda() {
 		return agendasList.getSelectedIndex();
 	}
 
+	/**
+	 * Viengono stampate le varie agende nella JList.
+	 */
 	private void setAgendasList() {
 		agendasListPanel.setVisible(false);
 		agendasListPanel.removeAll();

@@ -12,17 +12,37 @@ import javax.swing.border.EmptyBorder;
 import sourcecode.Agenda;
 import utils.AgendaUtils;
 
+/**
+ * ActionWindow è la classe astratta che predispone una finestra per un form. La
+ * classe DelAgendaWindow estende ActionWindow implementando i componenti e le
+ * funzioni necessarie per eliminare un'agenda.
+ * 
+ * @author Griffa Francesco
+ * @author Peracini Fabio
+ *
+ */
 public class DelAgendaWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
 
 	private JComboBox<String> comboBox;
 
+	/**
+	 * Costruttore della classe. Passa al super costruttore title e cambia il
+	 * contenuto del tasto confirm.
+	 * 
+	 * @param title
+	 * @throws Exception
+	 */
 	public DelAgendaWindow(String title) throws Exception {
 		super(title);
 		confirm.setText("Elimina");
 	}
 
+	/**
+	 * Esegue le operazioni necessarie ad elimare un'agenda, eseguondo apportuni
+	 * controlli.
+	 */
 	public void confirmAction() {
 
 		for (Iterator<Agenda> iterator = agendas.iterator(); iterator.hasNext();) {
@@ -31,7 +51,7 @@ public class DelAgendaWindow extends ActionWindow {
 				iterator.remove();
 			}
 		}
-
+		// viene utilizzato il DefaultListModel per cambiare il contenuto della JList
 		DefaultListModel<String> model = (DefaultListModel<String>) agendasList.getModel();
 		model.removeElement(comboBox.getSelectedItem());
 
@@ -41,6 +61,11 @@ public class DelAgendaWindow extends ActionWindow {
 
 	}
 
+	/**
+	 * Inizializza i campi del form necessari ad elimnare un'agenda.
+	 * 
+	 * @return JPanel contente la GUI del form.
+	 */
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setLayout(new GridLayout(2, 2, 5, 5));

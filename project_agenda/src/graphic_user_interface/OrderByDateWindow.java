@@ -13,22 +13,44 @@ import javax.swing.border.EmptyBorder;
 import sourcecode.Appointment;
 import sourcecode.OrderMethodEnum;
 
+/**
+ * ActionWindow è la classe astratta che predispone una finestra per un form. La
+ * classe OrderByDateWindow estende ActionWindow implementando i componenti e le
+ * funzioni necessarie per visualizzare gli appuntamenti ordinati per data
+ * crescente o decrescente.
+ * 
+ * @author Griffa Francesco
+ * @author Peracini Fabio
+ *
+ */
 public class OrderByDateWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
 
 	private JComboBox<OrderMethodEnum> comboBox;
 
+	/**
+	 * Costruttore della classe. Passa al super costruttore title e cambia il
+	 * contenuto del tasto confirm.
+	 * 
+	 * @param title
+	 * @throws Exception
+	 */
 	public OrderByDateWindow(String title) throws Exception {
 		super(title);
 		confirm.setText("Conferma");
 	}
 
+	/**
+	 * Esegue le operazioni necessarie ad ordinare gli appuntamenti e stamparli a
+	 * schermo, eseguondo apportuni controlli.
+	 */
 	public void confirmAction() {
 		ArrayList<Appointment> result = new ArrayList<Appointment>();
 		JPanel temp = new JPanel();
 		JScrollPane scrollBar = new JScrollPane(temp);
 		scrollBar.setBorder(null);
+		// incrementa la velocità della scrollbar
 		scrollBar.getVerticalScrollBar().setUnitIncrement(16);
 
 		result = agendas.get(agendasList.getSelectedIndex())
@@ -52,6 +74,12 @@ public class OrderByDateWindow extends ActionWindow {
 
 	}
 
+	/**
+	 * Inizializza i campi del form necessari a selezionare un ordinamento crescente
+	 * o decrescente.
+	 * 
+	 * @return JPanel contente la GUI del form.
+	 */
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setLayout(new GridLayout(2, 2, 5, 5));

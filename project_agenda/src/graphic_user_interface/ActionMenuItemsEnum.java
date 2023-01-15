@@ -2,6 +2,16 @@ package graphic_user_interface;
 
 import java.util.Arrays;
 
+/**
+ * La classe speciale enum, nella quale si trovano la classe, il titolo e la
+ * flag di attivazione di ogni singolo menuItems presente nel menu in
+ * ActionPanel.
+ * 
+ * @author Griffa Francesco
+ * @author Peracini Fabio
+ *
+ */
+
 public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 	ADDAGENDA {
 		public Class<?> getAssociatedClass() {
@@ -114,7 +124,7 @@ public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 		}
 
 		public String getTitle() {
-			return "Importa Agenda";
+			return "Importa File Agenda";
 		}
 
 		public boolean AlwaysEnabled() {
@@ -129,7 +139,7 @@ public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 		}
 
 		public String getTitle() {
-			return "Esporta Agenda";
+			return "Esporta File Agenda";
 		}
 
 		public boolean AlwaysEnabled() {

@@ -13,11 +13,29 @@ import javax.swing.border.EmptyBorder;
 
 import sourcecode.Appointment;
 
+/**
+ * ActionWindow è la classe astratta che predispone una finestra per un form. La
+ * classe SelectAppointmentToEditWindow estende ActionWindow implementando i
+ * componenti e le funzioni necessarie per selezionare un appuntamento da
+ * modificare, aprendo poi una finestra di modifica richiamndo l'oggetto
+ * EditAppointmentWindow.
+ * 
+ * @author Griffa Francesco
+ * @author Peracini Fabio
+ *
+ */
 public class SelectAppointmentToEditWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
 	private JRadioButton[] radioButton;
 
+	/**
+	 * Costruttore della classe. Passa al super costruttore title e cambia il
+	 * contenuto del tasto confirm.
+	 * 
+	 * @param title
+	 * @throws Exception
+	 */
 	public SelectAppointmentToEditWindow(String title) throws Exception {
 		super(title);
 		confirm.setText("Modifica");
@@ -25,6 +43,10 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 		setLocationRelativeTo(null);
 	}
 
+	/**
+	 * Esegue le operazioni necessarie a modificare un appuntamento selezionato,
+	 * eseguondo apportuni controlli.
+	 */
 	public void confirmAction() {
 		try {
 
@@ -57,6 +79,12 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 		}
 	}
 
+	/**
+	 * Inizializza i campi del form necessari a selezionare un appuntamento da
+	 * modificare.
+	 * 
+	 * @return JPanel contente la GUI del form.
+	 */
 	protected JPanel loadFields() {
 		JPanel temp = new JPanel();
 		JPanel tempPanel = new JPanel();
@@ -79,7 +107,7 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 
 			for (int i = 0; i < result.size(); i++) {
 				radioButton[i] = new JRadioButton();
-
+				// Listener che rende selezionabile un solo elemento alla volta
 				radioButton[i].addActionListener(e -> {
 
 					for (int j = 0; j < radioButton.length; j++) {

@@ -8,17 +8,38 @@ import java.util.Calendar;
 import sourcecode.Appointment;
 import sourcecode.UnavailabilityException;
 
+/**
+ * AddAppointmentwindow è la classe che predispone una finestra per un form per
+ * inserire un nuovo appuntamento. La classe EditAppointmentWindow estende
+ * ActionWindow implementando i componenti e le funzioni necessarie per
+ * modificare appuntamento, sfruttando i componenti di AddAppointemntWindow.
+ * 
+ * @author Griffa Francesco
+ * @author Peracini Fabio
+ *
+ */
 public class EditAppointmentWindow extends AddAppointmentWindow {
 
 	private static final long serialVersionUID = 1L;
 
 	private Appointment selectedAppointment;
 
+	/**
+	 * Costruttore della classe. Passa al super costruttore title e cambia il
+	 * contenuto del tasto confirm.
+	 * 
+	 * @param title
+	 * @throws Exception
+	 */
 	public EditAppointmentWindow(String title) throws Exception {
 		super(title + " ");
 		confirm.setText("Modifica");
 	}
 
+	/**
+	 * Esegue le operazioni necessarie a modificare appuntamento, eseguondo
+	 * apportuni controlli.
+	 */
 	public void passFields(int index) {
 		Appointment appointment = agendas.get(agendasList.getSelectedIndex()).getAppointmentAt(index);
 		this.dateBox.setText(appointment.getStrDate());
@@ -29,6 +50,11 @@ public class EditAppointmentWindow extends AddAppointmentWindow {
 		this.selectedAppointment = appointment;
 	}
 
+	/**
+	 * Inizializza i campi del form necessari a modificare un appuntamento.
+	 * 
+	 * @return JPanel contente la GUI del form.
+	 */
 	public void confirmAction() {
 		int index = agendas.get(agendasList.getSelectedIndex()).getAppointmentIndex(selectedAppointment);
 		agendas.get(agendasList.getSelectedIndex()).removeObj(selectedAppointment);

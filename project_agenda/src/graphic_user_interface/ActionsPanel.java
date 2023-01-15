@@ -11,9 +11,9 @@ import javax.swing.JPanel;
 /**
  * JPanel è un contenitore per oggetti dichiarato nella libreria javax.swing
  * ActionsPanel a sua volta estende JPanel per implementare alcune proprietà e
- * alcuni metodi. ActionsPanel contiene un numero variabile di JButton
- * cliccabili. I valori assegnati ai JButton sono presi dall'Enum
- * ActionButtonEnum
+ * alcuni metodi. ActionsPanel contiene un numero variabile di JMenuItem
+ * cliccabili. I valori assegnati ai JMenuItem sono presi dall'Enum
+ * ActionMenuItemsEnum
  * 
  * @author Griffa Francesco
  * @author Peracini Fabio
@@ -36,6 +36,7 @@ public class ActionsPanel extends JPanel {
 	public ActionsPanel() {
 		super();
 
+		// creo il menu delle action
 		menuBar = new JMenuBar();
 		menuFile = new JMenu("File");
 		menuAgendas = new JMenu("Agenda");
@@ -45,6 +46,7 @@ public class ActionsPanel extends JPanel {
 		menuBar.add(menuAppointments);
 		add(menuBar);
 
+		// assegno ad ogni item del menu un listener, il titolo e la classe
 		actionWindowIsOpen = false;
 		setLayout(new GridLayout(1, ActionMenuItemsEnum.values().length + 1));
 		menuItems = new JMenuItem[ActionMenuItemsEnum.values().length];
@@ -67,20 +69,27 @@ public class ActionsPanel extends JPanel {
 
 		setButtonsStatus(false);
 
-		int i = 0;
-		for (JMenuItem button : menuItems) {
-			if (i >= 0 && i <= 1) {
-				menuAgendas.add(button);
-			} else if (i >= 2 && i <= 6) {
-				menuAppointments.add(button);
-			} else if (i >= 6) {
-				menuFile.add(button);
+		// posiziono i vari item in modo ordinato
+
+		for (JMenuItem item : menuItems) {
+			if (item.getText().contains("File")) {
+				menuFile.add(item);
+			} else if (item.getText().contains("Agenda")) {
+				menuAgendas.add(item);
+			} else if (item.getText().contains("Appuntamento")) {
+				menuAppointments.add(item);
 			}
-			i++;
+
 		}
 		setVisible(true);
 	}
 
+	/**
+	 * Viene impostato lo stato di ogni item. Se lo stato è attivo sarà cliccabile,
+	 * altrimenti verrà visualizzato sbiadito e non sarà cliccabile.
+	 * 
+	 * @param boolean status
+	 */
 	public void setButtonsStatus(boolean status) {
 		String[] enumNames = ActionMenuItemsEnum.getNames();
 		for (int i = 0; i < menuItems.length; i++) {
@@ -90,6 +99,12 @@ public class ActionsPanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Tiene traccia della chiusare delle finestra che si apre a seguito della
+	 * selezione di item del menù.
+	 * 
+	 * @return WindowAdapter
+	 */
 	private WindowAdapter closingEvents() {
 		return new java.awt.event.WindowAdapter() {
 			@Override

@@ -16,6 +16,15 @@ import javax.swing.border.EmptyBorder;
 
 import sourcecode.UnavailabilityException;
 
+/**
+ * ActionWindow è la classe astratta che predispone una finestra per un form. La
+ * classe AddAppointmentWindow estende ActionWindow implementando i componenti e
+ * le funzioni necessarie per inserire un nuovo appuntamento.
+ * 
+ * @author Griffa Francesco
+ * @author Peracini Fabio
+ *
+ */
 public class AddAppointmentWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
@@ -26,11 +35,22 @@ public class AddAppointmentWindow extends ActionWindow {
 	protected JTextField personBox;
 	protected JTextField durationBox;
 
+	/**
+	 * Costruttore della classe. Passa al super costruttore title e cambia il
+	 * contenuto del tasto confirm.
+	 * 
+	 * @param title
+	 * @throws Exception
+	 */
 	public AddAppointmentWindow(String title) throws Exception {
 		super(title);
 		confirm.setText("Aggiungi");
 	}
 
+	/**
+	 * Esegue le operazioni necessarie ad inserire un nuovo appuntamento, eseguondo
+	 * apportuni controlli.
+	 */
 	public void confirmAction() {
 		Calendar c1 = Calendar.getInstance();
 		DateFormat format3 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -69,6 +89,11 @@ public class AddAppointmentWindow extends ActionWindow {
 		}
 	}
 
+	/**
+	 * Inizializza i campi del form necessari ad inserire un nuovo appuntamento.
+	 * 
+	 * @return JPanel contente la GUI del form.
+	 */
 	public JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
 
@@ -83,6 +108,8 @@ public class AddAppointmentWindow extends ActionWindow {
 		this.locationBox = new JTextField();
 		this.personBox = new JTextField();
 
+		// Vari controlli che si assicurano che vengano inseriti solo caratteri validi
+		// nel form
 		dateBox.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
@@ -156,6 +183,9 @@ public class AddAppointmentWindow extends ActionWindow {
 		return tempPanel;
 	}
 
+	/**
+	 * Apre una finestra con un messaggio di errore.
+	 */
 	private static void errorDialog() {
 		DialogMessage.error("Errore di inserimento", "Carattere non valido!");
 	}
