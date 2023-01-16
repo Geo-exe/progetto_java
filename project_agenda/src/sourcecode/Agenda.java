@@ -8,11 +8,31 @@ import java.util.Iterator;
 
 import utils.AppointmentUtils;
 
+/**
+ * La classe Agenda implementa le classi Iterable e Serializable. E' composta da
+ * una stringa che corrisponde al nome dell'agenda e da un arraylist di oggetti
+ * Appointment. Sono stati sviluppati i costruttori e vari metodi necessari.
+ * 
+ * @author Griffa Francesco
+ * @author Peracini Fabio
+ *
+ */
 public class Agenda implements Iterable<Appointment>, Serializable {
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Nome dell'agenda.
+	 */
 	private String name;
+	/**
+	 * Lista degli oggetti appuntamenti.
+	 */
 	private ArrayList<Appointment> appointments;
 
+	/**
+	 * Costruttore della classe che richiede una stringa.
+	 * 
+	 * @param name dell'agenda
+	 */
 	public Agenda(String name) {
 		if (name.equals("")) {
 			throw new IllegalArgumentException("Il Nome non può essere vuoto");
@@ -21,6 +41,13 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 		this.appointments = new ArrayList<Appointment>();
 	}
 
+	/**
+	 * Costruttore della classe che richiede una stringa e un arraylist di
+	 * Appointment.
+	 * 
+	 * @param name         dell'agenda
+	 * @param appointments arraylist
+	 */
 	public Agenda(String name, ArrayList<Appointment> appointments) {
 		if (name.equals("")) {
 			throw new IllegalArgumentException("Il Nome non può essere vuoto");
@@ -29,18 +56,43 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 		this.appointments = appointments;
 	}
 
+	/**
+	 * Restituisce il nome di un'agenda.
+	 * 
+	 * @return Il nome dell'agenda
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Restituisce la lista degli appuntamenti.
+	 * 
+	 * @return un arraylist di appuntamenti
+	 */
 	public ArrayList<Appointment> getAppointments() {
 		return appointments;
 	}
 
+	/**
+	 * Restituisce il numero totale di appuntamenti.
+	 * 
+	 * @return il numero di appuntamenti
+	 */
 	public int size() {
 		return appointments.size();
 	}
 
+	/**
+	 * Aggiunge un appuntamento all'agenda.
+	 * 
+	 * @param date_time data e ora
+	 * @param location  luogo
+	 * @param person    nome della persona
+	 * @param duration  durata in minuti
+	 * @throws ParseException          errore nella conversione della data
+	 * @throws UnavailabilityException conflitto temporale con un altro appuntamento
+	 */
 	public void addAppointment(Calendar date_time, String location, String person, int duration)
 			throws ParseException, UnavailabilityException {
 		if (AppointmentUtils.checkAvailability(date_time, location, person, duration, appointments)) {
@@ -52,24 +104,59 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 
 	}
 
+	/**
+	 * Rimuove un appuntamento all'indice passato.
+	 * 
+	 * @param i indice
+	 */
 	public void removeAt(int i) {
 		appointments.remove(i);
 	}
 
+	/**
+	 * Rimuove tutte gli appuntamenti presenti nell'agenda.
+	 */
 	public void removeAll() {
 		appointments.clear();
 	}
 
-	public void modifyAppointment(Calendar date_time, String location, String person, String duration) {
-
+	/**
+	 * Modifica un appuntamento all' indice specificato.
+	 * 
+	 * @param date_time data e ora
+	 * @param location  luogo
+	 * @param person    nome della persona
+	 * @param duration  durata in minuti
+	 * @param index     indice
+	 * @throws ParseException          errore nella conversione della data
+	 * @throws UnavailabilityException conflitto temporale con un altro appuntamento
+	 */
+	public void modifyAppointment(Calendar date_time, String location, String person, int duration, int index)
+			throws ParseException, UnavailabilityException {
+		appointments.remove(index);
+		if (AppointmentUtils.checkAvailability(date_time, location, person, duration, appointments)) {
+			this.appointments.add(index, new Appointment(date_time, location, person, duration));
+		} else {
+			throw new UnavailabilityException(
+					"Impossibile creare il nuovo appuntamento, è già presente un altro appuntamento nello stesso periodo.");
+		}
 	}
 
+	/**
+	 * Ordina gli appuntamenti in modo crescente o decrescente.
+	 * 
+	 * @param selectedMethod enum selezionato
+	 * @return arraylist di appuntamenti
+	 */
 	public ArrayList<Appointment> sortAppointmets(OrderMethodEnum selectedMethod) {
 		ArrayList<Appointment> result = new ArrayList<Appointment>(appointments);
 		selectedMethod.orderByDate(result);
 		return result;
 	}
 
+	/**
+	 * Dichiaro l'iteratore.
+	 */
 	@Override
 	public Iterator<Appointment> iterator() {
 		return new Iterator<Appointment>() {
@@ -92,18 +179,45 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 		};
 	}
 
+	/**
+	 * Rimuove un appuntamento.
+	 * 
+	 * @param selectedAppointment appuntamento selezionato
+	 */
 	public void removeObj(Appointment selectedAppointment) {
 		appointments.remove(selectedAppointment);
 	}
 
+	/**
+	 * Aggiunge un appuntamento.
+	 * 
+	 * @param selectedAppointment appuntamento selezionato
+	 */
 	public void addObj(Appointment selectedAppointment) {
 		appointments.add(selectedAppointment);
 	}
 
+	/**
+	 * Restituisce l'indice di un appuntamento.
+	 * 
+	 * @param selectedAppointment appuntamento selezionato
+	 * @return l'indice dell'appuntamento
+	 */
 	public int getAppointmentIndex(Appointment selectedAppointment) {
 		return appointments.indexOf(selectedAppointment);
 	}
 
+	/**
+	 * Aggiunge un appuntamento alla arraylist di appuntamenti.
+	 * 
+	 * @param date_time data e ora
+	 * @param location  luogo
+	 * @param person    nome della persona
+	 * @param duration  durata in minuti
+	 * @param index     indice
+	 * @throws ParseException          errore nella conversione della data
+	 * @throws UnavailabilityException conflitto temporale con un altro appuntamento
+	 */
 	public void addAppointmentAtIndex(Calendar date_time, String location, String person, int duration, int index)
 			throws ParseException, UnavailabilityException {
 		if (AppointmentUtils.checkAvailability(date_time, location, person, duration, appointments)) {
@@ -114,6 +228,12 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 		}
 	}
 
+	/**
+	 * Restituisce un appuntaemnto dato l'indice.
+	 * 
+	 * @param index indice
+	 * @return ritorna un appuntamento all'indice specificato
+	 */
 	public Appointment getAppointmentAt(int index) {
 		return appointments.get(index);
 	}

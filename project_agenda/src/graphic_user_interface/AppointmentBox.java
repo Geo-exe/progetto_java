@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 import sourcecode.Appointment;
 
 /**
- * JPanel è un contenitore per oggetti dichiarato nella libreria javax.swing
- * AppointmentBox a sua volta estende JPanel per implementare alcune proprietà e
+ * JPanel e' un contenitore per oggetti dichiarato nella libreria javax.swing
+ * AppointmentBox a sua volta estende JPanel per implementare alcune proprieta' e
  * alcuni metodi. AppointemntBox popola un JPanel con tutte le informazioni
  * relative ad un singolo appuntamento.
  * 
@@ -22,10 +22,25 @@ import sourcecode.Appointment;
 
 public class AppointmentBox extends JPanel {
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Label contenete la data.
+	 */
 	private JLabel date;
+	/**
+	 * Label contenete l'ora.
+	 */
 	private JLabel time;
+	/**
+	 * Label contenete il luogo.
+	 */
 	private JLabel location;
+	/**
+	 * Label contenete il nome della persona.
+	 */
 	private JLabel person;
+	/**
+	 * Label contenete la durata in minuti.
+	 */
 	private JLabel duration;
 
 	/**

@@ -7,11 +7,25 @@ import graphic_user_interface.Dashboard;
 import sourcecode.Agenda;
 import sourcecode.FileHandler;
 
+/**
+ * Classe Main.
+ * 
+ * @author Griffa Francesco
+ * @author Peracini Fabio
+ *
+ */
 public class Main {
-
+	/**
+	 * ArrayList di oggetti Agenda.
+	 */
 	public static ArrayList<Agenda> agendas;
 	private static Dashboard dashboard;
 
+	/**
+	 * Metodo main.
+	 * 
+	 * @param args argomenti da passare al main
+	 */
 	public static void main(String[] args) {
 		onStartup();
 
@@ -21,6 +35,11 @@ public class Main {
 		dashboard.initializeDashboard();
 	}
 
+	/**
+	 * Quando il programma viene chiuso richiama onExit().
+	 * 
+	 * @return WindowAdapter
+	 */
 	private static WindowAdapter closingEvents() {
 		return new java.awt.event.WindowAdapter() {
 			@Override
@@ -35,11 +54,17 @@ public class Main {
 		};
 	}
 
+	/**
+	 * Esporta le agende su file.
+	 */
 	private static void onExit() {
 		FileHandler.exportToFile("dataBackup.agenda", agendas);
 	}
 
 	@SuppressWarnings("unchecked")
+	/**
+	 * Quando il programma viene avviato importa le agende da file.
+	 */
 	private static void onStartup() {
 		try {
 			ArrayList<Agenda> temp = (ArrayList<Agenda>) FileHandler.importFromFile("dataBackup.agenda");

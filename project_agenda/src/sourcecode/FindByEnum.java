@@ -6,7 +6,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ * La classe speciale enum, nella quale si trovano i due metodi per la ricerca.
+ * Entrambi ritornano un arraylist di appuntamenti. Il primo filtra per data
+ * mentre il secondo seleziona solo gli appuntamenti con il nome corrispondente.
+ * 
+ * @author Griffa Francesco
+ * @author Peracini Fabio
+ *
+ */
 public enum FindByEnum implements FindByInterface {
+	
+	/**
+	 * Ricerca di uno o piu' appuntamenti per data
+	 */
 	DATA {
 		public ArrayList<Appointment> findBy(String searchingParameter, Agenda agenda) throws ParseException {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
@@ -25,6 +38,9 @@ public enum FindByEnum implements FindByInterface {
 			return result;
 		}
 	},
+	/**
+	 * Ricerca di uno o piu' appuntamenti per nome
+	 */
 	NOME {
 		public ArrayList<Appointment> findBy(String searchingParamether, Agenda agenda) {
 			ArrayList<Appointment> result = new ArrayList<Appointment>();

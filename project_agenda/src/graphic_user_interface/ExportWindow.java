@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 import utils.AgendaUtils;
 
 /**
- * ActionWindow è la classe astratta che predispone una finestra per un form. La
+ * ActionWindow e' la classe astratta che predispone una finestra per un form. La
  * classe ExportWindow estende ActionWindow implementando i componenti e le
  * funzioni necessarie per esportare un'agenda.
  * 
@@ -21,14 +21,17 @@ import utils.AgendaUtils;
 public class ExportWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Lista di agende da cui selezionare quella da esportare.
+	 */
 	private JComboBox<String> comboBox;
 
 	/**
 	 * Costruttore della classe. Passa al super costruttore title e cambia il
 	 * contenuto del tasto confirm.
 	 * 
-	 * @param title
-	 * @throws Exception
+	 * @param title titolo della finestra
+	 * @throws Exception un'altra finestra gia' aperta
 	 */
 	public ExportWindow(String title) throws Exception {
 		super(title);

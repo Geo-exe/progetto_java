@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 import sourcecode.UnavailabilityException;
 
 /**
- * ActionWindow è la classe astratta che predispone una finestra per un form. La
+ * ActionWindow e' la classe astratta che predispone una finestra per un form. La
  * classe AddAppointmentWindow estende ActionWindow implementando i componenti e
  * le funzioni necessarie per inserire un nuovo appuntamento.
  * 
@@ -28,19 +28,34 @@ import sourcecode.UnavailabilityException;
 public class AddAppointmentWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	/**
+	 * Casella di testo formattato della data.
+	 */
 	protected JFormattedTextField dateBox;
+	/**
+	 * Casella di testo formattato dell'ora.
+	 */
 	protected JFormattedTextField timeBox;
+	/**
+	 * Casella di testo del luogo.
+	 */
 	protected JTextField locationBox;
+	/**
+	 * Casella di testo del nome della persona.
+	 */
 	protected JTextField personBox;
+	/**
+	 * Casella di testo della durata in minuti.
+	 */
 	protected JTextField durationBox;
 
 	/**
 	 * Costruttore della classe. Passa al super costruttore title e cambia il
 	 * contenuto del tasto confirm.
 	 * 
-	 * @param title
-	 * @throws Exception
+	 * @param title titolo della finestra
+	 * @throws Exception un'altra finestra gia' aperta
 	 */
 	public AddAppointmentWindow(String title) throws Exception {
 		super(title);
@@ -92,7 +107,7 @@ public class AddAppointmentWindow extends ActionWindow {
 	/**
 	 * Inizializza i campi del form necessari ad inserire un nuovo appuntamento.
 	 * 
-	 * @return JPanel contente la GUI del form.
+	 * @return JPanel contente la GUI del form
 	 */
 	public JPanel loadFields() {
 		JPanel tempPanel = new JPanel();

@@ -14,7 +14,7 @@ import javax.swing.border.EmptyBorder;
 import sourcecode.Appointment;
 
 /**
- * ActionWindow è la classe astratta che predispone una finestra per un form. La
+ * ActionWindow e' la classe astratta che predispone una finestra per un form. La
  * classe DelAppointmentWindow estende ActionWindow implementando i componenti e
  * le funzioni necessarie per eliminare appuntamento.
  * 
@@ -25,15 +25,21 @@ import sourcecode.Appointment;
 public class DelAppointmentWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Lista dei vari appuntamenti da selezionare per essere eliminati.
+	 */
 	private JCheckBox[] checkBox;
+	/**
+	 * Se selezionata vengono selezionati tutti gli appuntamenti.
+	 */
 	private JCheckBox all;
 
 	/**
 	 * Costruttore della classe. Passa al super costruttore title e cambia il
 	 * contenuto del tasto confirm.
 	 * 
-	 * @param title
-	 * @throws Exception
+	 * @param title della finestra
+	 * @throws Exception un'altra finestra gia' aperta
 	 */
 	public DelAppointmentWindow(String title) throws Exception {
 		super(title);
@@ -78,7 +84,7 @@ public class DelAppointmentWindow extends ActionWindow {
 	/**
 	 * Inizializza i campi del form necessari ad eliminare appuntamento.
 	 * 
-	 * @return JPanel contente la GUI del form.
+	 * @return JPanel contente la GUI del form
 	 */
 	protected JPanel loadFields() {
 		JPanel temp = new JPanel();

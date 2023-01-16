@@ -9,29 +9,50 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 /**
- * JPanel è un contenitore per oggetti dichiarato nella libreria javax.swing
- * ActionsPanel a sua volta estende JPanel per implementare alcune proprietà e
+ * JPanel e' un contenitore per oggetti dichiarato nella libreria javax.swing
+ * ActionsPanel a sua volta estende JPanel per implementare alcune proprieta' e
  * alcuni metodi. ActionsPanel contiene un numero variabile di JMenuItem
  * cliccabili. I valori assegnati ai JMenuItem sono presi dall'Enum
- * ActionMenuItemsEnum
+ * ActionMenuItemsEnum.
  * 
  * @author Griffa Francesco
  * @author Peracini Fabio
  */
 public class ActionsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Inidica lo stato della finestra, false nessuna finestra aperta mentre true
+	 * finestra aperta.
+	 */
 	public static boolean actionWindowIsOpen;
+	/**
+	 * Finestra che si apre dopo aver cliccato su una voce del menu'.
+	 */
 	private ActionWindow actionWindowOpen;
+	/**
+	 * Barra contenete i vari menu'.
+	 */
 	private JMenuBar menuBar;
+	/**
+	 * Menu' delle azioni eseguibili sui file.
+	 */
 	private JMenu menuFile;
+	/**
+	 * Menu' delle azioni eseguibili sulle agende.
+	 */
 	private JMenu menuAgendas;
+	/**
+	 * Menu' delle azioni eseguibili sugli appuntamenti.
+	 */
 	private JMenu menuAppointments;
+	/**
+	 * Tutte le voci dei vari menu'.
+	 */
 	private JMenuItem[] menuItems;
 
 	/**
 	 * Costruttore della classe.
 	 * 
-	 * @return Ritorna un'istanza della classe ActionsPanel.
 	 */
 	public ActionsPanel() {
 		super();
@@ -85,10 +106,10 @@ public class ActionsPanel extends JPanel {
 	}
 
 	/**
-	 * Viene impostato lo stato di ogni item. Se lo stato è attivo sarà cliccabile,
+	 * Viene impostato lo stato di ogni item. Se lo stato e' attivo sarà cliccabile,
 	 * altrimenti verrà visualizzato sbiadito e non sarà cliccabile.
 	 * 
-	 * @param boolean status
+	 * @param status del tasto
 	 */
 	public void setButtonsStatus(boolean status) {
 		String[] enumNames = ActionMenuItemsEnum.getNames();
@@ -101,7 +122,7 @@ public class ActionsPanel extends JPanel {
 
 	/**
 	 * Tiene traccia della chiusare delle finestra che si apre a seguito della
-	 * selezione di item del menù.
+	 * selezione di item del menu'.
 	 * 
 	 * @return WindowAdapter
 	 */

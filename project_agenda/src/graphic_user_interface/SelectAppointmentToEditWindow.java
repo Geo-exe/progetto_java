@@ -14,7 +14,7 @@ import javax.swing.border.EmptyBorder;
 import sourcecode.Appointment;
 
 /**
- * ActionWindow è la classe astratta che predispone una finestra per un form. La
+ * ActionWindow e' la classe astratta che predispone una finestra per un form. La
  * classe SelectAppointmentToEditWindow estende ActionWindow implementando i
  * componenti e le funzioni necessarie per selezionare un appuntamento da
  * modificare, aprendo poi una finestra di modifica richiamndo l'oggetto
@@ -27,14 +27,17 @@ import sourcecode.Appointment;
 public class SelectAppointmentToEditWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Lista di appuntamenti da cui selezionare quello da modificare.
+	 */
 	private JRadioButton[] radioButton;
 
 	/**
 	 * Costruttore della classe. Passa al super costruttore title e cambia il
 	 * contenuto del tasto confirm.
 	 * 
-	 * @param title
-	 * @throws Exception
+	 * @param title titolo della finestra
+	 * @throws Exception un'altra finestra gia' aperta
 	 */
 	public SelectAppointmentToEditWindow(String title) throws Exception {
 		super(title);
@@ -83,7 +86,7 @@ public class SelectAppointmentToEditWindow extends ActionWindow {
 	 * Inizializza i campi del form necessari a selezionare un appuntamento da
 	 * modificare.
 	 * 
-	 * @return JPanel contente la GUI del form.
+	 * @return JPanel contente la GUI del form
 	 */
 	protected JPanel loadFields() {
 		JPanel temp = new JPanel();

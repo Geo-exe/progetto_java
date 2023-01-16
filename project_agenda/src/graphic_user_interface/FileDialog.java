@@ -19,7 +19,7 @@ public class FileDialog {
 
 	/**
 	 * Apre una finestra di esplora file per sscegliere dove e come salvare il file
-	 * di tipo agenda genarato dall'oggetto della classe agenda
+	 * di tipo agenda genarato dall'oggetto della classe agenda.
 	 * 
 	 * @param toSave oggetto da salvare.
 	 * @return false se non l'operazione non è andata a buon fine altrimenti ritorna

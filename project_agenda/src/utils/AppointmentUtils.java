@@ -28,7 +28,7 @@ public class AppointmentUtils {
 	 * @param list      ArrayList di oggetti appuntamento
 	 * @return true se non ci sono altri appuntamenti nello stesso momento
 	 *         altrimenti ritorna false.
-	 * @throws ParseException
+	 * @throws ParseException errore nella conversione della data
 	 */
 	public static boolean checkAvailability(Calendar date_time, String location, String person, int duration,
 			ArrayList<Appointment> list) throws ParseException {

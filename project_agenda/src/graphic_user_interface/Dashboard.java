@@ -23,7 +23,7 @@ import sourcecode.Appointment;
 import utils.AgendaUtils;
 
 /**
- * JFrame è una finestra di dialogo dichiarata nella libreria javax.swing. Essa
+ * JFrame e' una finestra di dialogo dichiarata nella libreria javax.swing. Essa
  * contiene al suo interno i vari componenti dell'interfaccia grafica. Dashboard
  * estende JFrame implementando una classe che crea una finestra in cui si trova
  * in alto una JMenuBar, a sinistra un elenco delle agende presenti nel
@@ -35,16 +35,41 @@ import utils.AgendaUtils;
  */
 public class Dashboard extends JFrame {
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * Pannello che contiene le componenti relative alla stampa delle agende.
+	 */
 	private JPanel agendasListPanel;
+	/**
+	 * Pannello che contiene le componenti relative alla stampa degli appuntamenti.
+	 */
 	private JPanel appointmentsPanel;
+	/**
+	 * Disposizione dei componenti degli appuntamenti.
+	 */
 	private GridLayout appointmentsLayout;
+	/**
+	 * Variabile per imposatre la posione dei componenti.
+	 */
 	private GridBagConstraints gbc;
+	/**
+	 * Disposizione dei componenti nella finestra principale.
+	 */
 	private GridBagLayout windowLayout;
+	/**
+	 * Label con messaggio iniziale.
+	 */
 	private JLabel startLabel;
+	/**
+	 * Contiene il nome di tutte le agende, serve per la visualizzazione a schermo.
+	 */
 	public static JList<String> agendasList;
+	/**
+	 * Modello della JList delle agende.
+	 */
 	private DefaultListModel<String> agendasListModel;
-
+	/**
+	 * Pannello che contiene il menu' delle azioni eseguibili.
+	 */
 	private ActionsPanel actionsPanel;
 
 	/**

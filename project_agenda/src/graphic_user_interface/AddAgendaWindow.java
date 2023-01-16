@@ -12,7 +12,7 @@ import sourcecode.Agenda;
 import utils.AgendaUtils;
 
 /**
- * ActionWindow è la classe astratta che predispone una finestra per un form. La
+ * ActionWindow e' la classe astratta che predispone una finestra per un form. La
  * classe AddAgendaWindows estende ActionWindow implementando i componenti e le
  * funzioni necessarie per inserire una nuova agenda.
  * 
@@ -23,14 +23,17 @@ import utils.AgendaUtils;
 public class AddAgendaWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Casella di testo del nome dell'agenda.
+	 */
 	private JTextField nameBox;
 
 	/**
 	 * Costruttore della classe. Passa al super costruttore title e cambia il
 	 * contenuto del tasto confirm.
 	 * 
-	 * @param String title
-	 * @throws Exception
+	 * @param title titolo della finestra
+	 * @throws Exception un'altra finestra gia' aperta
 	 */
 
 	public AddAgendaWindow(String title) throws Exception {
@@ -65,7 +68,7 @@ public class AddAgendaWindow extends ActionWindow {
 	/**
 	 * Inizializza i campi del form necessari ad inserire una nuova agenda.
 	 * 
-	 * @return JPanel contente la GUI del form.
+	 * @return JPanel contente la GUI del form
 	 */
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();

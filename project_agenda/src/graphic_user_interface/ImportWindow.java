@@ -14,7 +14,7 @@ import sourcecode.Agenda;
 import utils.AgendaUtils;
 
 /**
- * ActionWindow è la classe astratta che predispone una finestra per un form. La
+ * ActionWindow e' la classe astratta che predispone una finestra per un form. La
  * classe ImportWindow estende ActionWindow implementando i componenti e le
  * funzioni necessarie per importare una o più agende.
  * 
@@ -25,14 +25,17 @@ import utils.AgendaUtils;
 public class ImportWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Lista per selezionare se importare una o piu' agende.
+	 */
 	private JComboBox<String> comboBox;
 
 	/**
 	 * Costruttore della classe. Passa al super costruttore title e cambia il
 	 * contenuto del tasto confirm.
 	 * 
-	 * @param title
-	 * @throws Exception
+	 * @param title titolo della finestra
+	 * @throws Exception un'altra finestra gia' aperta
 	 */
 	public ImportWindow(String title) throws Exception {
 		super(title);
@@ -112,7 +115,7 @@ public class ImportWindow extends ActionWindow {
 	 * Inizializza i campi del form necessari a selezionare se si vuole importare
 	 * una o più agende.
 	 * 
-	 * @return JPanel contente la GUI del form.
+	 * @return JPanel contente la GUI del form
 	 */
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();

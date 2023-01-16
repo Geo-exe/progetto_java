@@ -18,7 +18,7 @@ import sourcecode.Appointment;
 import sourcecode.FindByEnum;
 
 /**
- * ActionWindow è la classe astratta che predispone una finestra per un form. La
+ * ActionWindow e' la classe astratta che predispone una finestra per un form. La
  * classe FindAppointmentWindow estende ActionWindow implementando i componenti
  * e le funzioni necessarie per trovare uno o più appuntamenti.
  * 
@@ -29,16 +29,25 @@ import sourcecode.FindByEnum;
 public class FindAppointmentWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Casella di testo che contiene la stringa da cercare.
+	 */
 	private JTextField textBox;
+	/**
+	 * Label che specifica che insirire una data o un nome.
+	 */
 	private JLabel label;
+	/**
+	 * Lista per selezionare se insirire una data o un nome.
+	 */
 	private JComboBox<FindByEnum> comboBox;
 
 	/**
 	 * Costruttore della classe. Passa al super costruttore title e cambia il
 	 * contenuto del tasto confirm.
 	 * 
-	 * @param title
-	 * @throws Exception
+	 * @param title titolo della finestra
+	 * @throws Exception un'altra finestra gia' aperta
 	 */
 	public FindAppointmentWindow(String title) throws Exception {
 		super(title);

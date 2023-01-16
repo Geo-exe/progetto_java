@@ -13,6 +13,10 @@ import java.util.Arrays;
  */
 
 public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
+	/**
+	 * Contiene un metodo che ritorna la classe AddAgendaWindow, uno che ritorna il
+	 * titolo "Aggiungi Agenda" e un altro che ritorna true abilitando il tasto.
+	 */
 	ADDAGENDA {
 		public Class<?> getAssociatedClass() {
 			return AddAgendaWindow.class;
@@ -27,6 +31,10 @@ public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 		}
 
 	},
+	/**
+	 * Contiene un metodo che ritorna la classe DelAgendaWindow, uno che ritorna il
+	 * titolo "Rimuovi Agenda" e un altro che ritorna false disabilitando il tasto.
+	 */
 	REMOVEAGENDA {
 
 		public Class<?> getAssociatedClass() {
@@ -42,6 +50,11 @@ public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 		}
 
 	},
+	/**
+	 * Contiene un metodo che ritorna la classe AddAppointmentWindow, uno che
+	 * ritorna il titolo "Aggiungi Appuntamento" e un altro che ritorna false
+	 * disabilitando il tasto.
+	 */
 	ADDAPPOINTMENT {
 
 		public Class<?> getAssociatedClass() {
@@ -57,6 +70,11 @@ public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 		}
 
 	},
+	/**
+	 * Contiene un metodo che ritorna la classe DelAppointmentWindow, uno che
+	 * ritorna il titolo "Cancella Appuntamento" e un altro che ritorna false
+	 * disabilitando il tasto.
+	 */
 	REMOVEAPPOINTMENT {
 
 		public Class<?> getAssociatedClass() {
@@ -72,6 +90,11 @@ public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 		}
 
 	},
+	/**
+	 * Contiene un metodo che ritorna la classe SelectAppointmentToEditWindow, uno
+	 * che ritorna il titolo "Modifica Appuntamento" e un altro che ritorna false
+	 * disabilitando il tasto.
+	 */
 	EDITAPPOINTMENT {
 
 		public Class<?> getAssociatedClass() {
@@ -87,6 +110,11 @@ public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 		}
 
 	},
+	/**
+	 * Contiene un metodo che ritorna la classe FindAppointmentWindow, uno che
+	 * ritorna il titolo "Trova Appuntamento" e un altro che ritorna false
+	 * disabilitando il tasto.
+	 */
 	FINDAPPOINTMENT {
 
 		public Class<?> getAssociatedClass() {
@@ -102,6 +130,11 @@ public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 		}
 
 	},
+	/**
+	 * Contiene un metodo che ritorna la classe OrderByDateWindow, uno che ritorna
+	 * il titolo "Ordina Appuntamenti" e un altro che ritorna false disabilitando il
+	 * tasto.
+	 */
 	SORTAPPOINTMENT {
 
 		public Class<?> getAssociatedClass() {
@@ -117,6 +150,10 @@ public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 		}
 
 	},
+	/**
+	 * Contiene un metodo che ritorna la classe ImportWindow, uno che ritorna il
+	 * titolo "Importa File Agenda" e un altro che ritorna true abilitando il tasto.
+	 */
 	IMPORT {
 
 		public Class<?> getAssociatedClass() {
@@ -132,6 +169,11 @@ public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 		}
 
 	},
+	/**
+	 * Contiene un metodo che ritorna la classe ExportWindow, uno che ritorna il
+	 * titolo "Esporta File Agenda" e un altro che ritorna false disabilitando il
+	 * tasto.
+	 */
 	EXPORT {
 
 		public Class<?> getAssociatedClass() {
@@ -148,6 +190,10 @@ public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 
 	};
 
+	/**
+	 * Ritorna i titoli.
+	 * @return array di stringhe dei nomi
+	 */
 	public static String[] getNames() {
 		return Arrays.stream(values()).map(Enum::name).toArray(String[]::new);
 	}

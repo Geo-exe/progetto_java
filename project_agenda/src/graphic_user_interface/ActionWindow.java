@@ -14,14 +14,14 @@ import main.Main;
 import sourcecode.Agenda;
 
 /**
- * JFrame è una finestra di dialogo dichiarata nella libreria javax.swing. Essa
+ * JFrame e' una finestra di dialogo dichiarata nella libreria javax.swing. Essa
  * contiene al suo interno i vari componenti dell'interfaccia grafica.
  * ActionWindow estende JFrame implementando una classe astratta che crea una
  * finestra per un form composto da due JPanel. Il primo viene lasciato vuoto,
- * verrà poi implementato in loadFields quando verrà esteso nella classe. Il
+ * verra' poi implementato in loadFields quando verra' esteso nella classe. Il
  * secondo contiene i bottoni annulla e conferma, implementati in endButtons. Ad
  * ognuno viene dei due viene poi assegna una funzione, per il bottone annulla
- * si assegna cancelAction il cuo scopo è chiudere il JFrame, mentre per il
+ * si assegna cancelAction il cuo scopo e' chiudere il JFrame, mentre per il
  * bottone confirm la sua funzione, chiamata confirmAction, deve essere
  * implementata nella sua classe.
  * 
@@ -32,17 +32,32 @@ import sourcecode.Agenda;
 
 public abstract class ActionWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Bottone di conferma.
+	 */
 	protected JButton confirm;
+	/**
+	 * Bottone di annullamento.
+	 */
 	private JButton cancel;
+	/**
+	 * JPanel principale della finestra diviso di parti di dimensioni differenti.
+	 */
 	private JSplitPane panel7030;
+	/**
+	 * Lista di oggetti Agenda.
+	 */
 	protected ArrayList<Agenda> agendas;
+	/**
+	 * Contiene il nome di tutte le agende, serve per la visualizzazione a schermo.
+	 */
 	protected JList<String> agendasList;
 
 	/**
 	 * Costruttore della classe. Inizializza i vari componenti.
 	 * 
-	 * @param String title
-	 * @throws Exception
+	 * @param title della finestra
+	 * @throws Exception un'altra finestra gia' aperta
 	 */
 	public ActionWindow(String title) throws Exception {
 		super(title);

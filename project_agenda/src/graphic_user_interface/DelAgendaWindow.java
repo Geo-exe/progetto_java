@@ -13,7 +13,7 @@ import sourcecode.Agenda;
 import utils.AgendaUtils;
 
 /**
- * ActionWindow è la classe astratta che predispone una finestra per un form. La
+ * ActionWindow e' la classe astratta che predispone una finestra per un form. La
  * classe DelAgendaWindow estende ActionWindow implementando i componenti e le
  * funzioni necessarie per eliminare un'agenda.
  * 
@@ -24,15 +24,17 @@ import utils.AgendaUtils;
 public class DelAgendaWindow extends ActionWindow {
 
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * Lista di agenda da cui selezionare quella da eliminare.
+	 */
 	private JComboBox<String> comboBox;
 
 	/**
 	 * Costruttore della classe. Passa al super costruttore title e cambia il
 	 * contenuto del tasto confirm.
 	 * 
-	 * @param title
-	 * @throws Exception
+	 * @param title della finestra
+	 * @throws Exception un'altra finestra gia' aperta
 	 */
 	public DelAgendaWindow(String title) throws Exception {
 		super(title);
@@ -64,7 +66,7 @@ public class DelAgendaWindow extends ActionWindow {
 	/**
 	 * Inizializza i campi del form necessari ad elimnare un'agenda.
 	 * 
-	 * @return JPanel contente la GUI del form.
+	 * @return JPanel contente la GUI del form
 	 */
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
