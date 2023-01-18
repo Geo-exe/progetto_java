@@ -21,14 +21,14 @@ public enum FindByEnum implements FindByInterface {
 	 * Ricerca di uno o piu' appuntamenti per data
 	 */
 	DATA {
-		public ArrayList<Appointment> findBy(String searchingParameter, Agenda agenda) throws ParseException {
+		public ArrayList<Appointment> findBy(String searchingParameter, ArrayList<Appointment> appointments) throws ParseException {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
 			ArrayList<Appointment> result = new ArrayList<Appointment>();
 			DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 			Calendar input = Calendar.getInstance();
 			input.setTime(format.parse(searchingParameter));
 			Calendar temp;
-			for (Appointment appointment : agenda.getAppointments()) {
+			for (Appointment appointment : appointments) {
 				temp = appointment.getDateTime();
 				if (sdf.format(temp.getTime()).equals(sdf.format(input.getTime()))) {
 					result.add(appointment);
@@ -42,10 +42,10 @@ public enum FindByEnum implements FindByInterface {
 	 * Ricerca di uno o piu' appuntamenti per nome
 	 */
 	NOME {
-		public ArrayList<Appointment> findBy(String searchingParamether, Agenda agenda) {
+		public ArrayList<Appointment> findBy(String searchingParamether,  ArrayList<Appointment> appointments) {
 			ArrayList<Appointment> result = new ArrayList<Appointment>();
 
-			for (Appointment appointment : agenda.getAppointments()) {
+			for (Appointment appointment : appointments) {
 				if (appointment.getPerson().equals(searchingParamether)) {
 					result.add(appointment);
 				}

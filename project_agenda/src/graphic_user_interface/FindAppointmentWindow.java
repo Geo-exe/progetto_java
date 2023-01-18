@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
@@ -68,8 +67,8 @@ public class FindAppointmentWindow extends ActionWindow {
 		scrollBar.getVerticalScrollBar().setUnitIncrement(16);
 		try {
 			FindByEnum selectedMethod = FindByEnum.valueOf(comboBox.getSelectedItem().toString());
-			try {
-				result = selectedMethod.findBy(textBox.getText(), agendas.get(agendasList.getSelectedIndex()));
+			//try {
+				result = agendas.get(agendasList.getSelectedIndex()).findAppointments(selectedMethod,textBox.getText());
 				if (!result.isEmpty()) {
 					scrollBar.setPreferredSize(new Dimension(350, 250));
 					temp.setLayout(new GridLayout(result.size(), 1));
@@ -85,10 +84,10 @@ public class FindAppointmentWindow extends ActionWindow {
 					DialogMessage.error("Non trovato", "Nessun appuntamento trovato!");
 				}
 
-			} catch (ParseException e) {
+		/*	} catch (ParseException e) {
 				e.printStackTrace();
 				DialogMessage.error("Errore di inserimento", "Data inserita non valida!");
-			}
+			}*/
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 			DialogMessage.error("Errore di inserimento", "Errore con il dato selezionato nella ComboBox!");

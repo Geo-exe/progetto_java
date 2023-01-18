@@ -18,5 +18,5 @@ public interface FindByInterface {
 	 * @return uno o piu' appuntamenti
 	 * @throws ParseException errore nella conversione
 	 */
-	public ArrayList<Appointment> findBy(String searchingParamether, Agenda agenda) throws ParseException;
+	public ArrayList<Appointment> findBy(String searchingParamether,  ArrayList<Appointment> appointments) throws ParseException;
 }

@@ -74,7 +74,11 @@ public class EditAppointmentWindow extends AddAppointmentWindow {
 				e.printStackTrace();
 			} catch (UnavailabilityException e) {
 				DialogMessage.error("Impossibile", "Già impegnato! Impossibile modificare l'appuntamento.");
-				agendas.get(agendasList.getSelectedIndex()).addObj(selectedAppointment);
+				try {
+					agendas.get(agendasList.getSelectedIndex()).addObj(selectedAppointment);
+				} catch (UnavailabilityException e1) {
+					e1.printStackTrace();
+				}
 				e.printStackTrace();
 			}
 

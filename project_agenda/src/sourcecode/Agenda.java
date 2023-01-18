@@ -133,8 +133,9 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 	 */
 	public void modifyAppointment(Calendar date_time, String location, String person, int duration, int index)
 			throws ParseException, UnavailabilityException {
-		appointments.remove(index);
+
 		if (AppointmentUtils.checkAvailability(date_time, location, person, duration, appointments)) {
+			appointments.remove(index);
 			this.appointments.add(index, new Appointment(date_time, location, person, duration));
 		} else {
 			throw new UnavailabilityException(
@@ -151,6 +152,23 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 	public ArrayList<Appointment> sortAppointmets(OrderMethodEnum selectedMethod) {
 		ArrayList<Appointment> result = new ArrayList<Appointment>(appointments);
 		selectedMethod.orderByDate(result);
+		return result;
+	}
+
+	/**
+	 * Cerca gli appuntamenti corrispondenti alla striga, che puo'essere ua data o
+	 * un nome di persona.
+	 * 
+	 * @param selectedMethod enum selezionato
+	 * @return arraylist di appuntamenti
+	 */
+	public ArrayList<Appointment> findAppointments(FindByEnum selectedMethod, String search) {
+		ArrayList<Appointment> result = null;
+		try {
+			result = selectedMethod.findBy(search, new ArrayList<Appointment>(appointments));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 
@@ -193,8 +211,14 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 	 * 
 	 * @param selectedAppointment appuntamento selezionato
 	 */
-	public void addObj(Appointment selectedAppointment) {
-		appointments.add(selectedAppointment);
+	public void addObj(Appointment selectedAppointment) throws ParseException, UnavailabilityException {
+		if (AppointmentUtils.checkAvailability(selectedAppointment.getDateTime(), selectedAppointment.getLocation(),
+				selectedAppointment.getPerson(), selectedAppointment.getDuration(), appointments)) {
+			appointments.add(selectedAppointment);
+		} else {
+			throw new UnavailabilityException(
+					"Impossibile creare il nuovo appuntamento, è già presente un altro appuntamento nello stesso periodo.");
+		}
 	}
 
 	/**
