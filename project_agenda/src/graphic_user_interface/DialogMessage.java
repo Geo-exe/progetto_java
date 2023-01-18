@@ -17,7 +17,7 @@ public class DialogMessage {
 	/**
 	 * Viene visulizzata una pagina di errore con messaggio e titolo modificabili
 	 * 
-	 * @param title titolo della finestra
+	 * @param title   titolo della finestra
 	 * @param message messaggio di errore
 	 */
 	public static void error(String title, String message) {
@@ -30,7 +30,7 @@ public class DialogMessage {
 	/**
 	 * Viene visulizzata una pagina con un messaggio e titolo modificabili
 	 * 
-	 * @param title titolo della finestra
+	 * @param title   titolo della finestra
 	 * @param message messaggio da visualizzare
 	 */
 	public static void information(String title, String message) {
@@ -44,7 +44,7 @@ public class DialogMessage {
 	 * Viene visulizzata una pagina con un JScrollPane e titolo modificabili
 	 * 
 	 * @param title titolo della finestra
-	 * @param temp componenti da visualizzare
+	 * @param temp  componenti da visualizzare
 	 */
 	public static void object(String title, JScrollPane temp) {
 		JOptionPane optionPane = new JOptionPane(temp, JOptionPane.INFORMATION_MESSAGE);

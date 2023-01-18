@@ -69,6 +69,7 @@ public class Appointment implements Serializable {
 
 	/**
 	 * Restituisce il luogo dell'appuntamento.
+	 * 
 	 * @return il luogo.
 	 */
 	public String getLocation() {
@@ -77,7 +78,8 @@ public class Appointment implements Serializable {
 
 	/**
 	 * Restituisce la data e l'ora sottofroma di Calendar
-	 * @return la data e l'ora 
+	 * 
+	 * @return la data e l'ora
 	 */
 	public Calendar getDateTime() {
 		return date_time;
@@ -85,6 +87,7 @@ public class Appointment implements Serializable {
 
 	/**
 	 * Restituisce il nome della persona dell'appuntamento sottofroma di stringa.
+	 * 
 	 * @return il nome
 	 */
 	public String getPerson() {
@@ -93,6 +96,7 @@ public class Appointment implements Serializable {
 
 	/**
 	 * Restituisce la durata dell'appuntamento in minuti sottofroma di int.
+	 * 
 	 * @return la durata in minuti.
 	 */
 	public int getDuration() {
@@ -101,14 +105,16 @@ public class Appointment implements Serializable {
 
 	/**
 	 * Restituisce solo l'ora dell'appuntamento sottofroma di stringa.
+	 * 
 	 * @return solo l'ora in stringa
 	 */
-	public String getTime() {
+	public String getStrTime() {
 		return format2.format(date_time.getTime());
 	}
 
 	/**
 	 * Restituisce la data dell'appuntamento sottofroma di stringa.
+	 * 
 	 * @return la data in stringa
 	 */
 	public String getStrDate() {
@@ -121,7 +127,7 @@ public class Appointment implements Serializable {
 	 * 
 	 * @return la fine
 	 */
-	public Calendar getEndDate_time() {
+	public Calendar getEndDateTime() {
 		Calendar result = (Calendar) date_time.clone();
 		result.add(Calendar.MINUTE, duration);
 		return result;

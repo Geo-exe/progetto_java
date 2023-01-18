@@ -10,8 +10,8 @@ import javax.swing.border.EmptyBorder;
 import utils.AgendaUtils;
 
 /**
- * ActionWindow e' la classe astratta che predispone una finestra per un form. La
- * classe ExportWindow estende ActionWindow implementando i componenti e le
+ * ActionWindow e' la classe astratta che predispone una finestra per un form.
+ * La classe ExportWindow estende ActionWindow implementando i componenti e le
  * funzioni necessarie per esportare un'agenda.
  * 
  * @author Griffa Francesco
@@ -44,10 +44,15 @@ public class ExportWindow extends ActionWindow {
 	 */
 	@Override
 	public void confirmAction() {
-		if (FileDialog.FileSaveDialog(agendas.get(comboBox.getSelectedIndex()))) {
-			setVisible(false);
-			dispose();
+		setVisible(false);
+		dispose();
+
+		if (comboBox != null) {
+			if (FileDialog.FileSaveDialog(agendas.get(comboBox.getSelectedIndex()))) {
+
+			}
 		}
+
 	}
 
 	/**
@@ -59,13 +64,17 @@ public class ExportWindow extends ActionWindow {
 	@Override
 	protected JPanel loadFields() {
 		JPanel tempPanel = new JPanel();
-		tempPanel.setLayout(new GridLayout(2, 2, 5, 5));
-		tempPanel.setBorder(new EmptyBorder(40, 30, 30, 40));
-		tempPanel.add(new JLabel("Seleziona un'agenda da :"));
+		if (agendas.size() != 0) {
+			tempPanel.setLayout(new GridLayout(2, 2, 5, 5));
+			tempPanel.setBorder(new EmptyBorder(40, 30, 30, 40));
+			tempPanel.add(new JLabel("Seleziona un'agenda da :"));
 
-		comboBox = new JComboBox<String>(AgendaUtils.agendaListToArray(agendas));
+			comboBox = new JComboBox<String>(AgendaUtils.agendaListToArray(agendas));
 
-		tempPanel.add(comboBox);
+			tempPanel.add(comboBox);
+		} else {
+			tempPanel.add(new JLabel("Nessuna Agenda!"));
+		}
 
 		return tempPanel;
 	}

@@ -14,9 +14,9 @@ import sourcecode.Appointment;
 import sourcecode.OrderMethodEnum;
 
 /**
- * ActionWindow e' la classe astratta che predispone una finestra per un form. La
- * classe OrderByDateWindow estende ActionWindow implementando i componenti e le
- * funzioni necessarie per visualizzare gli appuntamenti ordinati per data
+ * ActionWindow e' la classe astratta che predispone una finestra per un form.
+ * La classe OrderByDateWindow estende ActionWindow implementando i componenti e
+ * le funzioni necessarie per visualizzare gli appuntamenti ordinati per data
  * crescente o decrescente.
  * 
  * @author Griffa Francesco
@@ -56,7 +56,7 @@ public class OrderByDateWindow extends ActionWindow {
 		scrollBar.getVerticalScrollBar().setUnitIncrement(16);
 
 		result = agendas.get(agendasList.getSelectedIndex())
-				.sortAppointmets(OrderMethodEnum.valueOf(comboBox.getSelectedItem().toString()));
+				.sortAppointments(OrderMethodEnum.valueOf(comboBox.getSelectedItem().toString()));
 
 		temp.setLayout(new GridLayout(result.size(), 1));
 

@@ -81,6 +81,13 @@ public class ActionsPanel extends JPanel {
 					actionWindowOpen.addWindowListener(closingEvents());
 					actionWindowIsOpen = true;
 					Dashboard.agendasList.setEnabled(false);
+					/*
+					 * TODO
+					 */
+					menuFile.setEnabled(false);
+					menuAgendas.setEnabled(false);
+					menuAppointments.setEnabled(false);
+
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -97,7 +104,7 @@ public class ActionsPanel extends JPanel {
 				menuFile.add(item);
 			} else if (item.getText().contains("Agenda")) {
 				menuAgendas.add(item);
-			} else if (item.getText().contains("Appuntamento")) {
+			} else if (item.getText().contains("Appuntament")) {
 				menuAppointments.add(item);
 			}
 
@@ -132,6 +139,9 @@ public class ActionsPanel extends JPanel {
 			public void windowClosed(java.awt.event.WindowEvent windowEvent) {
 				actionWindowIsOpen = false;
 				Dashboard.agendasList.setEnabled(true);
+				menuFile.setEnabled(true);
+				menuAgendas.setEnabled(true);
+				menuAppointments.setEnabled(true);
 
 			}
 
@@ -139,6 +149,9 @@ public class ActionsPanel extends JPanel {
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 				actionWindowIsOpen = false;
 				Dashboard.agendasList.setEnabled(true);
+				menuFile.setEnabled(true);
+				menuAgendas.setEnabled(true);
+				menuAppointments.setEnabled(true);
 			}
 		};
 	}

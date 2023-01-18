@@ -149,7 +149,7 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 	 * @param selectedMethod enum selezionato
 	 * @return arraylist di appuntamenti
 	 */
-	public ArrayList<Appointment> sortAppointmets(OrderMethodEnum selectedMethod) {
+	public ArrayList<Appointment> sortAppointments(OrderMethodEnum selectedMethod) {
 		ArrayList<Appointment> result = new ArrayList<Appointment>(appointments);
 		selectedMethod.orderByDate(result);
 		return result;
@@ -160,6 +160,7 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 	 * un nome di persona.
 	 * 
 	 * @param selectedMethod enum selezionato
+	 * @param search         stringa da cercare
 	 * @return arraylist di appuntamenti
 	 */
 	public ArrayList<Appointment> findAppointments(FindByEnum selectedMethod, String search) {
@@ -210,6 +211,8 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 	 * Aggiunge un appuntamento.
 	 * 
 	 * @param selectedAppointment appuntamento selezionato
+	 * @throws ParseException          errore nella conversione della data
+	 * @throws UnavailabilityException conflitto temporale con un altro appuntamento
 	 */
 	public void addObj(Appointment selectedAppointment) throws ParseException, UnavailabilityException {
 		if (AppointmentUtils.checkAvailability(selectedAppointment.getDateTime(), selectedAppointment.getLocation(),

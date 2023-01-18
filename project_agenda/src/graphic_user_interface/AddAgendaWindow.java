@@ -12,9 +12,9 @@ import sourcecode.Agenda;
 import utils.AgendaUtils;
 
 /**
- * ActionWindow e' la classe astratta che predispone una finestra per un form. La
- * classe AddAgendaWindows estende ActionWindow implementando i componenti e le
- * funzioni necessarie per inserire una nuova agenda.
+ * ActionWindow e' la classe astratta che predispone una finestra per un form.
+ * La classe AddAgendaWindows estende ActionWindow implementando i componenti e
+ * le funzioni necessarie per inserire una nuova agenda.
  * 
  * @author Griffa Francesco
  * @author Peracini Fabio

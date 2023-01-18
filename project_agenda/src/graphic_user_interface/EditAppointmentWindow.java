@@ -41,12 +41,13 @@ public class EditAppointmentWindow extends AddAppointmentWindow {
 	/**
 	 * Esegue le operazioni necessarie a modificare appuntamento, eseguondo
 	 * apportuni controlli.
+	 * 
 	 * @param index indice dell'agenda
 	 */
 	public void passFields(int index) {
 		Appointment appointment = agendas.get(agendasList.getSelectedIndex()).getAppointmentAt(index);
 		this.dateBox.setText(appointment.getStrDate());
-		this.timeBox.setText(appointment.getTime());
+		this.timeBox.setText(appointment.getStrTime());
 		this.locationBox.setText(appointment.getLocation());
 		this.personBox.setText(appointment.getPerson());
 		this.durationBox.setText(Integer.toString(appointment.getDuration()));

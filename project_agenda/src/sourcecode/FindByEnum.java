@@ -16,12 +16,13 @@ import java.util.Calendar;
  *
  */
 public enum FindByEnum implements FindByInterface {
-	
+
 	/**
 	 * Ricerca di uno o piu' appuntamenti per data
 	 */
 	DATA {
-		public ArrayList<Appointment> findBy(String searchingParameter, ArrayList<Appointment> appointments) throws ParseException {
+		public ArrayList<Appointment> findBy(String searchingParameter, ArrayList<Appointment> appointments)
+				throws ParseException {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
 			ArrayList<Appointment> result = new ArrayList<Appointment>();
 			DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -42,7 +43,7 @@ public enum FindByEnum implements FindByInterface {
 	 * Ricerca di uno o piu' appuntamenti per nome
 	 */
 	NOME {
-		public ArrayList<Appointment> findBy(String searchingParamether,  ArrayList<Appointment> appointments) {
+		public ArrayList<Appointment> findBy(String searchingParamether, ArrayList<Appointment> appointments) {
 			ArrayList<Appointment> result = new ArrayList<Appointment>();
 
 			for (Appointment appointment : appointments) {

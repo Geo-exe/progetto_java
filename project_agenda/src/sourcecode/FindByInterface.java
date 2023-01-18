@@ -2,6 +2,7 @@ package sourcecode;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+
 /**
  * La classe astratta interface viene usata per implementare la classe
  * enum(FindByInterface).
@@ -13,10 +14,12 @@ import java.util.ArrayList;
 public interface FindByInterface {
 	/**
 	 * Cerca uno o piu' appuntamenti conteneti la stringa passata.
+	 * 
 	 * @param searchingParamether stringa da cercare
-	 * @param agenda agenda in cui cercare
+	 * @param appointments        lista degli appuntamenti
 	 * @return uno o piu' appuntamenti
 	 * @throws ParseException errore nella conversione
 	 */
-	public ArrayList<Appointment> findBy(String searchingParamether,  ArrayList<Appointment> appointments) throws ParseException;
+	public ArrayList<Appointment> findBy(String searchingParamether, ArrayList<Appointment> appointments)
+			throws ParseException;
 }

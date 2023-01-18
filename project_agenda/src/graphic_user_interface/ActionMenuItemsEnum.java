@@ -46,7 +46,7 @@ public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 		}
 
 		public boolean AlwaysEnabled() {
-			return false;
+			return true;
 		}
 
 	},
@@ -185,13 +185,14 @@ public enum ActionMenuItemsEnum implements ActionMenuItemsInterface {
 		}
 
 		public boolean AlwaysEnabled() {
-			return false;
+			return true;
 		}
 
 	};
 
 	/**
 	 * Ritorna i titoli.
+	 * 
 	 * @return array di stringhe dei nomi
 	 */
 	public static String[] getNames() {

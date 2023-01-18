@@ -17,24 +17,30 @@ public class UnavailabilityException extends Exception {
 	public UnavailabilityException() {
 		super();
 	}
+
 	/**
 	 * Costruttore della classe.
+	 * 
 	 * @param message stringa da stampare
 	 */
 	public UnavailabilityException(String message) {
 		super(message);
 	}
+
 	/**
 	 * Costruttore della classe.
+	 * 
 	 * @param cause causa dell'eccezione
 	 */
 	public UnavailabilityException(Throwable cause) {
 		super(cause);
 	}
+
 	/**
 	 * Costruttore della classe.
+	 * 
 	 * @param message stringa da stampare
-	 * @param cause causa dell'eccezione
+	 * @param cause   causa dell'eccezione
 	 */
 	public UnavailabilityException(String message, Throwable cause) {
 		super(message, cause);

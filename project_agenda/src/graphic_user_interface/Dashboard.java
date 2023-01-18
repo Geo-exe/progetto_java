@@ -181,10 +181,17 @@ public class Dashboard extends JFrame {
 			for (Appointment appointment : agenda.getAppointments()) {
 				appointmentsPanel.add(new AppointmentBox(appointment));
 			}
+
+			if (agenda.size() == 0) {
+
+				appointmentsPanel.add(new JLabel("Nessun Appuntamento!"));
+			}
+
 		} else {
 			appointmentsPanel.setLayout(new GridLayout(4, 1, 0, 5));
 			appointmentsPanel.add(startLabel, CENTER_ALIGNMENT);
 		}
+
 		appointmentsPanel.setVisible(true);
 		revalidate();
 	}

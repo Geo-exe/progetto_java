@@ -14,8 +14,8 @@ import sourcecode.Agenda;
 import utils.AgendaUtils;
 
 /**
- * ActionWindow e' la classe astratta che predispone una finestra per un form. La
- * classe ImportWindow estende ActionWindow implementando i componenti e le
+ * ActionWindow e' la classe astratta che predispone una finestra per un form.
+ * La classe ImportWindow estende ActionWindow implementando i componenti e le
  * funzioni necessarie per importare una o più agende.
  * 
  * @author Griffa Francesco
@@ -51,9 +51,12 @@ public class ImportWindow extends ActionWindow {
 		DefaultListModel<String> newModel = new DefaultListModel<String>();
 		String txt = "Agenda Aggiunta!";
 		boolean toEdit = true;
+		setVisible(false);
+		dispose();
 
 		// Viene importata una sola agenda
 		if (comboBox.getSelectedItem() == "1") {
+
 			Agenda temp = (Agenda) FileDialog.FileOpenDialog();
 			// Controllo se esiste già un'agenda con quel nome
 			if (!AgendaUtils.agendaExist(agendas, temp.getName()))
@@ -107,8 +110,7 @@ public class ImportWindow extends ActionWindow {
 		} else {
 			DialogMessage.error("No Agenda", "Nessun Agenda Aggiunta.");
 		}
-		setVisible(false);
-		dispose();
+
 	}
 
 	/**

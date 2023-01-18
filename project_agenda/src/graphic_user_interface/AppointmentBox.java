@@ -11,8 +11,8 @@ import sourcecode.Appointment;
 
 /**
  * JPanel e' un contenitore per oggetti dichiarato nella libreria javax.swing
- * AppointmentBox a sua volta estende JPanel per implementare alcune proprieta' e
- * alcuni metodi. AppointemntBox popola un JPanel con tutte le informazioni
+ * AppointmentBox a sua volta estende JPanel per implementare alcune proprieta'
+ * e alcuni metodi. AppointemntBox popola un JPanel con tutte le informazioni
  * relative ad un singolo appuntamento.
  * 
  * @author Griffa Francesco
@@ -54,7 +54,7 @@ public class AppointmentBox extends JPanel {
 		setLayout(new GridLayout(5, 2));
 		setBorder(BorderFactory.createTitledBorder("Appuntamento"));
 		this.date = new JLabel(appointment.getStrDate());
-		this.time = new JLabel(appointment.getTime());
+		this.time = new JLabel(appointment.getStrTime());
 		this.location = new JLabel(appointment.getLocation());
 		this.person = new JLabel(appointment.getPerson());
 		this.duration = new JLabel(Integer.toString(appointment.getDuration()));

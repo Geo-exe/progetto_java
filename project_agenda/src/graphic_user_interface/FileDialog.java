@@ -53,7 +53,7 @@ public class FileDialog {
 	 */
 	public static Object FileOpenDialog() {
 		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Salva File");
+		fileChooser.setDialogTitle("Apri File");
 		fileChooser.setFileFilter(new FileNameExtensionFilter("File Agenda", "agenda"));
 		Object temp = null;
 

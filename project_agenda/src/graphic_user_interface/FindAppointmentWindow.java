@@ -17,9 +17,9 @@ import sourcecode.Appointment;
 import sourcecode.FindByEnum;
 
 /**
- * ActionWindow e' la classe astratta che predispone una finestra per un form. La
- * classe FindAppointmentWindow estende ActionWindow implementando i componenti
- * e le funzioni necessarie per trovare uno o più appuntamenti.
+ * ActionWindow e' la classe astratta che predispone una finestra per un form.
+ * La classe FindAppointmentWindow estende ActionWindow implementando i
+ * componenti e le funzioni necessarie per trovare uno o più appuntamenti.
  * 
  * @author Griffa Francesco
  * @author Peracini Fabio
@@ -67,27 +67,27 @@ public class FindAppointmentWindow extends ActionWindow {
 		scrollBar.getVerticalScrollBar().setUnitIncrement(16);
 		try {
 			FindByEnum selectedMethod = FindByEnum.valueOf(comboBox.getSelectedItem().toString());
-			//try {
-				result = agendas.get(agendasList.getSelectedIndex()).findAppointments(selectedMethod,textBox.getText());
-				if (!result.isEmpty()) {
-					scrollBar.setPreferredSize(new Dimension(350, 250));
-					temp.setLayout(new GridLayout(result.size(), 1));
-					for (Appointment a : result) {
-						temp.add(new AppointmentBox(a));
-					}
-
-					setVisible(false);
-					dispose();
-					DialogMessage.object("Appuntamento", scrollBar);
-
-				} else {
-					DialogMessage.error("Non trovato", "Nessun appuntamento trovato!");
+			// try {
+			result = agendas.get(agendasList.getSelectedIndex()).findAppointments(selectedMethod, textBox.getText());
+			if (!result.isEmpty()) {
+				scrollBar.setPreferredSize(new Dimension(350, 250));
+				temp.setLayout(new GridLayout(result.size(), 1));
+				for (Appointment a : result) {
+					temp.add(new AppointmentBox(a));
 				}
 
-		/*	} catch (ParseException e) {
-				e.printStackTrace();
-				DialogMessage.error("Errore di inserimento", "Data inserita non valida!");
-			}*/
+				setVisible(false);
+				dispose();
+				DialogMessage.object("Appuntamento", scrollBar);
+
+			} else {
+				DialogMessage.error("Non trovato", "Nessun appuntamento trovato!");
+			}
+
+			/*
+			 * TODO } catch (ParseException e) { e.printStackTrace();
+			 * DialogMessage.error("Errore di inserimento", "Data inserita non valida!"); }
+			 */
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 			DialogMessage.error("Errore di inserimento", "Errore con il dato selezionato nella ComboBox!");

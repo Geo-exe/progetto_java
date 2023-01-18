@@ -43,8 +43,8 @@ public class AppointmentUtils {
 			 * dopo o nello stesso momento della fine(data inizio + durata)di quelli
 			 * nell'arraylist.
 			 */
-			if (end.before(a.getDateTime()) || end.equals(a.getDateTime()) || date_time.after(a.getEndDate_time())
-					|| date_time.equals(a.getEndDate_time())) {
+			if (end.before(a.getDateTime()) || end.equals(a.getDateTime()) || date_time.after(a.getEndDateTime())
+					|| date_time.equals(a.getEndDateTime())) {
 				count++;
 			}
 		}
