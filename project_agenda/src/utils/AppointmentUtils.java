@@ -1,6 +1,5 @@
 package utils;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -28,10 +27,8 @@ public class AppointmentUtils {
 	 * @param list      ArrayList di oggetti appuntamento
 	 * @return true se non ci sono altri appuntamenti nello stesso momento
 	 *         altrimenti ritorna false.
-	 * @throws ParseException errore nella conversione della data
 	 */
-	public static boolean checkAvailability(Calendar date_time, String location, String person, int duration,
-			ArrayList<Appointment> list) throws ParseException {
+	public static boolean checkAvailability(Calendar date_time, String location, String person, int duration, ArrayList<Appointment> list) {
 		Calendar end = (Calendar) date_time.clone();
 		end.add(Calendar.MINUTE, duration);
 		int count = 0;
@@ -43,8 +40,7 @@ public class AppointmentUtils {
 			 * dopo o nello stesso momento della fine(data inizio + durata)di quelli
 			 * nell'arraylist.
 			 */
-			if (end.before(a.getDateTime()) || end.equals(a.getDateTime()) || date_time.after(a.getEndDateTime())
-					|| date_time.equals(a.getEndDateTime())) {
+			if (end.before(a.getDateTime()) || end.equals(a.getDateTime()) || date_time.after(a.getEndDateTime()) || date_time.equals(a.getEndDateTime())) {
 				count++;
 			}
 		}

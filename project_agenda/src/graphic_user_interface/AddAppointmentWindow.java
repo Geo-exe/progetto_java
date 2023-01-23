@@ -78,7 +78,7 @@ public class AddAppointmentWindow extends ActionWindow {
 					agendas.get(agendasList.getSelectedIndex()).addAppointment(c1, this.locationBox.getText(),
 							this.personBox.getText(), Integer.parseInt(this.durationBox.getText()));
 					DialogMessage.information("Successo", "Appuntamento aggiunto!");
-				} catch (NumberFormatException | ParseException e) {
+				} catch (NumberFormatException e) {
 					e.printStackTrace();
 				} catch (UnavailabilityException e) {
 					DialogMessage.error("Impossibile", "Già impegnato! Impossibile creare l'appuntamento.");

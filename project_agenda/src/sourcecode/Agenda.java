@@ -93,8 +93,7 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 	 * @throws ParseException          errore nella conversione della data
 	 * @throws UnavailabilityException conflitto temporale con un altro appuntamento
 	 */
-	public void addAppointment(Calendar date_time, String location, String person, int duration)
-			throws ParseException, UnavailabilityException {
+	public void addAppointment(Calendar date_time, String location, String person, int duration) throws UnavailabilityException {
 		if (AppointmentUtils.checkAvailability(date_time, location, person, duration, appointments)) {
 			this.appointments.add(new Appointment(date_time, location, person, duration));
 		} else {
@@ -132,7 +131,7 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 	 * @throws UnavailabilityException conflitto temporale con un altro appuntamento
 	 */
 	public void modifyAppointment(Calendar date_time, String location, String person, int duration, int index)
-			throws ParseException, UnavailabilityException {
+			throws UnavailabilityException {
 
 		if (AppointmentUtils.checkAvailability(date_time, location, person, duration, appointments)) {
 			appointments.remove(index);
@@ -214,7 +213,7 @@ public class Agenda implements Iterable<Appointment>, Serializable {
 	 * @throws ParseException          errore nella conversione della data
 	 * @throws UnavailabilityException conflitto temporale con un altro appuntamento
 	 */
-	public void addObj(Appointment selectedAppointment) throws ParseException, UnavailabilityException {
+	public void addObj(Appointment selectedAppointment) throws UnavailabilityException {
 		if (AppointmentUtils.checkAvailability(selectedAppointment.getDateTime(), selectedAppointment.getLocation(),
 				selectedAppointment.getPerson(), selectedAppointment.getDuration(), appointments)) {
 			appointments.add(selectedAppointment);
