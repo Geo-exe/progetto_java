@@ -4,6 +4,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
@@ -17,9 +20,9 @@ import sourcecode.Appointment;
 import sourcecode.FindByEnum;
 
 /**
- * ActionWindow e' la classe astratta che predispone una finestra per un form.
- * La classe FindAppointmentWindow estende ActionWindow implementando i
- * componenti e le funzioni necessarie per trovare uno o più appuntamenti.
+ * ActionWindow e' la classe astratta che predispone una finestra per un form,
+ * la classe FindAppointmentWindow estende ActionWindow implementando i
+ * componenti e le funzioni necessarie per trovare uno o piu' appuntamenti.
  * 
  * @author Griffa Francesco
  * @author Peracini Fabio
@@ -67,7 +70,18 @@ public class FindAppointmentWindow extends ActionWindow {
 		scrollBar.getVerticalScrollBar().setUnitIncrement(16);
 		try {
 			FindByEnum selectedMethod = FindByEnum.valueOf(comboBox.getSelectedItem().toString());
-			// try {
+			
+			if(comboBox.getSelectedItem().toString().equals("DATA")) {
+				DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+				try {
+					format.parse(textBox.getText());
+				} catch (ParseException e) {
+					DialogMessage.error("Errore", "Data non valida!");
+					e.printStackTrace();
+				}
+			}
+			
+			
 			result = agendas.get(agendasList.getSelectedIndex()).findAppointments(selectedMethod, textBox.getText());
 			if (!result.isEmpty()) {
 				scrollBar.setPreferredSize(new Dimension(350, 250));
@@ -84,10 +98,6 @@ public class FindAppointmentWindow extends ActionWindow {
 				DialogMessage.error("Non trovato", "Nessun appuntamento trovato!");
 			}
 
-			/*
-			 * TODO } catch (ParseException e) { e.printStackTrace();
-			 * DialogMessage.error("Errore di inserimento", "Data inserita non valida!"); }
-			 */
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 			DialogMessage.error("Errore di inserimento", "Errore con il dato selezionato nella ComboBox!");

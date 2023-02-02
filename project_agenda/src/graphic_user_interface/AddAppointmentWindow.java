@@ -17,8 +17,8 @@ import javax.swing.border.EmptyBorder;
 import sourcecode.UnavailabilityException;
 
 /**
- * ActionWindow e' la classe astratta che predispone una finestra per un form.
- * La classe AddAppointmentWindow estende ActionWindow implementando i
+ * ActionWindow e' la classe astratta che predispone una finestra per un form,
+ * la classe AddAppointmentWindow estende ActionWindow implementando i
  * componenti e le funzioni necessarie per inserire un nuovo appuntamento.
  * 
  * @author Griffa Francesco

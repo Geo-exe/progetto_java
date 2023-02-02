@@ -33,7 +33,6 @@ public class FileHandler implements Serializable {
 			out.writeObject(toExport);
 			out.close();
 		} catch (IOException e) {
-			// TODO JOptionPane
 			e.printStackTrace();
 		}
 	}
@@ -52,7 +51,6 @@ public class FileHandler implements Serializable {
 			rawImported = in.readObject();
 			in.close();
 		} catch (IOException | ClassNotFoundException e) {
-			// TODO JOptionPane
 			e.printStackTrace();
 		}
 		if (rawImported instanceof Agenda) {

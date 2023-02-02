@@ -14,9 +14,9 @@ import sourcecode.Agenda;
 import utils.AgendaUtils;
 
 /**
- * ActionWindow e' la classe astratta che predispone una finestra per un form.
- * La classe ImportWindow estende ActionWindow implementando i componenti e le
- * funzioni necessarie per importare una o più agende.
+ * ActionWindow e' la classe astratta che predispone una finestra per un form,
+ * la classe ImportWindow estende ActionWindow implementando i componenti e le
+ * funzioni necessarie per importare una o piu' agende.
  * 
  * @author Griffa Francesco
  * @author Peracini Fabio
@@ -67,11 +67,10 @@ public class ImportWindow extends ActionWindow {
 				do {
 					newName = JOptionPane
 							.showInputDialog("Assegnare un nuovo nome all'agenda <" + temp.getName() + "> :");
-				} while (AgendaUtils.agendaExist(agendas, newName) && newName == "");
+				} while (AgendaUtils.agendaExist(agendas, newName) || newName.isEmpty());
 				if (newName != null) {
 					agendas.add(new Agenda(newName, temp.getAppointments()));
-				} else
-					toEdit = false;
+				} 
 
 			}
 		} else {
@@ -88,12 +87,10 @@ public class ImportWindow extends ActionWindow {
 					do {
 						newName = JOptionPane
 								.showInputDialog("Assegnare un nuovo nome all'agenda <" + temp.getName() + "> :");
-					} while (AgendaUtils.agendaExist(agendas, newName) && newName == "");
+					} while (AgendaUtils.agendaExist(agendas, newName) || newName.isEmpty());
 					if (newName != null) {
 						agendas.add(new Agenda(newName, temp.getAppointments()));
-					} else {
-						DialogMessage.error("Skip", "Agenda saltata.");
-					}
+					} 
 				}
 			}
 			txt = "Agende Aggiunte!";

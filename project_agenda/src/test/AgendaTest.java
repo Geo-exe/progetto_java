@@ -1,9 +1,12 @@
 package test;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,9 +24,10 @@ class AgendaTest {
 
 	@Test
 	void creaAgendaSoloNome() {
-		Agenda agenda = new Agenda("Prova");
-		assertEquals(agenda.getName(), "Prova");
-		assertEquals(agenda.size(), 0);
+		String nomeTest = "Test";
+		Agenda agenda = new Agenda(nomeTest);
+		assertEquals(nomeTest, agenda.getName());
+		assertEquals(0, agenda.size());
 	}
 
 	@Test
@@ -34,8 +38,8 @@ class AgendaTest {
 		appuntamenti.add(new Appointment(GetCalendar("15/10/2023 15:18"), "Ufficio", "Capo", 60));
 
 		Agenda agenda = new Agenda("Prova", appuntamenti);
-		assertEquals(agenda.getName(), "Prova");
-		assertEquals(agenda.size(), 1);
+		assertEquals("Prova", agenda.getName());
+		assertEquals(1, agenda.size());
 
 	}
 
@@ -50,8 +54,8 @@ class AgendaTest {
 
 		Agenda agenda = new Agenda("Prova", appuntamenti);
 
-		assertEquals(agenda.getName(), "Prova");
-		assertEquals(agenda.size(), 3);
+		assertEquals("Prova", agenda.getName());
+		assertEquals(3, agenda.size());
 
 	}
 
@@ -59,7 +63,7 @@ class AgendaTest {
 	void nomeAgenda() {
 
 		Agenda agenda = new Agenda("Prova");
-		assertEquals(agenda.getName(), "Prova");
+		assertEquals("Prova", agenda.getName());
 
 	}
 
@@ -73,7 +77,7 @@ class AgendaTest {
 		appuntamenti.add(new Appointment(GetCalendar("13/05/2023 8:00"), "Ufficio", "Capo", 20));
 
 		Agenda agenda = new Agenda("Prova", appuntamenti);
-		assertEquals(agenda.getAppointments(), appuntamenti);
+		assertEquals(appuntamenti, agenda.getAppointments());
 
 	}
 
@@ -87,51 +91,22 @@ class AgendaTest {
 		appuntamenti.add(new Appointment(GetCalendar("13/05/2023 8:00"), "Ufficio", "Capo", 20));
 
 		Agenda agenda = new Agenda("Prova", appuntamenti);
-		assertEquals(agenda.size(), appuntamenti.size());
+		assertEquals(appuntamenti.size(), agenda.size());
 
 	}
 
 	@Test
-	void aggiungiAppuntamento() throws ParseException, UnavailabilityException {
-
-		ArrayList<Appointment> appuntamenti = new ArrayList<Appointment>();
-
-		appuntamenti.add(new Appointment(GetCalendar("15/01/2023 15:20"), "Ufficio", "Capo", 60));
-		appuntamenti.add(new Appointment(GetCalendar("25/10/2022 18:10"), "Ufficio", "Capo", 35));
-		appuntamenti.add(new Appointment(GetCalendar("13/05/2023 8:00"), "Ufficio", "Capo", 20));
-
-		Agenda agenda = new Agenda("Prova", appuntamenti);
-
-		agenda.addAppointment(GetCalendar("13/05/2021 8:00"), "Studio", "Cliente", 20);
-
-		assertEquals(agenda.getAppointmentAt(3).getDateTime(), GetCalendar("13/05/2021 8:00"));
-		assertEquals(agenda.getAppointmentAt(3).getLocation(), "Studio");
-		assertEquals(agenda.getAppointmentAt(3).getPerson(), "Cliente");
-		assertEquals(agenda.getAppointmentAt(3).getDuration(), 20);
-
-	}
-
-	@Test
-	void aggiungiAppuntamentoErrore() throws ParseException, UnavailabilityException {
-
-		ArrayList<Appointment> appuntamenti = new ArrayList<Appointment>();
-		boolean result = false;
-
-		appuntamenti.add(new Appointment(GetCalendar("15/01/2023 15:20"), "Ufficio", "Capo", 60));
-		appuntamenti.add(new Appointment(GetCalendar("25/10/2022 18:10"), "Ufficio", "Capo", 35));
-		appuntamenti.add(new Appointment(GetCalendar("13/05/2023 8:00"), "Ufficio", "Capo", 20));
-
-		Agenda agenda = new Agenda("Prova", appuntamenti);
-
+	void aggiungiAppuntamento() {
+		String nomeTest = "Prova";
+		Agenda agenda = new Agenda(nomeTest);
+		Calendar c1 = Calendar.getInstance();
+		DateFormat format3 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		try {
-			agenda.addAppointment(GetCalendar("13/05/2023 8:00"), "Ufficio", "Capo", 20);
-			result = true;
-		} catch (UnavailabilityException e) {
-			e.printStackTrace();
+			c1.setTime(format3.parse("12/12/2022 12:22"));
+		} catch (ParseException e) {
 		}
-
-		assertFalse(result);
-		assertEquals(agenda.size(), 3);
+		assertDoesNotThrow(() -> agenda.addAppointment(c1, nomeTest, nomeTest, 50));
+		assertThrows(UnavailabilityException.class, () -> agenda.addAppointment(c1, nomeTest, nomeTest, 50));
 
 	}
 
@@ -149,8 +124,8 @@ class AgendaTest {
 
 		agenda.removeAt(0);
 
-		assertEquals(agenda.size(), 2);
-		assertEquals(agenda.getAppointmentAt(0), secondoAppuntamento);
+		assertEquals(2, agenda.size());
+		assertEquals(secondoAppuntamento, agenda.getAppointmentAt(0));
 
 	}
 
@@ -167,7 +142,7 @@ class AgendaTest {
 
 		agenda.removeAll();
 
-		assertEquals(agenda.size(), 0);
+		assertEquals(0, agenda.size());
 
 	}
 
@@ -175,51 +150,19 @@ class AgendaTest {
 	void modificaAppuntamento() {
 
 		ArrayList<Appointment> appuntamenti = new ArrayList<Appointment>();
-		boolean result = false;
 
 		appuntamenti.add(new Appointment(GetCalendar("15/01/2023 15:20"), "Ufficio", "Capo", 60));
+		String nomeTest = "Test";
+		Agenda agenda = new Agenda(nomeTest, appuntamenti);
 
-		Agenda agenda = new Agenda("Prova", appuntamenti);
-
-		try {
-			agenda.modifyAppointment(GetCalendar("25/10/2022 18:10"), "Studio", "Cliente", 35, 0);
-			result = true;
-		} catch (UnavailabilityException e) {
-			e.printStackTrace();
-		}
-
-		assertTrue(result);
-		assertEquals(agenda.size(), 1);
-		assertEquals(agenda.getAppointmentAt(0).getDateTime(), GetCalendar("25/10/2022 18:10"));
-		assertEquals(agenda.getAppointmentAt(0).getLocation(), "Studio");
-		assertEquals(agenda.getAppointmentAt(0).getPerson(), "Cliente");
-		assertEquals(agenda.getAppointmentAt(0).getDuration(), 35);
-
-	}
-
-	@Test
-	void modificaAppuntamentoErrore() throws ParseException, UnavailabilityException {
-
-		ArrayList<Appointment> appuntamenti = new ArrayList<Appointment>();
-		boolean result = false;
-
-		appuntamenti.add(new Appointment(GetCalendar("15/01/2023 15:20"), "Ufficio", "Capo", 60));
-
-		Agenda agenda = new Agenda("Prova", appuntamenti);
-
-		try {
-			agenda.modifyAppointment(GetCalendar("15/01/2023 15:30"), "Studio", "Cliente", 35, 0);
-			result = true;
-		} catch (UnavailabilityException e) {
-			e.printStackTrace();
-		}
-
-		assertFalse(result);
-		assertEquals(agenda.size(), 1);
-		assertEquals(agenda.getAppointmentAt(0).getDateTime(), GetCalendar("15/01/2023 15:20"));
-		assertEquals(agenda.getAppointmentAt(0).getLocation(), "Ufficio");
-		assertEquals(agenda.getAppointmentAt(0).getPerson(), "Capo");
-		assertEquals(agenda.getAppointmentAt(0).getDuration(), 60);
+		assertDoesNotThrow(() -> agenda.modifyAppointment(GetCalendar("25/10/2022 18:10"), "Studio", "Cliente", 35, 0));
+		assertThrows(UnavailabilityException.class,
+				() -> agenda.modifyAppointment(GetCalendar("25/10/2022 18:10"), "Studio", "Cliente", 35, 0));
+		assertEquals(1, agenda.size());
+		assertEquals(GetCalendar("25/10/2022 18:10"), agenda.getAppointmentAt(0).getDateTime());
+		assertEquals("Studio", agenda.getAppointmentAt(0).getLocation());
+		assertEquals("Cliente", agenda.getAppointmentAt(0).getPerson());
+		assertEquals(35, agenda.getAppointmentAt(0).getDuration());
 
 	}
 
@@ -337,7 +280,6 @@ class AgendaTest {
 		appuntamentifiltrati = agenda.findAppointments(FindByEnum.valueOf("DATA"), "15/01/2023");
 
 		for (Appointment app : appuntamentifiltrati) {
-			System.out.println(app.getStrDate());
 			if (app.getStrDate().equals("15/01/2023")) {
 				c++;
 			}
@@ -409,7 +351,6 @@ class AgendaTest {
 	void aggiungiAppuntamentoDatoInidice() {
 
 		ArrayList<Appointment> appuntamenti = new ArrayList<Appointment>();
-		boolean result = false;
 		int indice = 2;
 
 		appuntamenti.add(new Appointment(GetCalendar("15/01/2023 15:20"), "Ufficio", "Capo", 60));
@@ -420,54 +361,19 @@ class AgendaTest {
 		appuntamenti.add(new Appointment(GetCalendar("28/09/2022 18:30"), "Studio", "Cliente", 45));
 		appuntamenti.add(new Appointment(GetCalendar("18/02/2020 15:20"), "Ufficio", "Capo", 120));
 
-		Agenda agenda = new Agenda("Prova", appuntamenti);
+		String nomeTest = "Prova";
+		Agenda agenda = new Agenda(nomeTest, appuntamenti);
 
-		try {
-			agenda.addAppointmentAtIndex(GetCalendar("15/01/2023 11:20"), "Ufficio", "Capo", 60, indice);
-			result = true;
-		} catch (ParseException e) {
-			e.printStackTrace();
-		} catch (UnavailabilityException e) {
-			e.printStackTrace();
-		}
+		assertDoesNotThrow(
+				() -> agenda.addAppointmentAtIndex(GetCalendar("15/01/2023 11:20"), "Ufficio", "Capo", 60, indice));
+		assertThrows(UnavailabilityException.class,
+				() -> agenda.addAppointmentAtIndex(GetCalendar("15/01/2023 11:20"), "Ufficio", "Capo", 60, indice));
 
 		Appointment app = agenda.getAppointmentAt(indice);
-
-		assertTrue(result);
-		assertEquals(app.getDateTime(), GetCalendar("15/01/2023 11:20"));
-		assertEquals(app.getLocation(), "Ufficio");
-		assertEquals(app.getPerson(), "Capo");
-		assertEquals(app.getDuration(), 60);
-
-	}
-
-	@Test
-	void aggiungiAppuntamentoDatoInidiceErrore() {
-
-		ArrayList<Appointment> appuntamenti = new ArrayList<Appointment>();
-		boolean result = false;
-		int indice = 2;
-
-		appuntamenti.add(new Appointment(GetCalendar("15/01/2023 15:20"), "Ufficio", "Capo", 60));
-		appuntamenti.add(new Appointment(GetCalendar("15/01/2023 14:20"), "Ufficio", "Capo", 60));
-		appuntamenti.add(new Appointment(GetCalendar("15/01/2023 18:30"), "Studio", "Cliente", 35));
-		appuntamenti.add(new Appointment(GetCalendar("18/02/2021 15:20"), "Ufficio", "Capo", 60));
-		appuntamenti.add(new Appointment(GetCalendar("10/01/2023 15:20"), "Ufficio", "Capo", 20));
-		appuntamenti.add(new Appointment(GetCalendar("28/09/2022 18:30"), "Studio", "Cliente", 45));
-		appuntamenti.add(new Appointment(GetCalendar("18/02/2020 15:20"), "Ufficio", "Capo", 120));
-
-		Agenda agenda = new Agenda("Prova", appuntamenti);
-
-		try {
-			agenda.addAppointmentAtIndex(GetCalendar("15/01/2023 15:20"), "Ufficio", "Capo", 60, indice);
-			result = true;
-		} catch (ParseException e) {
-			e.printStackTrace();
-		} catch (UnavailabilityException e) {
-			e.printStackTrace();
-		}
-
-		assertFalse(result);
+		assertEquals(GetCalendar("15/01/2023 11:20"), app.getDateTime());
+		assertEquals("Ufficio", app.getLocation());
+		assertEquals("Capo", app.getPerson());
+		assertEquals(60, app.getDuration());
 
 	}
 

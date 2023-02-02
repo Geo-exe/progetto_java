@@ -28,7 +28,8 @@ public class AppointmentUtils {
 	 * @return true se non ci sono altri appuntamenti nello stesso momento
 	 *         altrimenti ritorna false.
 	 */
-	public static boolean checkAvailability(Calendar date_time, String location, String person, int duration, ArrayList<Appointment> list) {
+	public static boolean checkAvailability(Calendar date_time, String location, String person, int duration,
+			ArrayList<Appointment> list) {
 		Calendar end = (Calendar) date_time.clone();
 		end.add(Calendar.MINUTE, duration);
 		int count = 0;
@@ -40,7 +41,8 @@ public class AppointmentUtils {
 			 * dopo o nello stesso momento della fine(data inizio + durata)di quelli
 			 * nell'arraylist.
 			 */
-			if (end.before(a.getDateTime()) || end.equals(a.getDateTime()) || date_time.after(a.getEndDateTime()) || date_time.equals(a.getEndDateTime())) {
+			if (end.before(a.getDateTime()) || end.equals(a.getDateTime()) || date_time.after(a.getEndDateTime())
+					|| date_time.equals(a.getEndDateTime())) {
 				count++;
 			}
 		}

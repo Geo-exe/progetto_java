@@ -6,7 +6,7 @@ import sourcecode.Agenda;
 
 /**
  * La classe AgendaUtils contiene dei metodi utili a fare controlli nella classe
- * Appointments.
+ * Agenda.
  * 
  * @author Griffa Francesco
  * @author Peracini Fabio

@@ -36,7 +36,7 @@ public class FileDialog {
 		// Verifica del risultato
 		if (result == JFileChooser.APPROVE_OPTION) {
 			File file = fileChooser.getSelectedFile();
-			FileHandler.exportToFile(file.getPath(), toSave);
+			FileHandler.exportToFile(file.getPath()+".agenda", toSave);
 			return true;
 		} else if (result == JFileChooser.CANCEL_OPTION) {
 			DialogMessage.information("Operazione", "Operazione annullata");

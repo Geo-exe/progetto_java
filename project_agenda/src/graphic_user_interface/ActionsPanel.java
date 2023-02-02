@@ -81,9 +81,6 @@ public class ActionsPanel extends JPanel {
 					actionWindowOpen.addWindowListener(closingEvents());
 					actionWindowIsOpen = true;
 					Dashboard.agendasList.setEnabled(false);
-					/*
-					 * TODO
-					 */
 					menuFile.setEnabled(false);
 					menuAgendas.setEnabled(false);
 					menuAppointments.setEnabled(false);

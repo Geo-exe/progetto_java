@@ -14,8 +14,8 @@ import sourcecode.Appointment;
 import sourcecode.OrderMethodEnum;
 
 /**
- * ActionWindow e' la classe astratta che predispone una finestra per un form.
- * La classe OrderByDateWindow estende ActionWindow implementando i componenti e
+ * ActionWindow e' la classe astratta che predispone una finestra per un form,s
+ * la classe OrderByDateWindow estende ActionWindow implementando i componenti e
  * le funzioni necessarie per visualizzare gli appuntamenti ordinati per data
  * crescente o decrescente.
  * 

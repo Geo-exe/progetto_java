@@ -14,8 +14,8 @@ import javax.swing.border.EmptyBorder;
 import sourcecode.Appointment;
 
 /**
- * ActionWindow e' la classe astratta che predispone una finestra per un form.
- * La classe DelAppointmentWindow estende ActionWindow implementando i
+ * ActionWindow e' la classe astratta che predispone una finestra per un form,
+ * la classe DelAppointmentWindow estende ActionWindow implementando i
  * componenti e le funzioni necessarie per eliminare appuntamento.
  * 
  * @author Griffa Francesco

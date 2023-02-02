@@ -17,10 +17,10 @@ class AppointmentTest {
 
 		Appointment app = new Appointment(GetCalendar("15/01/2023 15:20"), "Ufficio", "Capo", 60);
 
-		assertEquals(app.getDateTime(), GetCalendar("15/01/2023 15:20"));
-		assertEquals(app.getLocation(), "Ufficio");
-		assertEquals(app.getPerson(), "Capo");
-		assertEquals(app.getDuration(), 60);
+		assertEquals( GetCalendar("15/01/2023 15:20"),app.getDateTime());
+		assertEquals("Ufficio", app.getLocation());
+		assertEquals("Capo", app.getPerson());
+		assertEquals(60, app.getDuration());
 
 	}
 
@@ -30,7 +30,7 @@ class AppointmentTest {
 
 		Appointment app = new Appointment(data, "Ufficio", "Capo", 60);
 
-		assertEquals(app.getDateTime(), data);
+		assertEquals(data, app.getDateTime());
 
 	}
 
@@ -39,7 +39,7 @@ class AppointmentTest {
 		String luogo = "Ufficio";
 		Appointment app = new Appointment(GetCalendar("15/01/2023 15:20"), luogo, "Capo", 60);
 
-		assertEquals(app.getLocation(), luogo);
+		assertEquals(luogo, app.getLocation() );
 
 	}
 
@@ -48,7 +48,7 @@ class AppointmentTest {
 		String nome = "Capo";
 		Appointment app = new Appointment(GetCalendar("15/01/2023 15:20"), "Ufficio", nome, 60);
 
-		assertEquals(app.getPerson(), nome);
+		assertEquals(nome, app.getPerson());
 
 	}
 
@@ -57,7 +57,7 @@ class AppointmentTest {
 		int durata = 60;
 		Appointment app = new Appointment(GetCalendar("15/01/2023 15:20"), "Ufficio", "Capo", durata);
 
-		assertEquals(app.getDuration(), durata);
+		assertEquals(durata, app.getDuration());
 
 	}
 
@@ -66,7 +66,7 @@ class AppointmentTest {
 		String ora = "15:20";
 		Appointment app = new Appointment(GetCalendar("15/01/2023 " + ora), "Ufficio", "Capo", 60);
 
-		assertEquals(app.getStrTime(), ora);
+		assertEquals(ora, app.getStrTime() );
 
 	}
 
@@ -75,7 +75,7 @@ class AppointmentTest {
 		String data = "15/01/2023";
 		Appointment app = new Appointment(GetCalendar(data + " 15:20"), "Ufficio", "Capo", 60);
 
-		assertEquals(app.getStrDate(), data);
+		assertEquals(data, app.getStrDate() );
 
 	}
 
@@ -88,7 +88,7 @@ class AppointmentTest {
 		Calendar end = GetCalendar("15/01/2023 15:20");
 		end.add(Calendar.MINUTE, durata);
 
-		assertEquals(app.getEndDateTime(), end);
+		assertEquals(end, app.getEndDateTime() );
 
 	}
 

@@ -13,8 +13,8 @@ import sourcecode.Agenda;
 import utils.AgendaUtils;
 
 /**
- * ActionWindow e' la classe astratta che predispone una finestra per un form.
- * La classe DelAgendaWindow estende ActionWindow implementando i componenti e
+ * ActionWindow e' la classe astratta che predispone una finestra per un form,
+ * la classe DelAgendaWindow estende ActionWindow implementando i componenti e
  * le funzioni necessarie per eliminare un'agenda.
  * 
  * @author Griffa Francesco
