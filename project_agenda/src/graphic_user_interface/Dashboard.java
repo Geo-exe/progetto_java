@@ -102,7 +102,7 @@ public class Dashboard extends JFrame {
 		appointmentsLayout = new GridLayout(4, 1, 0, 5);
 
 		// inizializzo la label
-		startLabel = new JLabel("Selezionare un'Agenda!");
+		startLabel = new JLabel("Selezionare o aggiungere un'Agenda!");
 
 		// inizializzo i pannelli
 		agendasListPanel = new JPanel();

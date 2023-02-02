@@ -51,13 +51,19 @@ public class ImportWindow extends ActionWindow {
 		DefaultListModel<String> newModel = new DefaultListModel<String>();
 		String txt = "Agenda Aggiunta!";
 		boolean toEdit = true;
+		boolean nameFlag=true;
 		setVisible(false);
 		dispose();
 
 		// Viene importata una sola agenda
 		if (comboBox.getSelectedItem() == "1") {
-
-			Agenda temp = (Agenda) FileDialog.FileOpenDialog();
+			
+			Object a=FileDialog.FileOpenDialog();
+			if(a instanceof ArrayList) {
+				DialogMessage.error("Errore", "Il file contiene piu' di un' agenda!");
+				toEdit=false;
+			}else {
+			Agenda temp = (Agenda) a;
 			// Controllo se esiste già un'agenda con quel nome
 			if (!AgendaUtils.agendaExist(agendas, temp.getName()))
 				agendas.add(temp);
@@ -67,16 +73,33 @@ public class ImportWindow extends ActionWindow {
 				do {
 					newName = JOptionPane
 							.showInputDialog("Assegnare un nuovo nome all'agenda <" + temp.getName() + "> :");
-				} while (AgendaUtils.agendaExist(agendas, newName) || newName.isEmpty());
+					if(newName==null) {
+						nameFlag=false;
+					}else if(newName.isBlank()){
+						nameFlag=true;
+					}else {
+						nameFlag=false;
+					}
+				} while (AgendaUtils.agendaExist(agendas, newName) || nameFlag);
 				if (newName != null) {
 					agendas.add(new Agenda(newName, temp.getAppointments()));
-				} 
+				} else {
+					toEdit=false;
+				}
 
-			}
+			}}
 		} else {
 			// Vengono imporatate più agende
+			
+			Object a=FileDialog.FileOpenDialog();
+			if(a instanceof Agenda) {
+				DialogMessage.error("Errore", "Il file contiene una sola agenda!");
+				toEdit=false;
+			}else {
+			
 			@SuppressWarnings("unchecked")
-			ArrayList<Agenda> temps = (ArrayList<Agenda>) FileDialog.FileOpenDialog();
+			ArrayList<Agenda> temps = (ArrayList<Agenda>) a;
+			int size=agendas.size();
 			for (Agenda temp : temps) {
 				// Controllo se esiste già un'agenda con quel nome
 				if (!AgendaUtils.agendaExist(agendas, temp.getName())) {
@@ -87,14 +110,29 @@ public class ImportWindow extends ActionWindow {
 					do {
 						newName = JOptionPane
 								.showInputDialog("Assegnare un nuovo nome all'agenda <" + temp.getName() + "> :");
-					} while (AgendaUtils.agendaExist(agendas, newName) || newName.isEmpty());
+						if(newName==null) {
+							nameFlag=false;
+						}else if(newName.isBlank()){
+							nameFlag=true;
+						}else {
+							nameFlag=false;
+						}
+					} while (AgendaUtils.agendaExist(agendas, newName) || nameFlag);
 					if (newName != null) {
 						agendas.add(new Agenda(newName, temp.getAppointments()));
-					} 
+						
+					}
+					
+					
+					
 				}
 			}
+			if(size==agendas.size()){
+			toEdit=false;
+			}
 			txt = "Agende Aggiunte!";
-		}
+		}}
+		
 		if (toEdit) {
 			for (String name : AgendaUtils.agendaListToArray(agendas)) {
 				newModel.addElement(name);
@@ -105,7 +143,7 @@ public class ImportWindow extends ActionWindow {
 			agendasList.setModel(newModel);
 			agendasList.revalidate();
 		} else {
-			DialogMessage.error("No Agenda", "Nessun Agenda Aggiunta.");
+			DialogMessage.error("No Agenda", "Agenda Non Aggiunta.");
 		}
 
 	}
