@@ -1,4 +1,4 @@
-package JUnit;
+package test;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -126,8 +126,6 @@ class AgendaTest {
 		try {
 			agenda.addAppointment(GetCalendar("13/05/2023 8:00"), "Ufficio", "Capo", 20);
 			result = true;
-		} catch (ParseException e) {
-			e.printStackTrace();
 		} catch (UnavailabilityException e) {
 			e.printStackTrace();
 		}
@@ -186,8 +184,6 @@ class AgendaTest {
 		try {
 			agenda.modifyAppointment(GetCalendar("25/10/2022 18:10"), "Studio", "Cliente", 35, 0);
 			result = true;
-		} catch (ParseException e) {
-			e.printStackTrace();
 		} catch (UnavailabilityException e) {
 			e.printStackTrace();
 		}
@@ -214,8 +210,6 @@ class AgendaTest {
 		try {
 			agenda.modifyAppointment(GetCalendar("15/01/2023 15:30"), "Studio", "Cliente", 35, 0);
 			result = true;
-		} catch (ParseException e) {
-			e.printStackTrace();
 		} catch (UnavailabilityException e) {
 			e.printStackTrace();
 		}
@@ -379,8 +373,6 @@ class AgendaTest {
 
 		try {
 			agenda.addObj(app);
-		} catch (ParseException e) {
-			e.printStackTrace();
 		} catch (UnavailabilityException e) {
 			e.printStackTrace();
 		}
