@@ -132,7 +132,7 @@ class TestAgenda {
 			testObject.addAppointment(c1, nameTest, nameTest, 50);
 			testObject.addAppointment(c2, nameTest, nameTest, 50);
 		} catch (UnavailabilityException e) {}
-		
+		// da finire
 	}
 
 }
